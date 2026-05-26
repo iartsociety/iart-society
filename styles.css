@@ -3,6 +3,14 @@ body {
   color: black; 
 }
 
+.logo {
+  height: 105px;
+  width: 400px;
+  margin-top: 10px;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
 h1 {
   font-size: 100px;
   text-align: center;
@@ -24,5 +32,14 @@ p {
   font-style: normal;
 }
 
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    main {
+        font-size: 1em;
+    }
+}
 
   
