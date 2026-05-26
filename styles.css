@@ -6,7 +6,7 @@ body {
 .logo {
   margin-top: 10px;
   align-items: center;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
 }
 
 h1 {
@@ -15,7 +15,7 @@ h1 {
 }
 
 h3 {
-  font-size: 80px; 
+  font-size: 60px; 
   text-align: center;  
   color: #a7cb69; 
 
