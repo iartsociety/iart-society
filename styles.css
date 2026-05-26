@@ -1,7 +1,6 @@
 body {
   background-color: #1a252b; 
   color: black; 
-  justify-content: center;
 }
 
 .logo {
@@ -17,7 +16,7 @@ h1 {
 
 h3 {
   font-size: 60px; 
-  text-align: center;  
+  align-items: center;  
   color: #a7cb69; 
 
 p {
