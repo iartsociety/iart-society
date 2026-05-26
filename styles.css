@@ -40,31 +40,35 @@ p {
   transform: translateX(-50%);
 
   display: flex;
-  gap: 40px;
-
-  padding: 22px 45px;
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+  gap: 20px;
 
   z-index: 9999;
 }
 
 .bottom-nav a {
   text-decoration: none;
-  color: white;
-  font-size: 80px;
+  color: #EFC36B;
+
+  font-size: 1.2rem;
   font-weight: bold;
-  transition: 0.2s ease;
+
+  padding: 16px 32px;
+
+  border: 2px solid #EFC36B;
+  border-radius: 12px;
+
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+
+  transition: all 0.25s ease;
 }
 
 .bottom-nav a:hover {
-  color: #a7cb69;
-  transform: translateY(-2px);
+  background-color: #EFC36B;
+  color: #1a252b;
+
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(239, 195, 107, 0.3);
 }
 
 @media (max-width: 600px) {
