@@ -1,6 +1,7 @@
 body {
   background-color: #1a252b; 
   color: black; 
+  justify-content: center;
 }
 
 .logo {
