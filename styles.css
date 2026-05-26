@@ -66,13 +66,11 @@ p {
 }
 
 footer {
-  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #222;
   color: white;
-  margin-top: 100px;
 }
 
 @media (max-width: 600px) {
