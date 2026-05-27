@@ -7,7 +7,10 @@ body {
   overflow-x: hidden;
 }
 
-/* MAIN CONTENT CONTAINER */
+/* =========================
+   GLOBAL LAYOUT
+   ========================= */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -23,15 +26,12 @@ body {
 .logo {
   width: min(90%, 700px);
   height: auto;
-
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
-/* HEADINGS */
+/* TEXT */
 h1 {
   font-size: clamp(3rem, 8vw, 6rem);
-  color: white;
   margin: 0;
   line-height: 1.1;
 }
@@ -40,44 +40,40 @@ h2 {
   font-size: clamp(1.2rem, 3vw, 2.5rem);
   color: #e71e7e;
   font-family: "Josefin Sans", sans-serif;
-
-  margin-top: 10px;
-  margin-bottom: 20px;
-
+  margin: 10px 0 20px;
   max-width: 900px;
-  line-height: 1.4;
 }
 
 h3 {
   font-size: clamp(1.2rem, 3vw, 2.5rem);
   color: #a7cb69;
-
-  margin-top: 10px;
-  margin-bottom: 20px;
-
+  margin: 10px 0 20px;
   max-width: 900px;
-  line-height: 1.4;
 }
 
 p {
   font-size: clamp(1rem, 2vw, 1.4rem);
-  color: white;
-
   max-width: 800px;
   line-height: 1.6;
 }
 
-/* FONT */
-.chelsea-market-regular {
-  font-family: "Chelsea Market", system-ui;
-  font-weight: 400;
+/* =========================
+   HOME PAGE ONLY
+   ========================= */
+
+body.home .workshop {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
 }
 
 /* =========================
-   + ADD COURSE BUTTON
+   COURSE SYSTEM (COURSES PAGE ONLY)
    ========================= */
 
-.add-course-btn {
+/* + BUTTON ONLY ON COURSES PAGE */
+body.courses .add-course-btn {
   position: fixed;
   bottom: 120px;
   right: 20px;
@@ -96,8 +92,8 @@ p {
   color: #EFC36B;
   font-size: 1.4rem;
   font-weight: bold;
-  text-align: center;
 
+  text-align: center;
   cursor: pointer;
 
   z-index: 50;
@@ -105,17 +101,14 @@ p {
   transition: all 0.25s ease;
 }
 
-.add-course-btn:hover {
+body.courses .add-course-btn:hover {
   background-color: #EFC36B;
   color: #1a252b;
   transform: translateY(-2px);
 }
 
-/* =========================
-   COURSE CARDS
-   ========================= */
-
-.course-card {
+/* COURSE BUTTONS */
+body.courses .course-card {
   position: relative;
   z-index: 100;
 
@@ -146,18 +139,23 @@ p {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-.course-card:hover {
+body.courses .course-card:hover {
   background-color: #EFC36B;
   color: #1a252b;
   transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(239, 195, 107, 0.3);
 }
 
+/* FIX spacing ONLY on courses page */
+body.courses #courses-container {
+  padding-bottom: 160px;
+}
+
 /* =========================
-   POPUP
+   POPUP (ONLY COURSES PAGE)
    ========================= */
 
-.popup {
+body.courses .popup {
   position: fixed;
   inset: 0;
 
@@ -174,7 +172,7 @@ p {
   display: none;
 }
 
-.popup-content {
+body.courses .popup-content {
   width: 90%;
   max-width: 420px;
 
@@ -184,11 +182,10 @@ p {
   border: 2px solid #EFC36B;
 
   background: #1a252b;
-
   text-align: center;
 }
 
-.popup-content input {
+body.courses .popup-content input {
   width: 100%;
   box-sizing: border-box;
 
@@ -201,7 +198,7 @@ p {
   font-size: 1rem;
 }
 
-.popup-content button {
+body.courses .popup-content button {
   margin-top: 20px;
 
   padding: 14px 20px;
@@ -219,13 +216,13 @@ p {
   transition: 0.25s ease;
 }
 
-.popup-content button:hover {
+body.courses .popup-content button:hover {
   background-color: #EFC36B;
   color: #1a252b;
 }
 
 /* =========================
-   BOTTOM NAV
+   NAV (GLOBAL - FIXED)
    ========================= */
 
 .bottom-nav {
@@ -273,25 +270,15 @@ p {
 }
 
 /* =========================
-   PAGE-SPECIFIC FIX
-   ========================= */
-
-/* ONLY affects courses page if container exists */
-#courses-container {
-  padding-bottom: 160px;
-}
-
-/* =========================
    MOBILE
    ========================= */
 
 @media (max-width: 600px) {
-
   .container {
     padding: 25px 15px;
   }
 
-  .add-course-btn {
+  body.courses .add-course-btn {
     bottom: 110px;
   }
 
@@ -303,9 +290,5 @@ p {
   .bottom-nav a {
     padding: 12px 14px;
     font-size: 0.85rem;
-  }
-
-  h3 {
-    line-height: 1.3;
   }
 }
