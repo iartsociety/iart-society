@@ -51,6 +51,7 @@ h1 {
 h2 {
   font-size: clamp(1.2rem, 3vw, 2.5rem);
   color: #e71e7e;
+  font-family: "Josefin Sans", sans-serif;
 
   margin-top: 10px;
   margin-bottom: 20px;
