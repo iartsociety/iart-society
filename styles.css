@@ -100,15 +100,24 @@ p {
 
 .add-course-btn {
   position: fixed;
-  bottom: 15px;
-  right: 25px;
+  display: block;
+  text-decoration: none;
 
-  width: 65px;
-  height: 65px;
-
-  border-radius: 16px;
   border: 2px solid #EFC36B;
+  border-radius: 16px;
 
+  padding: 18px 22px;
+  margin: 16px auto;
+
+  max-width: 600px;
+  width: 90%;
+
+  backdrop-filter: blur(10px);
+
+  color: #EFC36B;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
   background: transparent;
 
   color: #EFC36B;
