@@ -17,11 +17,14 @@ h1 {
 
 h3 {
   font-size: 60px;
+  text-align: center;  
+  color: #a7cb69; 
+}
+
+.introgreentext {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;  
-  color: #a7cb69; 
 }
 
 p {
