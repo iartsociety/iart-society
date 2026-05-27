@@ -6,6 +6,13 @@ if ("serviceWorker" in navigator) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+const closeButton = document.getElementById("close-popup-btn");
+const popup = document.getElementById("course-popup");
+
+closeButton.addEventListener("click", () => {
+  popup.classList.add("hidden");
+});
+
   // =========================
   // COURSE DATABASE
   // =========================
