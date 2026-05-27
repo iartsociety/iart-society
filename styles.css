@@ -96,14 +96,47 @@ p {
 }
 
 /* COURSE CARDS */
+.add-course-btn {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+
+  width: 60px;
+  height: 60px;
+
+  border: 2px solid #EFC36B;
+  border-radius: 16px;
+
+  background-color: transparent;
+
+  color: #EFC36B;
+  font-size: 2rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.add-course-btn:hover {
+  background-color: #EFC36B;
+  color: #1a252b;
+}
+
 .course-card {
   border: 2px solid #EFC36B;
+  border-radius: 16px;
+
   padding: 20px;
-  margin: 20px;
-  border-radius: 12px;
+  margin: 20px auto;
+
+  max-width: 700px;
 
   color: white;
+  background: rgba(255,255,255,0.05);
+
   text-align: center;
+  font-size: 1.3rem;
 }
 
 /* STICKY BOTTOM NAV */
