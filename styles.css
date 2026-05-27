@@ -47,6 +47,18 @@ h1 {
   line-height: 1.1;
 }
 
+/* WORKSHOP TEXT */
+h2 {
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  color: #e71e7e;
+
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  max-width: 900px;
+  line-height: 1.4;
+}
+
 /* GREEN SUBTITLE */
 h3 {
   font-size: clamp(1.2rem, 3vw, 2.5rem);
