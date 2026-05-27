@@ -54,9 +54,10 @@ p {
 
 .bottom-nav a {
   text-decoration: none;
+  text-align: center;
   color: #EFC36B;
-
-  font-size: 40px;
+  
+  font-size: 80px;
   font-weight: bold;
 
   padding: 16px 32px;
