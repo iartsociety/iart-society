@@ -95,6 +95,17 @@ p {
   font-style: normal;
 }
 
+/* COURSE CARDS */
+.course-card {
+  border: 2px solid #EFC36B;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 12px;
+
+  color: white;
+  text-align: center;
+}
+
 /* STICKY BOTTOM NAV */
 .bottom-nav {
   position: fixed;
