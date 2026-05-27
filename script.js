@@ -1,5 +1,7 @@
 import "./styles.css";
 
+console.log("JS is connected");
+
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service-worker.js");
 }
