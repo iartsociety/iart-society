@@ -120,15 +120,11 @@ p {
   text-align: center;
   background: transparent;
 
-  color: #EFC36B;
-  font-size: 2rem;
-  font-weight: bold;
-
   cursor: pointer;
 
   transition: 0.25s ease;
 
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .add-course-btn:hover {
