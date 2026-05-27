@@ -7,6 +7,8 @@ body {
   margin-top: 10px;
   align-items: center;
   padding-bottom: 5px;
+  width: 500px; 
+  height: auto;
 }
 
 h1 {
