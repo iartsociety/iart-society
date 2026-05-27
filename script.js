@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "DWHG26": {
       title: "Diya Wall Hanging Guide",
       description:
-        "Learn how to create a beautiful traditional diya wall hanging step-by-step."
+        "Learn how to create a traditional diya wall hanging step-by-step."
     }
 
   };
@@ -26,6 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const addButton =
     document.getElementById("add-course-btn");
+
+  const popup =
+    document.getElementById("course-popup");
+
+  const submitButton =
+    document.getElementById("submit-code-btn");
+
+  const input =
+    document.getElementById("course-code-input");
 
   const coursesContainer =
     document.getElementById("courses-container");
@@ -56,9 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderCourses() {
 
-    // ONLY run if container exists
-    if (!coursesContainer) return;
-
     coursesContainer.innerHTML = "";
 
     myCourses.forEach(course => {
@@ -80,53 +86,62 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
-  // BUTTON CLICK
+  // OPEN POPUP
   // =========================
 
-  // ONLY run if button exists
-  if (addButton) {
+  addButton.addEventListener("click", () => {
 
-    addButton.addEventListener("click", () => {
+    popup.classList.remove("hidden");
 
-      const enteredCode =
-        prompt("Enter Course Code:");
-
-      if (!enteredCode) return;
-
-      const course =
-        courseCodes[enteredCode];
-
-      if (!course) {
-
-        alert("Invalid Course Code.");
-        return;
-
-      }
-
-      const alreadyUnlocked =
-        myCourses.some(savedCourse =>
-          savedCourse.title === course.title
-        );
-
-      if (alreadyUnlocked) {
-
-        alert("Course already added.");
-        return;
-
-      }
-
-      myCourses.push(course);
-
-      saveCourses();
-
-      alert("Course Added!");
-
-    });
-
-  }
+  });
 
   // =========================
-  // INITIAL PAGE LOAD
+  // SUBMIT CODE
+  // =========================
+
+  submitButton.addEventListener("click", () => {
+
+    const enteredCode =
+      input.value.trim();
+
+    const course =
+      courseCodes[enteredCode];
+
+    if (!course) {
+
+      alert("Invalid Course Code");
+      return;
+
+    }
+
+    const alreadyUnlocked =
+      myCourses.some(savedCourse =>
+        savedCourse.title === course.title
+      );
+
+    if (alreadyUnlocked) {
+
+      alert("Course already added.");
+      return;
+
+    }
+
+    myCourses.push(course);
+
+    saveCourses();
+
+    renderCourses();
+
+    popup.classList.add("hidden");
+
+    input.value = "";
+
+    alert("Course Added!");
+
+  });
+
+  // =========================
+  // INITIAL LOAD
   // =========================
 
   renderCourses();
