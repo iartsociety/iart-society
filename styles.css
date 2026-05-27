@@ -22,7 +22,6 @@ body {
   text-align: center;
 }
 
-/* LOGO */
 .logo {
   width: min(90%, 700px);
   height: auto;
@@ -69,10 +68,9 @@ body.home .workshop {
 }
 
 /* =========================
-   COURSE SYSTEM (COURSES PAGE ONLY)
+   COURSES PAGE ONLY
    ========================= */
 
-/* + BUTTON ONLY ON COURSES PAGE */
 body.courses .add-course-btn {
   position: fixed;
   bottom: 120px;
@@ -93,8 +91,8 @@ body.courses .add-course-btn {
   font-size: 1.4rem;
   font-weight: bold;
 
-  text-align: center;
   cursor: pointer;
+  text-align: center;
 
   z-index: 50;
 
@@ -107,11 +105,8 @@ body.courses .add-course-btn:hover {
   transform: translateY(-2px);
 }
 
-/* COURSE BUTTONS */
+/* COURSE CARDS */
 body.courses .course-card {
-  position: relative;
-  z-index: 100;
-
   display: block;
   text-decoration: none;
 
@@ -146,33 +141,35 @@ body.courses .course-card:hover {
   box-shadow: 0 10px 25px rgba(239, 195, 107, 0.3);
 }
 
-/* FIX spacing ONLY on courses page */
 body.courses #courses-container {
   padding-bottom: 160px;
 }
 
 /* =========================
-   POPUP (ONLY COURSES PAGE)
+   POPUP SYSTEM (GLOBAL SAFE)
    ========================= */
 
-body.courses .popup {
+.popup {
   position: fixed;
   inset: 0;
-
-  background: rgba(0,0,0,0.65);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
+  background: rgba(0,0,0,0.65);
+
   z-index: 1000;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-body.courses .popup-content {
+/* popup box */
+.popup-content {
+  position: relative;
+
   width: 90%;
   max-width: 420px;
 
@@ -182,10 +179,14 @@ body.courses .popup-content {
   border: 2px solid #EFC36B;
 
   background: #1a252b;
+
   text-align: center;
+
+  z-index: 1001;
 }
 
-body.courses .popup-content input {
+/* input + button */
+.popup-content input {
   width: 100%;
   box-sizing: border-box;
 
@@ -198,7 +199,7 @@ body.courses .popup-content input {
   font-size: 1rem;
 }
 
-body.courses .popup-content button {
+.popup-content button {
   margin-top: 20px;
 
   padding: 14px 20px;
@@ -216,15 +217,12 @@ body.courses .popup-content button {
   transition: 0.25s ease;
 }
 
-body.courses .popup-content button:hover {
+.popup-content button:hover {
   background-color: #EFC36B;
   color: #1a252b;
 }
 
-.popup-content {
-  position: relative; /* IMPORTANT so X can anchor inside */
-}
-
+/* X BUTTON (FIXED + ALWAYS ON TOP OF POPUP CONTENT) */
 .popup-close {
   position: absolute;
   top: 10px;
@@ -239,7 +237,7 @@ body.courses .popup-content button:hover {
 
   cursor: pointer;
 
-  line-height: 1;
+  z-index: 1002;
 }
 
 .popup-close:hover {
@@ -248,7 +246,7 @@ body.courses .popup-content button:hover {
 }
 
 /* =========================
-   NAV (GLOBAL - FIXED)
+   NAV
    ========================= */
 
 .bottom-nav {
