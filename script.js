@@ -4,58 +4,129 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service-worker.js");
 }
 
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-  const addButton = document.getElementById("add-course-btn");
+  // -------------------------
+  // COURSE DATABASE
+  // -------------------------
 
-  addButton.addEventListener("click", () => {
+  const courseCodes = {
+    "DWHG26": {
+      title: "Diya Wall Hanging Guide",
+      description:
+        "Learn how to create a beautiful traditional diya wall hanging step-by-step."
+    }
+  };
 
-    const code = prompt("Enter Course Code:");
+  // -------------------------
+  // ELEMENTS
+  // -------------------------
 
-    if (code === "DWHG26") {
+  const addButton =
+    document.getElementById("add-course-btn");
 
-      let courses =
-        JSON.parse(localStorage.getItem("myCourses")) || [];
+  const coursesContainer =
+    document.getElementById("courses-container");
 
-      if (!courses.includes("Digital Wellness")) {
+  // -------------------------
+  // LOAD SAVED COURSES
+  // -------------------------
 
-        courses.push("Digital Wellness");
+  let myCourses =
+    JSON.parse(localStorage.getItem("myCourses")) || [];
 
-        localStorage.setItem(
-          "myCourses",
-          JSON.stringify(courses)
-        );
+  // -------------------------
+  // RENDER COURSES
+  // -------------------------
 
-        alert("Course Added!");
+  function renderCourses() {
 
-      } else {
+    if (!coursesContainer) return;
 
-        alert("You already unlocked this course.");
+    coursesContainer.innerHTML = "";
+
+    myCourses.forEach(course => {
+
+      const card = document.createElement("div");
+
+      card.classList.add("course-card");
+
+      card.innerHTML = `
+        <h2>${course.title}</h2>
+        <p>${course.description}</p>
+      `;
+
+      coursesContainer.appendChild(card);
+
+    });
+
+  }
+
+  // -------------------------
+  // SAVE COURSES
+  // -------------------------
+
+  function saveCourses() {
+
+    localStorage.setItem(
+      "myCourses",
+      JSON.stringify(myCourses)
+    );
+
+  }
+
+  // -------------------------
+  // ADD COURSE BUTTON
+  // -------------------------
+
+  if (addButton) {
+
+    addButton.addEventListener("click", () => {
+
+      const enteredCode =
+        prompt("Enter Course Code:");
+
+      if (!enteredCode) return;
+
+      const course =
+        courseCodes[enteredCode];
+
+      if (!course) {
+
+        alert("Invalid Course Code.");
+        return;
 
       }
 
-    } else {
+      const alreadyUnlocked =
+        myCourses.some(
+          savedCourse =>
+            savedCourse.title === course.title
+        );
 
-      alert("Invalid code.");
+      if (alreadyUnlocked) {
 
-    }
+        alert("Course already added.");
+        return;
 
-  });
+      }
 
-});
+      myCourses.push(course);
 
-const container = document.getElementById("courses-container");
+      saveCourses();
 
-const courses = JSON.parse(localStorage.getItem("myCourses")) || [];
+      renderCourses();
 
-courses.forEach(course => {
+      alert("Course Added!");
 
-  const courseCard = document.createElement("div");
+    });
 
-  courseCard.innerText = course;
+  }
 
-  courseCard.classList.add("course-card");
+  // -------------------------
+  // INITIAL RENDER
+  // -------------------------
 
-  container.appendChild(courseCard);
+  renderCourses();
 
 });
