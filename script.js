@@ -29,3 +29,19 @@ addButton.addEventListener("click", () => {
   }
 
 });
+
+const container = document.getElementById("courses-container");
+
+const courses = JSON.parse(localStorage.getItem("myCourses")) || [];
+
+courses.forEach(course => {
+
+  const courseCard = document.createElement("div");
+
+  courseCard.innerText = course;
+
+  courseCard.classList.add("course-card");
+
+  container.appendChild(courseCard);
+
+});
