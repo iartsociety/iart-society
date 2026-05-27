@@ -6,13 +6,6 @@ if ("serviceWorker" in navigator) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-const closeButton = document.getElementById("close-popup-btn");
-const popup = document.getElementById("course-popup");
-
-closeButton.addEventListener("click", () => {
-  popup.classList.add("hidden");
-});
-
   // =========================
   // COURSE DATABASE
   // =========================
@@ -29,62 +22,43 @@ closeButton.addEventListener("click", () => {
   // ELEMENTS
   // =========================
 
-  const addButton =
-    document.getElementById("add-course-btn");
-
-  const popup =
-    document.getElementById("course-popup");
-
-  const submitButton =
-    document.getElementById("submit-code-btn");
-
-  const input =
-    document.getElementById("course-code-input");
-
-  const coursesContainer =
-    document.getElementById("courses-container");
+  const addButton = document.getElementById("add-course-btn");
+  const popup = document.getElementById("course-popup");
+  const closeButton = document.getElementById("close-popup-btn");
+  const submitButton = document.getElementById("submit-code-btn");
+  const input = document.getElementById("course-code-input");
+  const coursesContainer = document.getElementById("courses-container");
 
   // =========================
-  // LOAD SAVED COURSES (STORE IDS ONLY)
+  // LOAD COURSES
   // =========================
 
   let myCourses =
     JSON.parse(localStorage.getItem("myCourses")) || [];
 
-  // =========================
-  // SAVE COURSES
-  // =========================
-
   function saveCourses() {
-    localStorage.setItem(
-      "myCourses",
-      JSON.stringify(myCourses)
-    );
+    localStorage.setItem("myCourses", JSON.stringify(myCourses));
   }
 
   // =========================
-  // RENDER COURSES AS BUTTONS
+  // RENDER COURSES
   // =========================
 
   function renderCourses() {
-
     if (!coursesContainer) return;
 
     coursesContainer.innerHTML = "";
 
     myCourses.forEach(courseId => {
 
-      // find full course data from code map
       const course = Object.values(courseCodes)
         .find(c => c.id === courseId);
 
       if (!course) return;
 
       const link = document.createElement("a");
-
-      link.classList.add("course-card");
+      link.className = "course-card";
       link.href = course.page;
-
       link.innerText = course.title;
 
       coursesContainer.appendChild(link);
@@ -102,13 +76,32 @@ closeButton.addEventListener("click", () => {
   }
 
   // =========================
+  // CLOSE POPUP (X BUTTON)
+  // =========================
+
+  if (closeButton && popup) {
+    closeButton.addEventListener("click", () => {
+      popup.classList.add("hidden");
+    });
+  }
+
+  // click outside popup to close
+  if (popup) {
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) {
+        popup.classList.add("hidden");
+      }
+    });
+  }
+
+  // =========================
   // SUBMIT CODE
   // =========================
 
-  if (submitButton) {
+  if (submitButton && input && popup) {
     submitButton.addEventListener("click", () => {
 
-      const enteredCode = input.value.trim();
+      const enteredCode = input.value.trim().toUpperCase();
 
       const course = courseCodes[enteredCode];
 
@@ -117,23 +110,18 @@ closeButton.addEventListener("click", () => {
         return;
       }
 
-      const alreadyUnlocked =
-        myCourses.includes(course.id);
+      const alreadyUnlocked = myCourses.includes(course.id);
 
       if (alreadyUnlocked) {
         alert("Course already added.");
         return;
       }
 
-      // STORE ONLY ID
       myCourses.push(course.id);
-
       saveCourses();
-
       renderCourses();
 
       popup.classList.add("hidden");
-
       input.value = "";
 
       alert("Course Added!");
@@ -141,7 +129,7 @@ closeButton.addEventListener("click", () => {
   }
 
   // =========================
-  // INITIAL LOAD
+  // INIT
   // =========================
 
   renderCourses();
