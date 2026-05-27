@@ -1,38 +1,38 @@
 body {
   background-color: #1a252b;
   padding-bottom: 140px;
+  margin: 0;
 }
 
 .logo {
   margin-top: 10px;
-  align-items: center;
+  text-align: center;
   padding-bottom: 5px;
 }
 
 h1 {
-  font-size: 100px;
+  font-size: clamp(3rem, 8vw, 6rem);
   text-align: center;
   color: white;
-  padding-left: 275px;
 }
 
 h3 {
-  font-size: 60px;
-  text-align: center;  
-  color: #a7cb69; 
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  text-align: center;
+  color: #a7cb69;
 }
 
 .introgreentext {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 275px;
 }
 
 p {
-  font-size: 60px;
+  font-size: clamp(1.2rem, 4vw, 3rem);
   text-align: center;
   color: white;
+  padding: 0 20px;
 }
 
 .chelsea-market-regular {
@@ -43,12 +43,14 @@ p {
 
 .bottom-nav {
   position: fixed;
-  bottom: 40px;
+  bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
 
   display: flex;
-  gap: 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
 
   z-index: 9999;
 }
@@ -57,11 +59,11 @@ p {
   text-decoration: none;
   text-align: center;
   color: #EFC36B;
-  
-  font-size: 80px;
+
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   font-weight: bold;
 
-  padding: 16px 32px;
+  padding: 12px 22px;
 
   border: 2px solid #EFC36B;
   border-radius: 12px;
@@ -79,14 +81,3 @@ p {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(239, 195, 107, 0.3);
 }
-
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 1.5em;
-    }
-
-    main {
-        font-size: 1em;
-    }
-}
-  
