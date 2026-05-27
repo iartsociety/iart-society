@@ -245,6 +245,55 @@ body.courses #courses-container {
   transform: scale(1.1);
 }
 
+.step-card {
+  width: 90%;
+  max-width: 700px;
+  margin: 16px auto;
+
+  border: 2px solid #EFC36B;
+  border-radius: 16px;
+
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+
+  overflow: hidden;
+}
+
+.step-toggle {
+  width: 100%;
+  padding: 16px;
+
+  background: transparent;
+  border: none;
+
+  color: #EFC36B;
+  font-size: 1.1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+  text-align: left;
+}
+
+.step-toggle:hover {
+  background: rgba(239, 195, 107, 0.1);
+}
+
+.step-content {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 20px;
+}
+
+.step-content iframe {
+  width: 560px;
+  height: 315px;
+  border-radius: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
 /* =========================
    NAV
    ========================= */
