@@ -266,6 +266,7 @@ body.courses #courses-container {
   background: transparent;
   border: none;
 
+  font-family: "Josefin Sans", sans-serif;
   color: #EFC36B;
   font-size: 1.1rem;
   font-weight: bold;
