@@ -18,7 +18,7 @@ h1 {
 h3 {
   font-size: 60px;
   display: flex;
-  justify-content: center;
+  align-items: center;
   text-align: center;  
   color: #a7cb69; 
 }
