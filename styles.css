@@ -75,6 +75,13 @@ p {
   font-style: normal;
 }
 
+.josefin-sans-<uniquifier> {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* STICKY BOTTOM NAV */
 .bottom-nav {
   position: fixed;
