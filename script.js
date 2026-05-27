@@ -11,12 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
 
   const courseCodes = {
-  "DWHG26": {
-    id: "diya-wall-hanging",
-    title: "Diya Wall Hanging Guide",
-    page: "diya.html"
-  }
-};
+    "DWHG26": {
+      id: "diya-wall-hanging",
+      title: "Diya Wall Hanging Guide",
+      page: "diya.html"
+    }
+  };
 
   // =========================
   // ELEMENTS
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("courses-container");
 
   // =========================
-  // LOAD SAVED COURSES
+  // LOAD SAVED COURSES (STORE IDS ONLY)
   // =========================
 
   let myCourses =
@@ -49,94 +49,89 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
 
   function saveCourses() {
-
     localStorage.setItem(
       "myCourses",
       JSON.stringify(myCourses)
     );
-
   }
 
   // =========================
-  // RENDER COURSES
+  // RENDER COURSES AS BUTTONS
   // =========================
 
   function renderCourses() {
 
+    if (!coursesContainer) return;
+
     coursesContainer.innerHTML = "";
 
-    myCourses.forEach(course => {
+    myCourses.forEach(courseId => {
 
-      const card =
-        document.createElement("div");
+      // find full course data from code map
+      const course = Object.values(courseCodes)
+        .find(c => c.id === courseId);
 
-      card.classList.add("course-card");
+      if (!course) return;
 
-      card.innerHTML = `
-        <h2>${course.title}</h2>
-        <p>${course.description}</p>
-      `;
+      const link = document.createElement("a");
 
-      coursesContainer.appendChild(card);
+      link.classList.add("course-card");
+      link.href = course.page;
 
+      link.innerText = course.title;
+
+      coursesContainer.appendChild(link);
     });
-
   }
 
   // =========================
   // OPEN POPUP
   // =========================
 
-  addButton.addEventListener("click", () => {
-
-    popup.classList.remove("hidden");
-
-  });
+  if (addButton && popup) {
+    addButton.addEventListener("click", () => {
+      popup.classList.remove("hidden");
+    });
+  }
 
   // =========================
   // SUBMIT CODE
   // =========================
 
-  submitButton.addEventListener("click", () => {
+  if (submitButton) {
+    submitButton.addEventListener("click", () => {
 
-    const enteredCode =
-      input.value.trim();
+      const enteredCode = input.value.trim();
 
-    const course =
-      courseCodes[enteredCode];
+      const course = courseCodes[enteredCode];
 
-    if (!course) {
+      if (!course) {
+        alert("Invalid Course Code");
+        return;
+      }
 
-      alert("Invalid Course Code");
-      return;
+      const alreadyUnlocked =
+        myCourses.includes(course.id);
 
-    }
+      if (alreadyUnlocked) {
+        alert("Course already added.");
+        return;
+      }
 
-    const alreadyUnlocked =
-      myCourses.some(savedCourse =>
-        savedCourse.title === course.title
-      );
+      // STORE ONLY ID
+      myCourses.push(course.id);
 
-    if (alreadyUnlocked) {
+      saveCourses();
 
-      alert("Course already added.");
-      return;
+      renderCourses();
 
-    }
+      popup.classList.add("hidden");
 
-    myCourses.push(course);
+      input.value = "";
 
-    saveCourses();
-
-    renderCourses();
-
-    popup.classList.add("hidden");
-
-    input.value = "";
-
-    alert("Course Added!");
-
-  });
+      alert("Course Added!");
+    });
+  }
 
   // =========================
   // INITIAL LOAD
