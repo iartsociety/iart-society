@@ -6,21 +6,23 @@ if ("serviceWorker" in navigator) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // -------------------------
+  // =========================
   // COURSE DATABASE
-  // -------------------------
+  // =========================
 
   const courseCodes = {
+
     "DWHG26": {
       title: "Diya Wall Hanging Guide",
       description:
         "Learn how to create a beautiful traditional diya wall hanging step-by-step."
     }
+
   };
 
-  // -------------------------
+  // =========================
   // ELEMENTS
-  // -------------------------
+  // =========================
 
   const addButton =
     document.getElementById("add-course-btn");
@@ -28,26 +30,41 @@ document.addEventListener("DOMContentLoaded", () => {
   const coursesContainer =
     document.getElementById("courses-container");
 
-  // -------------------------
+  // =========================
   // LOAD SAVED COURSES
-  // -------------------------
+  // =========================
 
   let myCourses =
     JSON.parse(localStorage.getItem("myCourses")) || [];
 
-  // -------------------------
+  // =========================
+  // SAVE COURSES
+  // =========================
+
+  function saveCourses() {
+
+    localStorage.setItem(
+      "myCourses",
+      JSON.stringify(myCourses)
+    );
+
+  }
+
+  // =========================
   // RENDER COURSES
-  // -------------------------
+  // =========================
 
   function renderCourses() {
 
+    // ONLY run if container exists
     if (!coursesContainer) return;
 
     coursesContainer.innerHTML = "";
 
     myCourses.forEach(course => {
 
-      const card = document.createElement("div");
+      const card =
+        document.createElement("div");
 
       card.classList.add("course-card");
 
@@ -62,23 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-  // -------------------------
-  // SAVE COURSES
-  // -------------------------
+  // =========================
+  // BUTTON CLICK
+  // =========================
 
-  function saveCourses() {
-
-    localStorage.setItem(
-      "myCourses",
-      JSON.stringify(myCourses)
-    );
-
-  }
-
-  // -------------------------
-  // ADD COURSE BUTTON
-  // -------------------------
-
+  // ONLY run if button exists
   if (addButton) {
 
     addButton.addEventListener("click", () => {
@@ -99,9 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const alreadyUnlocked =
-        myCourses.some(
-          savedCourse =>
-            savedCourse.title === course.title
+        myCourses.some(savedCourse =>
+          savedCourse.title === course.title
         );
 
       if (alreadyUnlocked) {
@@ -115,17 +119,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       saveCourses();
 
-      renderCourses();
-
       alert("Course Added!");
 
     });
 
   }
 
-  // -------------------------
-  // INITIAL RENDER
-  // -------------------------
+  // =========================
+  // INITIAL PAGE LOAD
+  // =========================
 
   renderCourses();
 
