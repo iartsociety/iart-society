@@ -2,67 +2,70 @@
 <html>
   <head>
     <title>iArt-Society</title>
+
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="styles.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
+
   </head>
 
- <body>
+  <body class="courses">
 
-  <div class="container">
+    <div class="container">
 
-    <div id="app"></div>
+      <!-- HEADER -->
+      <img class="logo" src="iartsociety-header.png" alt="logo">
 
-    <img class="logo" src="iartsociety-header.png" alt="logo">
+      <div class="introgreentext">
+        <h3 class="chelsea-market-regular">
+          Indian Traditional Artists & Amateurs Community
+        </h3>
+      </div>
 
-    <div class="introgreentext">
-      <h3 class="chelsea-market-regular">
-        Indian Traditional Artists & Amateurs Community
-      </h3>
+      <!-- COURSES SECTION -->
+      <div id="courses-container"></div>
+
     </div>
 
-  <div class="container">
-
-  <button id="add-course-btn" class="add-course-btn">
-    +
-  </button>
-
-  <div id="courses-container"></div>
-
-</div>
-
-<!-- COURSE CODE POPUP -->
-<div id="course-popup" class="popup hidden">
-
-  <div class="popup-content">
-
-    <h2>Enter Course Code</h2>
-
-    <input
-      type="text"
-      id="course-code-input"
-      placeholder="Enter code..."
-    >
-
-    <button id="submit-code-btn">
-      Unlock Course
+    <!-- ADD COURSE BUTTON -->
+    <button id="add-course-btn" class="add-course-btn">
+      +
     </button>
 
-  </div>
+    <!-- POPUP -->
+    <div id="course-popup" class="popup hidden">
+      <div class="popup-content">
 
-</div>
+        <h2>Enter Course Code</h2>
 
-  </div>
+        <input
+          type="text"
+          id="course-code-input"
+          placeholder="Enter code..."
+        >
 
-  <nav class="bottom-nav">
-    <a href="index.html">Home</a>
-    <a href="courses.html">My Courses</a>
-  </nav>
+        <button id="submit-code-btn">
+          Unlock Course
+        </button>
 
-  <script src="./script.js" type="module"></script>
+      </div>
+    </div>
 
-</body>
+    <!-- NAV -->
+    <nav class="bottom-nav">
+      <a href="index.html">Home</a>
+      <a href="courses.html">My Courses</a>
+    </nav>
+
+    <script src="./script.js" type="module"></script>
+
+  </body>
+</html>
