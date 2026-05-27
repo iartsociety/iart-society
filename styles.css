@@ -100,7 +100,7 @@ p {
 
 .add-course-btn {
   position: fixed;
-  top: 25px;
+  bottom: 25px;
   right: 25px;
 
   width: 65px;
