@@ -1,69 +1,60 @@
 body {
   background-color: #1a252b;
-  padding-bottom: 140px;
   margin: 0;
-}
-
-.logo {
-  margin-top: 10px;
-  text-align: center;
-  padding-bottom: 5px;
+  padding: 0 20px 140px;
+  overflow-x: hidden;
 }
 
 h1 {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3rem, 9vw, 6rem);
   text-align: center;
   color: white;
+  line-height: 1.1;
+  margin-bottom: 10px;
 }
 
 h3 {
-  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  font-size: clamp(1.3rem, 4vw, 2.5rem);
   text-align: center;
   color: #a7cb69;
-}
-
-.introgreentext {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 0;
 }
 
 p {
-  font-size: clamp(1.2rem, 4vw, 3rem);
+  font-size: clamp(1rem, 3vw, 1.5rem);
   text-align: center;
   color: white;
-  padding: 0 20px;
-}
-
-.chelsea-market-regular {
-  font-family: "Chelsea Market", system-ui;
-  font-weight: 400;
-  font-style: normal;
+  max-width: 800px;
+  margin: auto;
 }
 
 .bottom-nav {
   position: fixed;
-  bottom: 25px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
 
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 10px;
+
+  width: calc(100% - 40px);
+  max-width: 700px;
 
   z-index: 9999;
 }
 
 .bottom-nav a {
+  flex: 1 1 auto;
+
   text-decoration: none;
   text-align: center;
+
   color: #EFC36B;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
 
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
-  font-weight: bold;
-
-  padding: 12px 22px;
+  padding: 14px 18px;
 
   border: 2px solid #EFC36B;
   border-radius: 12px;
@@ -71,13 +62,10 @@ p {
   background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
 
-  transition: all 0.25s ease;
+  transition: 0.25s ease;
 }
 
 .bottom-nav a:hover {
   background-color: #EFC36B;
   color: #1a252b;
-
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(239, 195, 107, 0.3);
 }
