@@ -1,33 +1,73 @@
+```css
 body {
-  background-color: #1a252b;
   margin: 0;
-  padding: 0 20px 140px;
+  padding: 0;
+  background-color: #1a252b;
+  color: white;
+  font-family: "Chelsea Market", system-ui;
   overflow-x: hidden;
+  padding-bottom: 140px;
 }
 
+/* MAIN CONTENT CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* LOGO */
+.logo {
+  width: min(90%, 700px);
+  height: auto;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* MAIN TITLE */
 h1 {
-  font-size: clamp(3rem, 9vw, 6rem);
-  text-align: center;
+  font-size: clamp(3rem, 8vw, 6rem);
   color: white;
+
+  margin: 0;
   line-height: 1.1;
-  margin-bottom: 10px;
 }
 
+/* GREEN SUBTITLE */
 h3 {
-  font-size: clamp(1.3rem, 4vw, 2.5rem);
-  text-align: center;
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
   color: #a7cb69;
-  margin-top: 0;
+
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  max-width: 900px;
+  line-height: 1.4;
 }
 
+/* PARAGRAPH TEXT */
 p {
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.4rem);
   color: white;
+
   max-width: 800px;
-  margin: auto;
+  line-height: 1.6;
 }
 
+/* FONT CLASS */
+.chelsea-market-regular {
+  font-family: "Chelsea Market", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* STICKY BOTTOM NAV */
 .bottom-nav {
   position: fixed;
   bottom: 20px;
@@ -35,16 +75,18 @@ p {
   transform: translateX(-50%);
 
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 
   width: calc(100% - 40px);
-  max-width: 700px;
+  max-width: 900px;
 
   z-index: 9999;
 }
 
+/* NAV BUTTONS */
 .bottom-nav a {
   flex: 1 1 auto;
 
@@ -53,19 +95,48 @@ p {
 
   color: #EFC36B;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: bold;
 
-  padding: 14px 18px;
+  padding: 14px 20px;
 
   border: 2px solid #EFC36B;
-  border-radius: 12px;
+  border-radius: 14px;
 
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
 
-  transition: 0.25s ease;
+  transition: all 0.25s ease;
 }
 
+/* HOVER EFFECT */
 .bottom-nav a:hover {
   background-color: #EFC36B;
   color: #1a252b;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(239, 195, 107, 0.25);
 }
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 600px) {
+
+  .container {
+    padding: 25px 15px;
+  }
+
+  .bottom-nav {
+    gap: 8px;
+    bottom: 15px;
+  }
+
+  .bottom-nav a {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+
+  h3 {
+    line-height: 1.3;
+  }
+}
+```
