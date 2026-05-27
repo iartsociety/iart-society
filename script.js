@@ -1,5 +1,3 @@
-import "./styles.css";
-
 console.log("JS is connected");
 
 if ("serviceWorker" in navigator) {
