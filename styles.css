@@ -130,17 +130,40 @@ p {
 /* COURSE CARDS */
 
 .course-card {
+  display: block;
+  text-decoration: none;
+
   border: 2px solid #EFC36B;
-  border-radius: 18px;
+  border-radius: 16px;
 
-  padding: 25px;
-  margin: 20px auto;
+  padding: 18px 22px;
+  margin: 16px auto;
 
-  max-width: 700px;
+  max-width: 600px;
+  width: 90%;
 
-  background: rgba(255,255,255,0.05);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 
+  color: #EFC36B;
+  font-size: 1.2rem;
+  font-weight: bold;
   text-align: center;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+
+  /* makes it feel like a button instead of a card */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.course-card:hover {
+  background-color: #EFC36B;
+  color: #1a252b;
+
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(239, 195, 107, 0.3);
 }
 
 .course-card h2 {
