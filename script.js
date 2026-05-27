@@ -4,29 +4,43 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service-worker.js");
 }
 
-const addButton = document.getElementById("add-course-btn");
+window.addEventListener("DOMContentLoaded", () => {
 
-addButton.addEventListener("click", () => {
+  const addButton = document.getElementById("add-course-btn");
 
-  const code = prompt("Enter Course Code:");
+  addButton.addEventListener("click", () => {
 
-  if (code === "DWHG26") {
+    const code = prompt("Enter Course Code:");
 
-    let courses = JSON.parse(localStorage.getItem("myCourses")) || [];
+    if (code === "DWHG26") {
 
-    if (!courses.includes("Diya Wall Hanging Guide")) {
-      courses.push("Diya Wall Hanging Guide");
+      let courses =
+        JSON.parse(localStorage.getItem("myCourses")) || [];
 
-      localStorage.setItem("myCourses", JSON.stringify(courses));
+      if (!courses.includes("Digital Wellness")) {
 
-      alert("Course Added!");
+        courses.push("Digital Wellness");
+
+        localStorage.setItem(
+          "myCourses",
+          JSON.stringify(courses)
+        );
+
+        alert("Course Added!");
+
+      } else {
+
+        alert("You already unlocked this course.");
+
+      }
+
     } else {
-      alert("You already unlocked this course.");
+
+      alert("Invalid code.");
+
     }
 
-  } else {
-    alert("Invalid code.");
-  }
+  });
 
 });
 
