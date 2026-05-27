@@ -16,10 +16,11 @@ h1 {
 }
 
 h3 {
-  font-size: 60px; 
+  font-size: 60px;
+  display: flex;
+  justify-content: center;
   text-align: center;  
   color: #a7cb69; 
-  padding: 25px;
 }
 
 p {
