@@ -11,14 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
 
   const courseCodes = {
-
-    "DWHG26": {
-      title: "Diya Wall Hanging Guide",
-      description:
-        "Learn how to create a traditional diya wall hanging step-by-step."
-    }
-
-  };
+  "DWHG26": {
+    id: "diya-wall-hanging",
+    title: "Diya Wall Hanging Guide",
+    page: "diya.html"
+  }
+};
 
   // =========================
   // ELEMENTS
