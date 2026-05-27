@@ -135,6 +135,9 @@ p {
 /* COURSE CARDS */
 
 .course-card {
+  position: relative;
+  z-index: 1;
+    
   display: block;
   text-decoration: none;
 
