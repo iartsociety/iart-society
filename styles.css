@@ -221,6 +221,32 @@ body.courses .popup-content button:hover {
   color: #1a252b;
 }
 
+.popup-content {
+  position: relative; /* IMPORTANT so X can anchor inside */
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+
+  background: transparent;
+  border: none;
+
+  color: #EFC36B;
+  font-size: 28px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  line-height: 1;
+}
+
+.popup-close:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
 /* =========================
    NAV (GLOBAL - FIXED)
    ========================= */
