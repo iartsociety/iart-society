@@ -1,1 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lotus Lippan Art</title>
 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+
+      <div class="introgreentext">
+        <h3 class="chelsea-market-regular"> Lotus Lippan Art </h3>
+      </div>
+    
+    <!-- DOCUMENTS -->
+    <div class="step-card">
+      <button class="step-toggle">Documents</button>
+
+      <div class="step-content hidden">
+        <h2 class="josefin-sans-<uniquifier>">
+        Documents Coming Soon
+      </h2>
+      </div>
+    </div>
+
+    <!-- VIDEOS -->
+    <div class="step-card">
+      <button class="step-toggle">Videos</button>
+
+      <div class="step-content hidden">
+         <h2 class="josefin-sans-<uniquifier>">
+       Videos Coming Soon
+      </h2>
+      </div>
+    </div>
+
+    <!-- IMAGES -->
+    <div class="step-card">
+      <button class="step-toggle">Images</button>
+
+      <div class="step-content hidden">
+         <h2 class="josefin-sans-<uniquifier>">
+       <div class="gallery">
+
+  <img src="llc-gp (1).jpeg" alt="Gallery Image 1">
+  <img src="llc-gp (2).jpeg" alt="Gallery Image 2">
+  <img src="llc-gp (3).jpeg" alt="Gallery Image 3">
+  <img src="llc-gp (4).jpeg" alt="Gallery Image 4">
+  <img src="llc-gp (5).jpeg" alt="Gallery Image 5">
+  <img src="llc-gp (6).jpeg" alt="Gallery Image 6">
+  <img src="llc-gp (7).jpeg" alt="Gallery Image 7">
+  <img src="llc-gp (8).jpeg" alt="Gallery Image 8">
+
+</div>
+      </h2>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-card">
+      <button class="step-toggle">Step 3 — Placing the Stencils</button>
+
+      <div class="step-content hidden">
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/Dtf2-bngl7g"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-card">
+      <button class="step-toggle">Step 4 — Ganesha Stencil Setup</button>
+
+      <div class="step-content hidden">
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/SP75615KunI"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step-card">
+      <button class="step-toggle">Step 5 — Ganesha in Stencil</button>
+
+      <div class="step-content hidden">
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/0_6qeruRBac"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step-card">
+      <button class="step-toggle">Step 6 — White Coats & Refining</button>
+
+      <div class="step-content hidden">
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/uW9JhMP199M"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="step-card">
+      <button class="step-toggle">Step 7 — Final Reveal</button>
+
+      <div class="step-content hidden">
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/4_a33VsoU_o"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html">Home</a>
+    <a href="courses.html">My Courses</a>
+  </nav>
+
+  <script>
+    document.querySelectorAll(".step-toggle").forEach(button => {
+      button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        content.classList.toggle("hidden");
+      });
+    });
+  </script>
+
+</body>
+</html>
