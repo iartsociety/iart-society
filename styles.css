@@ -1,11 +1,3 @@
-/* =========================
-   BASE RESET
-   ========================= */
-
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -15,8 +7,22 @@ body {
   overflow-x: hidden;
 }
 
+.corner-logo {
+  position: fixed;
+
+  top: 18px;
+  left: 18px;
+
+  width: 50px;
+  height: auto;
+
+  z-index: 9999;
+
+  opacity: 0.95;
+}
+
 /* =========================
-   CONTAINER
+   GLOBAL LAYOUT
    ========================= */
 
 .container {
@@ -30,191 +36,358 @@ body {
   text-align: center;
 }
 
-/* =========================
-   LOGO
-   ========================= */
-
 .logo {
-  width: min(70%, 420px);
+  width: min(90%, 700px);
   height: auto;
   margin: 20px 0;
 }
 
-/* =========================
-   TEXT DEFAULTS
-   ========================= */
-
+/* TEXT */
 h1 {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   margin: 0;
+  line-height: 1.1;
 }
 
 h2 {
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  color: #e71e7e;
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  color: #fe8faa;
   font-family: "Josefin Sans", sans-serif;
+  margin: 10px 0 20px;
+  max-width: 900px;
 }
 
 h3 {
-  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
   color: #a7cb69;
+  margin: 10px 0 20px;
+  max-width: 900px;
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  max-width: 800px;
+  line-height: 1.6;
 }
 
 /* =========================
-   HOME IMAGE
+   HOME PAGE ONLY
    ========================= */
 
 body.home .workshop {
   width: 100%;
   height: 400px;
   object-fit: cover;
+  display: block;
 }
 
 /* =========================
-   COURSES PAGE
+   COURSES PAGE ONLY
    ========================= */
 
-/* + ADD COURSE BUTTON (FIXED RECTANGLE) */
 body.courses .add-course-btn {
   position: fixed;
-  bottom: 110px;
+  bottom: 120px;
   right: 20px;
 
-  width: 200px;
-  height: 60px;
+  width: 90%;
+  max-width: 600px;
 
-  border-radius: 16px;
+  padding: 18px 22px;
+
   border: 2px solid #EFC36B;
+  border-radius: 16px;
 
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 
   color: #EFC36B;
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: bold;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   cursor: pointer;
-  z-index: 999;
+  text-align: center;
+
+  z-index: 50;
+
+  transition: all 0.25s ease;
 }
 
 body.courses .add-course-btn:hover {
-  background: #EFC36B;
+  background-color: #EFC36B;
   color: #1a252b;
+  transform: translateY(-2px);
 }
 
-/* =========================
-   COURSE CARDS
-   ========================= */
-
-.course-card {
+/* COURSE CARDS */
+body.courses .course-card {
   display: block;
   text-decoration: none;
 
   border: 2px solid #EFC36B;
   border-radius: 16px;
 
+  padding: 18px 22px;
   margin: 16px auto;
-  width: 90%;
+
   max-width: 600px;
+  width: 90%;
 
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
 
-  overflow: hidden;
+  color: #EFC36B;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-/* image */
+body.courses .course-card:hover {
+  background-color: #EFC36B;
+  color: #1a252b;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(239, 195, 107, 0.3);
+}
+
+body.courses #courses-container {
+  padding-bottom: 160px;
+}
+
+.course-card {
+  overflow: hidden;
+  padding: 0;
+}
+
 .course-image {
   width: 100%;
   height: 220px;
+
   object-fit: cover;
+
   display: block;
 }
 
-/* text area */
 .course-info {
-  padding: 16px;
+  padding: 20px;
 }
 
-/* FIX: course title color + font restored */
 .course-info h2 {
   margin: 0;
   color: #EFC36B;
-  font-family: "Chelsea Market", system-ui;
-}
-
-/* spacing so nav doesn't overlap */
-#courses-container {
-  padding-bottom: 140px;
+  font-size: 1.3rem;
 }
 
 /* =========================
-   POPUP
+   HORIZONTAL GALLERY
    ========================= */
 
-.popup {
+.horizontal-gallery {
+  width: 100%;
+
+  display: flex;
+  gap: 12px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding: 10px 0 20px;
+
+  box-sizing: border-box;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.horizontal-gallery img {
+  flex: 0 0 auto;
+
+  width: 180px;
+  height: 180px;
+
+  object-fit: cover;
+
+  border-radius: 16px;
+  border: 2px solid #EFC36B;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.horizontal-gallery img:hover {
+  transform: scale(1.03);
+}
+
+.horizontal-gallery::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-gallery::-webkit-scrollbar-thumb {
+  background: #EFC36B;
+  border-radius: 999px;
+}
+
+/* =========================
+   LIGHTBOX
+   ========================= */
+
+.lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+
+  background: rgba(0,0,0,0.9);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  z-index: 2000;
+  z-index: 10000;
+}
+
+.lightbox.hidden {
+  display: none;
+}
+
+.lightbox-img {
+  max-width: 92vw;
+  max-height: 92vh;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain; 
+
+  border-radius: 18px;
+}
+
+#close-lightbox {
+  position: absolute;
+
+  top: 20px;
+  right: 30px;
+
+  color: white;
+  font-size: 50px;
+
+  cursor: pointer;
+}
+
+/* =========================
+   POPUP SYSTEM (GLOBAL SAFE)
+   ========================= */
+
+.popup {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,0.65);
+
+  z-index: 1000;
 }
 
 .hidden {
   display: none !important;
 }
 
+/* popup box */
 .popup-content {
   position: relative;
 
   width: 90%;
   max-width: 420px;
 
-  padding: 30px;
+  padding: 35px;
 
-  border-radius: 18px;
+  border-radius: 22px;
   border: 2px solid #EFC36B;
 
   background: #1a252b;
+
   text-align: center;
+
+  z-index: 1001;
 }
 
-/* FIX: X button ALWAYS visible + clickable */
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
+/* input + button */
+.popup-content input {
+  width: 100%;
+  box-sizing: border-box;
 
-  font-size: 28px;
+  margin-top: 20px;
+  padding: 14px;
+
+  border-radius: 12px;
+  border: none;
+
+  font-size: 1rem;
+}
+
+.popup-content button {
+  margin-top: 20px;
+
+  padding: 14px 20px;
+
+  border-radius: 12px;
+  border: 2px solid #EFC36B;
+
+  background: transparent;
+
   color: #EFC36B;
+  font-weight: bold;
 
   cursor: pointer;
 
-  background: none;
-  border: none;
-  z-index: 10;
+  transition: 0.25s ease;
 }
 
-/* =========================
-   STEP TOGGLES (COURSE PAGES)
-   ========================= */
+.popup-content button:hover {
+  background-color: #EFC36B;
+  color: #1a252b;
+}
+
+/* X BUTTON (FIXED + ALWAYS ON TOP OF POPUP CONTENT) */
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+
+  background: transparent;
+  border: none;
+
+  color: #EFC36B;
+  font-size: 28px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  z-index: 1002;
+}
+
+.popup-close:hover {
+  color: white;
+  transform: scale(1.1);
+}
 
 .step-card {
   width: 90%;
   max-width: 700px;
-  margin: 14px auto;
+  margin: 16px auto;
 
   border: 2px solid #EFC36B;
   border-radius: 16px;
 
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+
   overflow: hidden;
 }
 
@@ -225,93 +398,33 @@ body.courses .add-course-btn:hover {
   background: transparent;
   border: none;
 
-  cursor: pointer;
-
   font-family: "Josefin Sans", sans-serif;
+  color: #EFC36B;
   font-size: 1.1rem;
   font-weight: bold;
 
-  color: #EFC36B;
+  cursor: pointer;
   text-align: left;
 }
 
-/* FIX: consistent text color inside expanded content */
-.step-content {
-  padding: 10px 0 20px;
-  display: flex;
-  justify-content: center;
-  color: white;
+.step-toggle:hover {
+  background: rgba(239, 195, 107, 0.1);
 }
 
-/* VIDEO SIZE */
+.step-content {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 20px;
+}
+
 .step-content iframe {
   width: 560px;
   height: 315px;
   border-radius: 12px;
 }
 
-/* =========================
-   GALLERY (NO CROPPING ISSUES)
-   ========================= */
-
-.horizontal-gallery {
-  display: flex;
-  gap: 12px;
-
-  overflow-x: auto;
-  padding: 10px;
-}
-
-.horizontal-gallery img {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-/* =========================
-   LIGHTBOX FIX (FULL IMAGE RESTORED)
-   ========================= */
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-
-  background: rgba(0,0,0,0.92);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  z-index: 9999;
-}
-
-.lightbox.hidden {
-  display: none !important;
-}
-
-/* KEY FIX: shows FULL image, no crop */
-#lightbox-img {
-  max-width: 95vw;
-  max-height: 95vh;
-
-  width: auto;
-  height: auto;
-
-  object-fit: contain;
-}
-
-#close-lightbox {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-
-  font-size: 40px;
-  color: white;
-
-  cursor: pointer;
-  z-index: 10000;
+.hidden {
+  display: none;
 }
 
 /* =========================
@@ -320,12 +433,13 @@ body.courses .add-course-btn:hover {
 
 .bottom-nav {
   position: fixed;
-  bottom: 18px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
 
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 
   width: calc(100% - 40px);
   max-width: 900px;
@@ -334,17 +448,31 @@ body.courses .add-course-btn:hover {
 }
 
 .bottom-nav a {
-  flex: 1;
-  text-align: center;
+  flex: 1 1 auto;
 
   text-decoration: none;
+  text-align: center;
 
-  padding: 12px;
+  color: #EFC36B;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: bold;
+
+  padding: 14px 20px;
+
   border: 2px solid #EFC36B;
   border-radius: 14px;
 
-  color: #EFC36B;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+
+  transition: all 0.25s ease;
+}
+
+.bottom-nav a:hover {
+  background-color: #EFC36B;
+  color: #1a252b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 195, 107, 0.25);
 }
 
 /* =========================
@@ -352,13 +480,21 @@ body.courses .add-course-btn:hover {
    ========================= */
 
 @media (max-width: 600px) {
-  .step-content iframe {
-    width: 100%;
-    height: 220px;
+  .container {
+    padding: 25px 15px;
   }
 
   body.courses .add-course-btn {
-    width: 160px;
-    font-size: 1.5rem;
+    bottom: 110px;
+  }
+
+  .bottom-nav {
+    gap: 8px;
+    bottom: 15px;
+  }
+
+  .bottom-nav a {
+    padding: 12px 14px;
+    font-size: 0.85rem;
   }
 }
