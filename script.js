@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "Diya Wall Hanging Guide",
       page: "diya.html",
       image: "diya-course.png"
+    },
+     "LL0526": {
+      id: "lotus-lippan-art",
+      title: "Lotus Lippan Art",
+      page: "lotus.html",
+      image: "lotus-course.jpg"
     }
   };
 
