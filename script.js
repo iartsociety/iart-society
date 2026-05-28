@@ -234,6 +234,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
+// =========================
+// IMAGE LIGHTBOX
+// =========================
+
+const galleryImages =
+  document.querySelectorAll(".horizontal-gallery img");
+
+const lightbox =
+  document.getElementById("lightbox");
+
+const lightboxImg =
+  document.getElementById("lightbox-img");
+
+const closeLightbox =
+  document.getElementById("close-lightbox");
+
+galleryImages.forEach(image => {
+
+  image.addEventListener("click", () => {
+
+    lightboxImg.src = image.src;
+
+    lightbox.classList.remove("hidden");
+
+  });
+
+});
+
+closeLightbox.addEventListener("click", () => {
+
+  lightbox.classList.add("hidden");
+
+});
+
+lightbox.addEventListener("click", (e) => {
+
+  if (e.target === lightbox) {
+
+    lightbox.classList.add("hidden");
+
+  }
+
+});
+  
   // =========================
   // INITIAL RENDER
   // =========================
