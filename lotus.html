@@ -15,81 +15,136 @@
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
 </head>
 
-  <img class="corner-logo" src="iArtSocietyLogo.png" alt="logo">
-
 <body>
+
+  <!-- SMALL CORNER LOGO -->
+  <img
+    class="corner-logo"
+    src="iArtSocietyLogo.png"
+    alt="logo"
+  >
 
   <div class="container">
 
-      <div class="introgreentext">
-        <h3 class="chelsea-market-regular"> Lotus Lippan Art </h3>
-      </div>
-    
+    <!-- PAGE TITLE -->
+    <div class="introgreentext">
+      <h3 class="chelsea-market-regular">
+        Lotus Lippan Art
+      </h3>
+    </div>
+
     <!-- DOCUMENTS -->
     <div class="step-card">
-      <button class="step-toggle">Documents</button>
+
+      <button class="step-toggle">
+        Documents
+      </button>
 
       <div class="step-content hidden">
-        <h2 class="josefin-sans-<uniquifier>">
-        Documents Coming Soon
-      </h2>
+
+        <h2 class="josefin-sans">
+          Documents Coming Soon
+        </h2>
+
       </div>
+
     </div>
 
     <!-- VIDEOS -->
     <div class="step-card">
-      <button class="step-toggle">Videos</button>
+
+      <button class="step-toggle">
+        Videos
+      </button>
 
       <div class="step-content hidden">
-         <h2 class="josefin-sans-<uniquifier>">
-       Videos Coming Soon
-      </h2>
+
+        <h2 class="josefin-sans">
+          Videos Coming Soon
+        </h2>
+
       </div>
+
     </div>
 
     <!-- IMAGES -->
     <div class="step-card">
-      <button class="step-toggle">Images</button>
+
+      <button class="step-toggle">
+        Images
+      </button>
 
       <div class="step-content hidden">
-       <div class="horizontal-gallery">
 
-  <img src="llc-gp (1).jpeg" alt="">
-  <img src="llc-gp (2).jpeg" alt="">
-  <img src="llc-gp (3).jpeg" alt="">
-  <img src="llc-gp (4).jpeg" alt="">
-  <img src="llc-gp (5).jpeg" alt="">
-  <img src="llc-gp (6).jpeg" alt="">
-  <img src="llc-gp (7).jpeg" alt="">
-  <img src="llc-gp (8).jpeg" alt="">
+        <div class="horizontal-gallery">
 
-</div>
+          <img src="llc-gp (1).jpeg" alt="">
+          <img src="llc-gp (2).jpeg" alt="">
+          <img src="llc-gp (3).jpeg" alt="">
+          <img src="llc-gp (4).jpeg" alt="">
+          <img src="llc-gp (5).jpeg" alt="">
+          <img src="llc-gp (6).jpeg" alt="">
+          <img src="llc-gp (7).jpeg" alt="">
+          <img src="llc-gp (8).jpeg" alt="">
 
-<!-- FULLSCREEN IMAGE VIEWER -->
-<div id="lightbox" class="lightbox hidden">
+        </div>
 
-  <span id="close-lightbox">&times;</span>
-
-  <img id="lightbox-img" src="" alt="">
-
-</div>
       </div>
+
     </div>
+
   </div>
 
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox hidden">
+
+    <span id="close-lightbox">
+      &times;
+    </span>
+
+    <img
+      id="lightbox-img"
+      src=""
+      alt=""
+    >
+
+  </div>
+
+  <!-- NAV -->
   <nav class="bottom-nav">
-    <a href="index.html">Home</a>
-    <a href="courses.html">My Courses</a>
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="courses.html">
+      My Courses
+    </a>
+
   </nav>
 
+  <!-- TOGGLE SCRIPT -->
   <script>
-    document.querySelectorAll(".step-toggle").forEach(button => {
-      button.addEventListener("click", () => {
-        const content = button.nextElementSibling;
-        content.classList.toggle("hidden");
+
+    document
+      .querySelectorAll(".step-toggle")
+      .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+          const content =
+            button.nextElementSibling;
+
+          content.classList.toggle("hidden");
+
+        });
+
       });
-    });
+
   </script>
+
+  <!-- MAIN JS -->
+  <script src="./script.js" type="module"></script>
 
 </body>
 </html>
