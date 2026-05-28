@@ -145,6 +145,30 @@ body.courses #courses-container {
   padding-bottom: 160px;
 }
 
+.course-card {
+  overflow: hidden;
+  padding: 0;
+}
+
+.course-image {
+  width: 100%;
+  height: 220px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.course-info {
+  padding: 20px;
+}
+
+.course-info h2 {
+  margin: 0;
+  color: #EFC36B;
+  font-size: 1.3rem;
+}
+
 /* =========================
    POPUP SYSTEM (GLOBAL SAFE)
    ========================= */
