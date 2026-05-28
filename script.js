@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "DWHG26": {
       id: "diya-wall-hanging",
       title: "Diya Wall Hanging Guide",
-      page: "diya.html"
+      page: "diya.html",
       image: "diya-course.png"
     }
   };
