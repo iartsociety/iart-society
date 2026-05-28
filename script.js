@@ -250,33 +250,38 @@ const lightboxImg =
 const closeLightbox =
   document.getElementById("close-lightbox");
 
-galleryImages.forEach(image => {
+// ONLY RUN IF LIGHTBOX EXISTS
+if (lightbox && lightboxImg && closeLightbox) {
 
-  image.addEventListener("click", () => {
+  galleryImages.forEach(image => {
 
-    lightboxImg.src = image.src;
+    image.addEventListener("click", () => {
 
-    lightbox.classList.remove("hidden");
+      lightboxImg.src = image.src;
+
+      lightbox.classList.remove("hidden");
+
+    });
 
   });
 
-});
-
-closeLightbox.addEventListener("click", () => {
-
-  lightbox.classList.add("hidden");
-
-});
-
-lightbox.addEventListener("click", (e) => {
-
-  if (e.target === lightbox) {
+  closeLightbox.addEventListener("click", () => {
 
     lightbox.classList.add("hidden");
 
-  }
+  });
 
-});
+  lightbox.addEventListener("click", (e) => {
+
+    if (e.target === lightbox) {
+
+      lightbox.classList.add("hidden");
+
+    }
+
+  });
+
+}
   
   // =========================
   // INITIAL RENDER
