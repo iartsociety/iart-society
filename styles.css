@@ -183,16 +183,18 @@ body.courses #courses-container {
   font-size: 1.3rem;
 }
 
+/* =========================
+   HORIZONTAL GALLERY
+   ========================= */
+
 .horizontal-gallery {
   width: 100%;
 
   display: flex;
   gap: 12px;
 
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
-
-  white-space: nowrap;
 
   padding: 10px 0 20px;
 
@@ -212,7 +214,7 @@ body.courses #courses-container {
   border-radius: 16px;
   border: 2px solid #EFC36B;
 
-  background: rgba(0,0,0,0.2);
+  cursor: pointer;
 
   transition: 0.25s ease;
 }
@@ -221,8 +223,6 @@ body.courses #courses-container {
   transform: scale(1.03);
 }
 
-/* SCROLLBAR */
-
 .horizontal-gallery::-webkit-scrollbar {
   height: 8px;
 }
@@ -230,6 +230,48 @@ body.courses #courses-container {
 .horizontal-gallery::-webkit-scrollbar-thumb {
   background: #EFC36B;
   border-radius: 999px;
+}
+
+/* =========================
+   LIGHTBOX
+   ========================= */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.9);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10000;
+}
+
+.lightbox.hidden {
+  display: none;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+
+  object-fit: contain;
+
+  border-radius: 16px;
+}
+
+#close-lightbox {
+  position: absolute;
+
+  top: 20px;
+  right: 30px;
+
+  color: white;
+  font-size: 50px;
+
+  cursor: pointer;
 }
 
 /* =========================
