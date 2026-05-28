@@ -253,13 +253,16 @@ body.courses #courses-container {
   display: none;
 }
 
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
+.lightbox-img {
+  max-width: 92vw;
+  max-height: 92vh;
 
-  object-fit: contain;
+  width: auto;
+  height: auto;
 
-  border-radius: 16px;
+  object-fit: contain; 
+
+  border-radius: 18px;
 }
 
 #close-lightbox {
