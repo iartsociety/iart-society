@@ -238,51 +238,49 @@ document.addEventListener("DOMContentLoaded", () => {
 // IMAGE LIGHTBOX
 // =========================
 
-const galleryImages =
-  document.querySelectorAll(".horizontal-gallery img");
+document.addEventListener("click", (event) => {
 
-const lightbox =
-  document.getElementById("lightbox");
+  // CLICKING GALLERY IMAGE
+  if (event.target.matches(".horizontal-gallery img")) {
 
-const lightboxImg =
-  document.getElementById("lightbox-img");
+    const lightbox =
+      document.getElementById("lightbox");
 
-const closeLightbox =
-  document.getElementById("close-lightbox");
+    const lightboxImg =
+      document.getElementById("lightbox-img");
 
-// ONLY RUN IF LIGHTBOX EXISTS
-if (lightbox && lightboxImg && closeLightbox) {
+    if (lightbox && lightboxImg) {
 
-  galleryImages.forEach(image => {
-
-    image.addEventListener("click", () => {
-
-      lightboxImg.src = image.src;
+      lightboxImg.src = event.target.src;
 
       lightbox.classList.remove("hidden");
 
-    });
+    }
 
-  });
+  }
 
-  closeLightbox.addEventListener("click", () => {
+  // CLOSE BUTTON
+  if (event.target.id === "close-lightbox") {
 
-    lightbox.classList.add("hidden");
+    const lightbox =
+      document.getElementById("lightbox");
 
-  });
-
-  lightbox.addEventListener("click", (e) => {
-
-    if (e.target === lightbox) {
+    if (lightbox) {
 
       lightbox.classList.add("hidden");
 
     }
 
-  });
+  }
 
-}
-  
+  // CLICK OUTSIDE IMAGE
+  if (event.target.id === "lightbox") {
+
+    event.target.classList.add("hidden");
+
+  }
+
+});
   // =========================
   // INITIAL RENDER
   // =========================
