@@ -173,45 +173,49 @@ body.courses #courses-container {
   width: 100%;
 
   display: flex;
-  gap: 18px;
+  gap: 12px;
 
-  overflow-x: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
 
-  padding: 20px 0;
+  white-space: nowrap;
 
-  scroll-behavior: smooth;
-}
+  padding: 10px 0 20px;
 
-.horizontal-gallery::-webkit-scrollbar {
-  height: 10px;
-}
+  box-sizing: border-box;
 
-.horizontal-gallery::-webkit-scrollbar-thumb {
-  background: #EFC36B;
-  border-radius: 999px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .horizontal-gallery img {
   flex: 0 0 auto;
 
-  width: 280px;
-  height: 280px;
+  width: 180px;
+  height: 180px;
 
   object-fit: cover;
 
-  border-radius: 18px;
+  border-radius: 16px;
   border: 2px solid #EFC36B;
 
-  transition: 0.25s ease;
-
   background: rgba(0,0,0,0.2);
+
+  transition: 0.25s ease;
 }
 
 .horizontal-gallery img:hover {
   transform: scale(1.03);
+}
 
-  box-shadow:
-    0 10px 25px rgba(239, 195, 107, 0.25);
+/* SCROLLBAR */
+
+.horizontal-gallery::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-gallery::-webkit-scrollbar-thumb {
+  background: #EFC36B;
+  border-radius: 999px;
 }
 
 /* =========================
