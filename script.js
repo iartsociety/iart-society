@@ -23,22 +23,65 @@ document.addEventListener("DOMContentLoaded", () => {
   // ELEMENTS
   // =========================
 
-  const addButton = document.getElementById("add-course-btn");
-  const popup = document.getElementById("course-popup");
-  const closeButton = document.getElementById("close-popup-btn");
-  const submitButton = document.getElementById("submit-code-btn");
-  const input = document.getElementById("course-code-input");
-  const coursesContainer = document.getElementById("courses-container");
+  const addButton =
+    document.getElementById("add-course-btn");
+
+  const popup =
+    document.getElementById("course-popup");
+
+  const closeButton =
+    document.getElementById("close-popup-btn");
+
+  const submitButton =
+    document.getElementById("submit-code-btn");
+
+  const input =
+    document.getElementById("course-code-input");
+
+  const coursesContainer =
+    document.getElementById("courses-container");
 
   // =========================
-  // LOAD COURSES
+  // SAFETY CHECK
   // =========================
 
-  let myCourses =
-    JSON.parse(localStorage.getItem("myCourses")) || [];
+  console.log(addButton);
+  console.log(popup);
+
+  // =========================
+  // LOAD SAVED COURSES
+  // =========================
+
+  let myCourses;
+
+  try {
+
+    myCourses =
+      JSON.parse(
+        localStorage.getItem("myCourses")
+      ) || [];
+
+    if (!Array.isArray(myCourses)) {
+      myCourses = [];
+    }
+
+  } catch {
+
+    myCourses = [];
+
+  }
+
+  // =========================
+  // SAVE COURSES
+  // =========================
 
   function saveCourses() {
-    localStorage.setItem("myCourses", JSON.stringify(myCourses));
+
+    localStorage.setItem(
+      "myCourses",
+      JSON.stringify(myCourses)
+    );
+
   }
 
   // =========================
@@ -46,100 +89,147 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
 
   function renderCourses() {
+
     if (!coursesContainer) return;
 
     coursesContainer.innerHTML = "";
 
     myCourses.forEach(courseId => {
 
-      const course = Object.values(courseCodes)
-        .find(c => c.id === courseId);
+      const course =
+        Object.values(courseCodes)
+          .find(c => c.id === courseId);
 
       if (!course) return;
 
-      const link = document.createElement("a");
+      const link =
+        document.createElement("a");
+
       link.className = "course-card";
+
       link.href = course.page;
+
       link.innerHTML = `
         <img
           src="${course.image}"
           alt="${course.title}"
           class="course-image"
         >
-      
+
         <div class="course-info">
-          <h2>${course.title}</h2>
+          <p>${course.title}</p>
         </div>
       `;
-            coursesContainer.appendChild(link);
-          });
-        }
+
+      coursesContainer.appendChild(link);
+
+    });
+
+  }
 
   // =========================
   // OPEN POPUP
   // =========================
 
   if (addButton && popup) {
+
     addButton.addEventListener("click", () => {
+
+      console.log("PLUS BUTTON CLICKED");
+
       popup.classList.remove("hidden");
+
     });
+
   }
 
   // =========================
-  // CLOSE POPUP (X BUTTON)
+  // CLOSE POPUP BUTTON
   // =========================
 
   if (closeButton && popup) {
-    closeButton.addEventListener("click", () => {
-      popup.classList.add("hidden");
-    });
-  }
 
-  // click outside popup to close
-  if (popup) {
-    popup.addEventListener("click", (e) => {
-      if (e.target === popup) {
-        popup.classList.add("hidden");
-      }
+    closeButton.addEventListener("click", () => {
+
+      popup.classList.add("hidden");
+
     });
+
   }
 
   // =========================
-  // SUBMIT CODE
+  // CLICK OUTSIDE POPUP
+  // =========================
+
+  if (popup) {
+
+    popup.addEventListener("click", (event) => {
+
+      if (event.target === popup) {
+
+        popup.classList.add("hidden");
+
+      }
+
+    });
+
+  }
+
+  // =========================
+  // SUBMIT COURSE CODE
   // =========================
 
   if (submitButton && input && popup) {
+
     submitButton.addEventListener("click", () => {
 
-      const enteredCode = input.value.trim().toUpperCase();
+      const enteredCode =
+        input.value.trim().toUpperCase();
 
-      const course = courseCodes[enteredCode];
+      const course =
+        courseCodes[enteredCode];
 
+      // INVALID CODE
       if (!course) {
+
         alert("Invalid Course Code");
+
         return;
+
       }
 
-      const alreadyUnlocked = myCourses.includes(course.id);
+      // ALREADY ADDED
+      const alreadyUnlocked =
+        myCourses.includes(course.id);
 
       if (alreadyUnlocked) {
+
         alert("Course already added.");
+
         return;
+
       }
 
+      // SAVE COURSE
       myCourses.push(course.id);
+
       saveCourses();
+
       renderCourses();
 
+      // RESET POPUP
       popup.classList.add("hidden");
+
       input.value = "";
 
       alert("Course Added!");
+
     });
+
   }
 
   // =========================
-  // INIT
+  // INITIAL RENDER
   // =========================
 
   renderCourses();
