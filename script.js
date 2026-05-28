@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       id: "diya-wall-hanging",
       title: "Diya Wall Hanging Guide",
       page: "diya.html"
+      image: "diya-course.png"
     }
   };
 
@@ -59,11 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const link = document.createElement("a");
       link.className = "course-card";
       link.href = course.page;
-      link.innerText = course.title;
-
-      coursesContainer.appendChild(link);
-    });
-  }
+      link.innerHTML = `
+        <img
+          src="${course.image}"
+          alt="${course.title}"
+          class="course-image"
+        >
+      
+        <div class="course-info">
+          <h2>${course.title}</h2>
+        </div>
+      `;
+            coursesContainer.appendChild(link);
+          });
+        }
 
   // =========================
   // OPEN POPUP
