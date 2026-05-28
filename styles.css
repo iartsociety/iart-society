@@ -1,3 +1,11 @@
+/* =========================
+   BASE RESET
+   ========================= */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -8,23 +16,7 @@ body {
 }
 
 /* =========================
-   LOGO
-   ========================= */
-
-.corner-logo {
-  position: fixed;
-  top: 18px;
-  left: 18px;
-
-  width: 50px;
-  height: auto;
-
-  z-index: 9999;
-  opacity: 0.95;
-}
-
-/* =========================
-   GLOBAL LAYOUT
+   GLOBAL CONTAINER
    ========================= */
 
 .container {
@@ -38,39 +30,100 @@ body {
   text-align: center;
 }
 
-/* TEXT */
+/* =========================
+   LOGO (FIXED SIZING)
+   ========================= */
+
+.logo {
+  width: min(70%, 420px); /* FIX: prevents giant homepage logo */
+  height: auto;
+  margin: 20px 0;
+}
+
+/* tiny corner logo */
+.corner-logo {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  width: 45px;
+  z-index: 9999;
+  opacity: 0.95;
+}
+
+/* =========================
+   TEXT
+   ========================= */
+
 h1 {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   margin: 0;
-  line-height: 1.1;
 }
 
 h2 {
-  font-size: clamp(1.2rem, 3vw, 2.5rem);
-  color: #fe8faa;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: #e71e7e;
   font-family: "Josefin Sans", sans-serif;
   margin: 10px 0 20px;
-  max-width: 900px;
 }
 
 h3 {
-  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
   color: #a7cb69;
   margin: 10px 0 20px;
-  max-width: 900px;
 }
 
 p {
-  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   max-width: 800px;
   line-height: 1.6;
 }
 
 /* =========================
-   COURSE SYSTEM
+   HOME PAGE IMAGE
    ========================= */
 
-body.courses .course-card {
+body.home .workshop {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* =========================
+   COURSES PAGE SCOPED FIX
+   ========================= */
+
+body.courses .add-course-btn {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 16px;
+  border: 2px solid #EFC36B;
+
+  background: rgba(0, 0, 0, 0.25);
+  color: #EFC36B;
+
+  font-size: 1.8rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  z-index: 999;
+}
+
+body.courses .add-course-btn:hover {
+  background: #EFC36B;
+  color: #1a252b;
+}
+
+/* =========================
+   COURSE CARDS (NO LAYOUT BREAKS)
+   ========================= */
+
+.course-card {
   display: block;
   text-decoration: none;
 
@@ -78,25 +131,16 @@ body.courses .course-card {
   border-radius: 16px;
 
   margin: 16px auto;
-  max-width: 600px;
   width: 90%;
+  max-width: 600px;
 
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
 
   overflow: hidden;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-.course-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(239, 195, 107, 0.3);
-}
-
+/* image stays clean, not stretched */
 .course-image {
   width: 100%;
   height: 220px;
@@ -105,63 +149,80 @@ body.courses .course-card {
 }
 
 .course-info {
-  padding: 20px;
+  padding: 16px;
 }
 
 .course-info h2 {
   margin: 0;
   color: #EFC36B;
-  font-size: 1.3rem;
 }
 
-/* add course button */
-body.courses .add-course-btn {
-  position: fixed;
-  bottom: 120px;
-  right: 20px;
-
-  width: 90%;
-  max-width: 600px;
-
-  padding: 18px 22px;
-
-  border: 2px solid #EFC36B;
-  border-radius: 16px;
-
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-
-  color: #EFC36B;
-  font-size: 1.4rem;
-  font-weight: bold;
-
-  cursor: pointer;
-  z-index: 50;
-
-  transition: all 0.25s ease;
-}
-
-body.courses .add-course-btn:hover {
-  background-color: #EFC36B;
-  color: #1a252b;
-  transform: translateY(-2px);
+/* spacing fix so nav doesn't get pushed weirdly */
+#courses-container {
+  padding-bottom: 140px;
 }
 
 /* =========================
-   STEP SYSTEM (COURSE PAGES)
+   POPUP (FIXED BEHAVIOR)
+   ========================= */
+
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 2000;
+}
+
+/* CRITICAL FIX: prevents “always visible” bugs */
+.hidden {
+  display: none !important;
+}
+
+.popup-content {
+  position: relative;
+  width: 90%;
+  max-width: 420px;
+
+  padding: 30px;
+
+  border-radius: 18px;
+  border: 2px solid #EFC36B;
+
+  background: #1a252b;
+}
+
+/* X button FIX */
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+
+  background: none;
+  border: none;
+
+  color: #EFC36B;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* =========================
+   STEP PAGE (VIDEOS)
    ========================= */
 
 .step-card {
   width: 90%;
   max-width: 700px;
-  margin: 16px auto;
+  margin: 14px auto;
 
   border: 2px solid #EFC36B;
   border-radius: 16px;
 
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-
+  background: rgba(0,0,0,0.2);
   overflow: hidden;
 }
 
@@ -172,96 +233,60 @@ body.courses .add-course-btn:hover {
   background: transparent;
   border: none;
 
-  font-family: "Josefin Sans", sans-serif;
   color: #EFC36B;
-  font-size: 1.1rem;
   font-weight: bold;
-
-  cursor: pointer;
   text-align: left;
 
-  transition: background 0.2s ease;
-}
-
-.step-toggle:hover {
-  background: rgba(239, 195, 107, 0.1);
+  cursor: pointer;
 }
 
 .step-content {
+  padding: 10px 0 20px;
   display: flex;
   justify-content: center;
-  padding: 10px 16px 20px;
-  box-sizing: border-box;
 }
 
-/* FIXED VIDEO RESPONSIVENESS */
 .step-content iframe {
-  width: 100%;
-  max-width: 560px;
-  aspect-ratio: 16 / 9;
-  height: auto;
-
+  width: 560px;
+  height: 315px;
   border-radius: 12px;
 }
 
 /* =========================
-   IMAGE GALLERY
+   HORIZONTAL GALLERY FIX
    ========================= */
 
 .horizontal-gallery {
-  width: 100%;
   display: flex;
   gap: 12px;
 
   overflow-x: auto;
-  padding: 10px 0 20px;
-
-  -webkit-overflow-scrolling: touch;
+  padding: 10px 0;
 }
 
 .horizontal-gallery img {
-  flex: 0 0 auto;
-
   width: 180px;
   height: 180px;
   object-fit: cover;
 
-  border-radius: 16px;
-  border: 2px solid #EFC36B;
-
+  border-radius: 12px;
   cursor: pointer;
-
-  transition: 0.25s ease;
-}
-
-.horizontal-gallery img:hover {
-  transform: scale(1.03);
-}
-
-.horizontal-gallery::-webkit-scrollbar {
-  height: 8px;
-}
-
-.horizontal-gallery::-webkit-scrollbar-thumb {
-  background: #EFC36B;
-  border-radius: 999px;
 }
 
 /* =========================
-   LIGHTBOX (FIXED)
+   LIGHTBOX FIX (NO CROPPING ISSUE)
    ========================= */
 
 .lightbox {
   position: fixed;
   inset: 0;
-
-  background: rgba(0,0,0,0.92);
+  background: rgba(0,0,0,0.9);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  z-index: 10000;
+  z-index: 9999;
 }
 
 .lightbox.hidden {
@@ -271,117 +296,21 @@ body.courses .add-course-btn:hover {
 #lightbox-img {
   max-width: 92vw;
   max-height: 92vh;
-
-  width: auto;
-  height: auto;
-  object-fit: contain;
-
-  border-radius: 18px;
-}
-
-#close-lightbox {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-
-  color: white;
-  font-size: 50px;
-
-  cursor: pointer;
+  object-fit: contain; /* KEY FIX: no cropping */
 }
 
 /* =========================
-   POPUP SYSTEM
-   ========================= */
-
-.popup {
-  position: fixed;
-  inset: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(0,0,0,0.65);
-  z-index: 1000;
-}
-
-.popup-content {
-  position: relative;
-
-  width: 90%;
-  max-width: 420px;
-
-  padding: 35px;
-
-  border-radius: 22px;
-  border: 2px solid #EFC36B;
-
-  background: #1a252b;
-  text-align: center;
-}
-
-.popup-content input {
-  width: 100%;
-  box-sizing: border-box;
-
-  margin-top: 20px;
-  padding: 14px;
-
-  border-radius: 12px;
-  border: none;
-}
-
-.popup-content button {
-  margin-top: 20px;
-
-  padding: 14px 20px;
-
-  border-radius: 12px;
-  border: 2px solid #EFC36B;
-
-  background: transparent;
-  color: #EFC36B;
-  font-weight: bold;
-
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.popup-content button:hover {
-  background-color: #EFC36B;
-  color: #1a252b;
-}
-
-/* X BUTTON */
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-
-  background: transparent;
-  border: none;
-
-  color: #EFC36B;
-  font-size: 28px;
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-/* =========================
-   NAV
+   NAV (NEVER PUSHED DOWN)
    ========================= */
 
 .bottom-nav {
   position: fixed;
-  bottom: 20px;
+  bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
 
   display: flex;
   gap: 12px;
-  flex-wrap: wrap;
 
   width: calc(100% - 40px);
   max-width: 900px;
@@ -390,30 +319,17 @@ body.courses .add-course-btn:hover {
 }
 
 .bottom-nav a {
-  flex: 1 1 auto;
+  flex: 1;
 
-  text-decoration: none;
   text-align: center;
+  text-decoration: none;
 
-  color: #EFC36B;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  font-weight: bold;
-
-  padding: 14px 20px;
-
+  padding: 12px;
   border: 2px solid #EFC36B;
   border-radius: 14px;
 
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-
-  transition: all 0.25s ease;
-}
-
-.bottom-nav a:hover {
-  background-color: #EFC36B;
-  color: #1a252b;
-  transform: translateY(-2px);
+  color: #EFC36B;
+  background: rgba(0,0,0,0.2);
 }
 
 /* =========================
@@ -421,21 +337,12 @@ body.courses .add-course-btn:hover {
    ========================= */
 
 @media (max-width: 600px) {
-  .container {
-    padding: 25px 15px;
+  .logo {
+    width: 80%;
   }
 
-  body.courses .add-course-btn {
-    bottom: 110px;
-  }
-
-  .bottom-nav {
-    gap: 8px;
-    bottom: 15px;
-  }
-
-  .bottom-nav a {
-    padding: 12px 14px;
-    font-size: 0.85rem;
+  .step-content iframe {
+    width: 100%;
+    height: 220px;
   }
 }
