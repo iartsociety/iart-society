@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("click", (event) => {
 
-  // CLICKING GALLERY IMAGE
+  // OPEN IMAGE
   if (event.target.matches(".horizontal-gallery img")) {
 
     const lightbox =
@@ -249,9 +249,12 @@ document.addEventListener("click", (event) => {
     const lightboxImg =
       document.getElementById("lightbox-img");
 
+    const fullImage =
+      event.target.getAttribute("data-full");
+
     if (lightbox && lightboxImg) {
 
-      lightboxImg.src = event.target.src;
+      lightboxImg.src = fullImage;
 
       lightbox.classList.remove("hidden");
 
@@ -262,18 +265,13 @@ document.addEventListener("click", (event) => {
   // CLOSE BUTTON
   if (event.target.id === "close-lightbox") {
 
-    const lightbox =
-      document.getElementById("lightbox");
-
-    if (lightbox) {
-
-      lightbox.classList.add("hidden");
-
-    }
+    document
+      .getElementById("lightbox")
+      .classList.add("hidden");
 
   }
 
-  // CLICK OUTSIDE IMAGE
+  // CLICK BACKGROUND TO CLOSE
   if (event.target.id === "lightbox") {
 
     event.target.classList.add("hidden");
