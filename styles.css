@@ -419,23 +419,21 @@ body.courses .add-course-btn:hover {
   display: none !important;
 }
 
-/* THIS IS THE IMPORTANT FIX */
-
 #lightbox-img {
-  width: auto;
-  height: auto;
+  display: block;
 
-  max-width: 82vw;
-  max-height: 82vh;
+  width: auto !important;
+  height: auto !important;
 
-  object-fit: contain;
+  max-width: 80vw;
+  max-height: 80vh;
+
+  object-fit: contain !important;
 
   border-radius: 18px;
 
-  display: block;
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
 }
-
-/* CLOSE BUTTON */
 
 #close-lightbox {
   position: absolute;
@@ -444,9 +442,7 @@ body.courses .add-course-btn:hover {
   right: 30px;
 
   color: white;
-
-  font-size: 48px;
-  line-height: 1;
+  font-size: 50px;
 
   cursor: pointer;
 
