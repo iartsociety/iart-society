@@ -82,49 +82,18 @@
 
       <div class="step-content hidden">
 
-        <div class="horizontal-gallery">
+      <div class="horizontal-gallery">
 
-          <img
-            src="llc-gp (1).jpeg"
-            alt=""
-          >
+  <img src="llc-gp (1).jpeg">
+  <img src="llc-gp (2).jpeg">
+  <img src="llc-gp (3).jpeg">
+  <img src="llc-gp (4).jpeg">
+  <img src="llc-gp (5).jpeg">
+  <img src="llc-gp (6).jpeg">
+  <img src="llc-gp (7).jpeg">
+  <img src="llc-gp (8).jpeg">
 
-          <img
-            src="llc-gp (2).jpeg"
-            alt=""
-          >
-
-          <img
-            src="llc-gp (3).jpeg"
-            alt=""
-          >
-
-          <img
-            src="llc-gp (4).jpeg"
-            alt=""
-          >
-
-          <img
-            src="llc-gp (5).jpeg"
-            alt=""
-          >
-
-          <img
-            src="llc-gp (6).jpeg"
-            alt=""
-          >
-
-          <img
-            src="llc-gp (7).jpeg"
-            alt=""
-          >
-
-          <img
-            src="llc-gp (8).jpeg"
-            alt=""
-          >
-
-        </div>
+</div>
 
       </div>
 
@@ -135,9 +104,7 @@
   <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox hidden">
 
-    <span id="close-lightbox">
-      &times;
-    </span>
+    <span id="close-lightbox">&times;</span>
 
     <img
       id="lightbox-img"
@@ -160,31 +127,29 @@
 
   </nav>
 
-  <!-- STEP TOGGLE -->
+  <!-- MAIN SCRIPT -->
+  <script src="script.js"></script>
+
+  <!-- STEP TOGGLES -->
   <script>
 
-    document
-      .querySelectorAll(".step-toggle")
-      .forEach(button => {
+    const toggleButtons =
+      document.querySelectorAll(".step-toggle");
 
-        button.addEventListener("click", () => {
+    toggleButtons.forEach(button => {
 
-          const content =
-            button.nextElementSibling;
+      button.addEventListener("click", () => {
 
-          content.classList.toggle("hidden");
+        const content =
+          button.nextElementSibling;
 
-        });
+        content.classList.toggle("hidden");
 
       });
 
-  </script>
+    });
 
-  <!-- MAIN SCRIPT -->
-  <script
-    src="./script.js"
   </script>
 
 </body>
-
 </html>
