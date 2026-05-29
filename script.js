@@ -249,16 +249,11 @@ document.addEventListener("click", (event) => {
     const lightboxImg =
       document.getElementById("lightbox-img");
 
-    // GET ORIGINAL IMAGE
-    const fullImage =
-      event.target.dataset.full;
-
-    // SET FULL IMAGE
-    lightboxImg.src = fullImage;
+    // USE THE IMAGE SRC DIRECTLY
+    lightboxImg.src = event.target.src;
 
     // SHOW LIGHTBOX
     lightbox.classList.remove("hidden");
-
   }
 
   // CLOSE BUTTON
@@ -267,14 +262,12 @@ document.addEventListener("click", (event) => {
     document
       .getElementById("lightbox")
       .classList.add("hidden");
-
   }
 
   // CLICK BACKGROUND TO CLOSE
   if (event.target.id === "lightbox") {
 
     event.target.classList.add("hidden");
-
   }
 
 });
