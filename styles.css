@@ -7,9 +7,12 @@ body {
   overflow-x: hidden;
 }
 
+/* =========================
+   CORNER LOGO
+   ========================= */
+
 .corner-logo {
   position: fixed;
-
   top: 18px;
   left: 18px;
 
@@ -17,7 +20,6 @@ body {
   height: auto;
 
   z-index: 9999;
-
   opacity: 0.95;
 }
 
@@ -28,21 +30,26 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 20px 140px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+
+  box-sizing: border-box;
 }
 
 .logo {
-  width: min(90%, 700px);
+  width: min(90%, 520px);
   height: auto;
-  margin: 20px 0;
+  margin: 10px 0 20px;
 }
 
-/* TEXT */
+/* =========================
+   TEXT
+   ========================= */
+
 h1 {
   font-size: clamp(3rem, 8vw, 6rem);
   margin: 0;
@@ -50,7 +57,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
   color: #fe8faa;
   font-family: "Josefin Sans", sans-serif;
   margin: 10px 0 20px;
@@ -58,110 +65,107 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
   color: #a7cb69;
   margin: 10px 0 20px;
   max-width: 900px;
 }
 
 p {
-  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   max-width: 800px;
   line-height: 1.6;
 }
 
 /* =========================
-   HOME PAGE ONLY
+   HOME PAGE
    ========================= */
 
 body.home .workshop {
   width: 100%;
-  height: 400px;
+  max-width: 900px;
+  height: 420px;
+
   object-fit: cover;
+
+  border-radius: 20px;
+
   display: block;
 }
 
 /* =========================
-   COURSES PAGE ONLY
+   COURSES PAGE
    ========================= */
+
+body.courses #courses-container {
+  width: 100%;
+  padding-bottom: 170px;
+}
+
+/* ADD COURSE BUTTON */
 
 body.courses .add-course-btn {
   position: fixed;
-  bottom: 120px;
-  right: 20px;
 
-  width: 90%;
-  max-width: 600px;
+  bottom: 105px;
+  left: 50%;
+  transform: translateX(-50%);
 
-  padding: 18px 22px;
+  width: calc(100% - 40px);
+  max-width: 620px;
+
+  padding: 18px 24px;
 
   border: 2px solid #EFC36B;
-  border-radius: 16px;
+  border-radius: 18px;
 
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
 
   color: #EFC36B;
-  font-size: 1.4rem;
-  font-weight: bold;
+
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
 
   cursor: pointer;
-  text-align: center;
 
-  z-index: 50;
+  z-index: 900;
 
-  transition: all 0.25s ease;
+  transition: 0.25s ease;
 }
 
 body.courses .add-course-btn:hover {
-  background-color: #EFC36B;
+  background: #EFC36B;
   color: #1a252b;
-  transform: translateY(-2px);
+  transform: translateX(-50%) translateY(-2px);
 }
 
-/* COURSE CARDS */
-body.courses .course-card {
+/* COURSE CARD */
+
+.course-card {
   display: block;
   text-decoration: none;
 
-  border: 2px solid #EFC36B;
-  border-radius: 16px;
-
-  padding: 18px 22px;
-  margin: 16px auto;
-
-  max-width: 600px;
   width: 90%;
+  max-width: 620px;
 
-  background: rgba(0, 0, 0, 0.2);
+  margin: 18px auto;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  border: 2px solid #EFC36B;
+
+  background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
 
-  color: #EFC36B;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: 0.25s ease;
 }
 
-body.courses .course-card:hover {
-  background-color: #EFC36B;
-  color: #1a252b;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(239, 195, 107, 0.3);
-}
-
-body.courses #courses-container {
-  padding-bottom: 160px;
-}
-
-.course-card {
-  overflow: hidden;
-  padding: 0;
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
 }
 
 .course-image {
@@ -169,18 +173,176 @@ body.courses #courses-container {
   height: 220px;
 
   object-fit: cover;
-
   display: block;
 }
 
 .course-info {
-  padding: 20px;
+  padding: 18px;
 }
 
-.course-info h2 {
+.course-info p {
   margin: 0;
+
   color: #EFC36B;
-  font-size: 1.3rem;
+
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* =========================
+   POPUP
+   ========================= */
+
+.popup {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9998;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.popup-content {
+  position: relative;
+
+  width: 90%;
+  max-width: 420px;
+
+  padding: 36px;
+
+  border-radius: 24px;
+
+  border: 2px solid #EFC36B;
+
+  background: #1a252b;
+
+  text-align: center;
+}
+
+.popup-content input {
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-top: 18px;
+  padding: 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  font-size: 1rem;
+}
+
+.popup-content button {
+  margin-top: 18px;
+
+  padding: 14px 20px;
+
+  border-radius: 12px;
+  border: 2px solid #EFC36B;
+
+  background: transparent;
+
+  color: #EFC36B;
+
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.popup-content button:hover {
+  background: #EFC36B;
+  color: #1a252b;
+}
+
+/* CLOSE BUTTON */
+
+.popup-close {
+  position: absolute;
+
+  top: 12px;
+  right: 16px;
+
+  background: transparent;
+  border: none;
+
+  color: #EFC36B;
+
+  font-size: 32px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.popup-close:hover {
+  color: white;
+}
+
+/* =========================
+   STEP TOGGLES
+   ========================= */
+
+.step-card {
+  width: 90%;
+  max-width: 760px;
+
+  margin: 14px auto;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  border: 2px solid #EFC36B;
+
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
+}
+
+.step-toggle {
+  width: 100%;
+
+  padding: 18px 20px;
+
+  background: transparent;
+  border: none;
+
+  color: #EFC36B;
+
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.step-toggle:hover {
+  background: rgba(239, 195, 107, 0.1);
+}
+
+.step-content {
+  padding: 0 20px 24px;
+}
+
+.step-content iframe {
+  width: min(560px, 100%);
+  height: 315px;
+
+  border: none;
+  border-radius: 14px;
 }
 
 /* =========================
@@ -191,14 +353,16 @@ body.courses #courses-container {
   width: 100%;
 
   display: flex;
-  gap: 12px;
+  gap: 14px;
 
   overflow-x: auto;
   overflow-y: hidden;
 
-  padding: 10px 0 20px;
+  padding: 8px 2px 20px;
 
   box-sizing: border-box;
+
+  scroll-behavior: smooth;
 
   -webkit-overflow-scrolling: touch;
 }
@@ -211,7 +375,7 @@ body.courses #courses-container {
 
   object-fit: cover;
 
-  border-radius: 12px;
+  border-radius: 14px;
   border: 2px solid #EFC36B;
 
   cursor: pointer;
@@ -240,7 +404,7 @@ body.courses #courses-container {
   position: fixed;
   inset: 0;
 
-  background: rgba(0,0,0,0.88);
+  background: rgba(0,0,0,0.92);
 
   display: flex;
   justify-content: center;
@@ -248,24 +412,30 @@ body.courses #courses-container {
 
   padding: 40px;
 
-  z-index: 9999;
+  z-index: 10000;
 }
 
 .lightbox.hidden {
-  display: none;
+  display: none !important;
 }
+
+/* THIS IS THE IMPORTANT FIX */
 
 #lightbox-img {
   width: auto;
   height: auto;
 
-  max-width: 75vw;
-  max-height: 75vh;
+  max-width: 82vw;
+  max-height: 82vh;
 
   object-fit: contain;
 
   border-radius: 18px;
+
+  display: block;
 }
+
+/* CLOSE BUTTON */
 
 #close-lightbox {
   position: absolute;
@@ -274,229 +444,104 @@ body.courses #courses-container {
   right: 30px;
 
   color: white;
-  font-size: 50px;
+
+  font-size: 48px;
+  line-height: 1;
 
   cursor: pointer;
+
+  z-index: 10001;
 }
 
 /* =========================
-   POPUP SYSTEM (GLOBAL SAFE)
-   ========================= */
-
-.popup {
-  position: fixed;
-  inset: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(0,0,0,0.65);
-
-  z-index: 1000;
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* popup box */
-.popup-content {
-  position: relative;
-
-  width: 90%;
-  max-width: 420px;
-
-  padding: 35px;
-
-  border-radius: 22px;
-  border: 2px solid #EFC36B;
-
-  background: #1a252b;
-
-  text-align: center;
-
-  z-index: 1001;
-}
-
-/* input + button */
-.popup-content input {
-  width: 100%;
-  box-sizing: border-box;
-
-  margin-top: 20px;
-  padding: 14px;
-
-  border-radius: 12px;
-  border: none;
-
-  font-size: 1rem;
-}
-
-.popup-content button {
-  margin-top: 20px;
-
-  padding: 14px 20px;
-
-  border-radius: 12px;
-  border: 2px solid #EFC36B;
-
-  background: transparent;
-
-  color: #EFC36B;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  transition: 0.25s ease;
-}
-
-.popup-content button:hover {
-  background-color: #EFC36B;
-  color: #1a252b;
-}
-
-/* X BUTTON (FIXED + ALWAYS ON TOP OF POPUP CONTENT) */
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-
-  background: transparent;
-  border: none;
-
-  color: #EFC36B;
-  font-size: 28px;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  z-index: 1002;
-}
-
-.popup-close:hover {
-  color: white;
-  transform: scale(1.1);
-}
-
-.step-card {
-  width: 90%;
-  max-width: 700px;
-  margin: 16px auto;
-
-  border: 2px solid #EFC36B;
-  border-radius: 16px;
-
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-
-  overflow: hidden;
-}
-
-.step-toggle {
-  width: 100%;
-  padding: 16px;
-
-  background: transparent;
-  border: none;
-
-  font-family: "Josefin Sans", sans-serif;
-  color: #EFC36B;
-  font-size: 1.1rem;
-  font-weight: bold;
-
-  cursor: pointer;
-  text-align: left;
-}
-
-.step-toggle:hover {
-  background: rgba(239, 195, 107, 0.1);
-}
-
-.step-content {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0 20px;
-}
-
-.step-content iframe {
-  width: 560px;
-  height: 315px;
-  border-radius: 12px;
-}
-
-.hidden {
-  display: none;
-}
-
-/* =========================
-   NAV
+   NAVIGATION
    ========================= */
 
 .bottom-nav {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
 
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  bottom: 18px;
+  left: 50%;
+
+  transform: translateX(-50%);
 
   width: calc(100% - 40px);
   max-width: 900px;
+
+  display: flex;
+  gap: 12px;
 
   z-index: 9999;
 }
 
 .bottom-nav a {
-  flex: 1 1 auto;
+  flex: 1;
 
-  text-decoration: none;
-  text-align: center;
+  padding: 14px 18px;
 
-  color: #EFC36B;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  font-weight: bold;
-
-  padding: 14px 20px;
-
+  border-radius: 16px;
   border: 2px solid #EFC36B;
-  border-radius: 14px;
 
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0,0,0,0.35);
   backdrop-filter: blur(10px);
 
-  transition: all 0.25s ease;
+  color: #EFC36B;
+
+  text-decoration: none;
+
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+
+  text-align: center;
+
+  transition: 0.25s ease;
 }
 
 .bottom-nav a:hover {
-  background-color: #EFC36B;
+  background: #EFC36B;
   color: #1a252b;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(239, 195, 107, 0.25);
 }
 
 /* =========================
    MOBILE
    ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+
   .container {
-    padding: 25px 15px;
+    padding: 28px 16px 150px;
   }
 
-  body.courses .add-course-btn {
-    bottom: 110px;
+  .corner-logo {
+    width: 42px;
+  }
+
+  .horizontal-gallery img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .step-content iframe {
+    height: 220px;
   }
 
   .bottom-nav {
     gap: 8px;
-    bottom: 15px;
   }
 
   .bottom-nav a {
-    padding: 12px 14px;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+
+  body.courses .add-course-btn {
+    bottom: 95px;
+    font-size: 1rem;
+  }
+
+  #lightbox-img {
+    max-width: 92vw;
+    max-height: 72vh;
   }
 }
