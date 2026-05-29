@@ -211,7 +211,7 @@ body.courses #courses-container {
 
   object-fit: cover;
 
-  border-radius: 16px;
+  border-radius: 12px;
   border: 2px solid #EFC36B;
 
   cursor: pointer;
@@ -265,8 +265,6 @@ body.courses #courses-container {
   object-fit: contain;
 
   border-radius: 18px;
-
-  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
 }
 
 #close-lightbox {
