@@ -420,8 +420,6 @@ body.courses .add-course-btn:hover {
 }
 
 #lightbox-img {
-  display: block;
-
   width: auto !important;
   height: auto !important;
 
@@ -431,8 +429,6 @@ body.courses .add-course-btn:hover {
   object-fit: contain !important;
 
   border-radius: 18px;
-
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
 }
 
 #close-lightbox {
