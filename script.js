@@ -238,36 +238,45 @@ document.addEventListener("DOMContentLoaded", () => {
 // IMAGE LIGHTBOX
 // =========================
 
-document.addEventListener("click", (event) => {
+const galleryImages =
+  document.querySelectorAll(".horizontal-gallery img");
 
-  // OPEN IMAGE
-  if (event.target.matches(".horizontal-gallery img")) {
+const lightbox =
+  document.getElementById("lightbox");
 
-    const lightbox =
-      document.getElementById("lightbox");
+const lightboxImg =
+  document.getElementById("lightbox-img");
 
-    const lightboxImg =
-      document.getElementById("lightbox-img");
+const closeLightbox =
+  document.getElementById("close-lightbox");
 
-    // USE THE IMAGE SRC DIRECTLY
-    lightboxImg.src = event.target.src;
+// OPEN IMAGE
+galleryImages.forEach(image => {
 
-    // SHOW LIGHTBOX
+  image.addEventListener("click", () => {
+
+    lightboxImg.src = image.src;
+
     lightbox.classList.remove("hidden");
-  }
 
-  // CLOSE BUTTON
-  if (event.target.id === "close-lightbox") {
+  });
 
-    document
-      .getElementById("lightbox")
-      .classList.add("hidden");
-  }
+});
 
-  // CLICK BACKGROUND TO CLOSE
-  if (event.target.id === "lightbox") {
+// CLOSE BUTTON
+closeLightbox.addEventListener("click", () => {
 
-    event.target.classList.add("hidden");
+  lightbox.classList.add("hidden");
+
+});
+
+// CLICK BACKGROUND
+lightbox.addEventListener("click", (event) => {
+
+  if (event.target === lightbox) {
+
+    lightbox.classList.add("hidden");
+
   }
 
 });
