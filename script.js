@@ -250,36 +250,46 @@ const lightboxImg =
 const closeLightbox =
   document.getElementById("close-lightbox");
 
-// OPEN IMAGE
-galleryImages.forEach(image => {
+// ONLY RUN IF LIGHTBOX EXISTS
+if (
+  galleryImages.length > 0 &&
+  lightbox &&
+  lightboxImg &&
+  closeLightbox
+) {
 
-  image.addEventListener("click", () => {
+  // OPEN IMAGE
+  galleryImages.forEach(image => {
 
-    lightboxImg.src = image.src;
+    image.addEventListener("click", () => {
 
-    lightbox.classList.remove("hidden");
+      lightboxImg.src = image.src;
+
+      lightbox.classList.remove("hidden");
+
+    });
 
   });
 
-});
-
-// CLOSE BUTTON
-closeLightbox.addEventListener("click", () => {
-
-  lightbox.classList.add("hidden");
-
-});
-
-// CLICK BACKGROUND
-lightbox.addEventListener("click", (event) => {
-
-  if (event.target === lightbox) {
+  // CLOSE BUTTON
+  closeLightbox.addEventListener("click", () => {
 
     lightbox.classList.add("hidden");
 
-  }
+  });
 
-});
+  // CLICK BACKGROUND
+  lightbox.addEventListener("click", (event) => {
+
+    if (event.target === lightbox) {
+
+      lightbox.classList.add("hidden");
+
+    }
+
+  });
+
+} 
   // =========================
   // INITIAL RENDER
   // =========================
