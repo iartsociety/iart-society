@@ -249,16 +249,15 @@ document.addEventListener("click", (event) => {
     const lightboxImg =
       document.getElementById("lightbox-img");
 
+    // GET ORIGINAL IMAGE
     const fullImage =
-      event.target.getAttribute("data-full");
+      event.target.dataset.full;
 
-    if (lightbox && lightboxImg) {
+    // SET FULL IMAGE
+    lightboxImg.src = fullImage;
 
-      lightboxImg.src = fullImage;
-
-      lightbox.classList.remove("hidden");
-
-    }
+    // SHOW LIGHTBOX
+    lightbox.classList.remove("hidden");
 
   }
 
