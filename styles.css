@@ -240,29 +240,33 @@ body.courses #courses-container {
   position: fixed;
   inset: 0;
 
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.88);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  z-index: 10000;
+  padding: 40px;
+
+  z-index: 9999;
 }
 
 .lightbox.hidden {
   display: none;
 }
 
-.lightbox-img {
-  max-width: 92vw;
-  max-height: 92vh;
-
+#lightbox-img {
   width: auto;
   height: auto;
 
-  object-fit: contain; 
+  max-width: 75vw;
+  max-height: 75vh;
+
+  object-fit: contain;
 
   border-radius: 18px;
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
 }
 
 #close-lightbox {
