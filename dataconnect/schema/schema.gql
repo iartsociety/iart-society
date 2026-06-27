@@ -1,0 +1,40 @@
+type User @table {
+  email: String!
+  displayName: String!
+  profilePictureUrl: String
+}
+
+type Course @table {
+  title: String!
+  description: String!
+  instructorName: String!
+  thumbnailUrl: String
+  difficultyLevel: String
+}
+
+type AccessCode @table {
+  codeString: String!
+  isUsed: Boolean!
+  course: Course!
+}
+
+type Step @table {
+  title: String!
+  content: String!
+  sequenceOrder: Int!
+  imageUrl: String
+  videoUrl: String
+  course: Course!
+}
+
+type Enrollment @table {
+  progressStatus: String!
+  user: User!
+  course: Course!
+}
+
+type UserProgress @table {
+  isCompleted: Boolean!
+  user: User!
+  step: Step!
+}

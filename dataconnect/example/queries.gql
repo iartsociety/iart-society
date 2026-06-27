@@ -1,0 +1,33 @@
+mutation CreateCourse($title: String!, $description: String!, $instructorName: String!) @auth(level: USER) {
+  course_insert(data: {
+    title: $title,
+    description: $description,
+    instructorName: $instructorName
+  })
+}
+
+mutation EnrollUserInCourse($courseId: UUID!) @auth(level: USER) {
+  enrollment_insert(data: {
+    courseId: $courseId,
+    userId_expr: "auth.uid",
+    progressStatus: "Enrolled"
+  })
+}
+
+query ListMyCourses @auth(level: USER) {
+  enrollments(where: {user: {id: {eq_expr: "auth.uid"}}}) {
+    course {
+      title
+      instructorName
+    }
+    progressStatus
+  }
+}
+
+query GetCourseSteps($courseId: UUID!) @auth(level: USER) {
+  steps(where: {courseId: {eq: $courseId}}, orderBy: [{sequenceOrder: ASC}]) {
+    title
+    content
+    sequenceOrder
+  }
+}
