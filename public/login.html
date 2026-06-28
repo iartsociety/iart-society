@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | iArt Society</title>
+
+    <link rel="stylesheet" href="css/login.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="login-card">
+
+    <img src="images/iArtSocietyLogo.png" class="logo">
+
+    <h1>iArt Society</h1>
+
+    <p class="subtitle">
+        Continue your artistic journey.
+    </p>
+
+    <div class="toggle-buttons">
+
+        <button id="loginTab" class="active">
+            Login
+        </button>
+
+        <button id="signupTab">
+            Sign Up
+        </button>
+
+    </div>
+
+    <form id="authForm">
+
+        <div id="nameContainer" class="hidden">
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Jane Doe">
+
+        </div>
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="you@example.com"
+            required>
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="••••••••"
+            required>
+
+        <div id="confirmContainer" class="hidden">
+
+            <label>Confirm Password</label>
+
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="••••••••">
+
+        </div>
+
+        <a href="#" id="forgotPassword">
+            Forgot Password?
+        </a>
+
+        <button id="submitButton" type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <p class="footer-text">
+        Made with ❤️ by iArt Society
+    </p>
+
+</div>
+
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
+
+const nameContainer = document.getElementById("nameContainer");
+const confirmContainer = document.getElementById("confirmContainer");
+
+const submitButton = document.getElementById("submitButton");
+
+loginTab.onclick = () => {
+
+    loginTab.classList.add("active");
+    signupTab.classList.remove("active");
+
+    nameContainer.classList.add("hidden");
+    confirmContainer.classList.add("hidden");
+
+    submitButton.innerText = "Login";
+
+};
+
+signupTab.onclick = () => {
+
+    signupTab.classList.add("active");
+    loginTab.classList.remove("active");
+
+    nameContainer.classList.remove("hidden");
+    confirmContainer.classList.remove("hidden");
+
+    submitButton.innerText = "Create Account";
+
+};
+
+<script type="module" src="js/auth.js"></script>
+</body>
+</html>

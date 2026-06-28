@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
 
     <div class="container">
 
-      <img class="logo" src="iartsociety-header.png" alt="logo">
+      <img class="logo" src="images/iartsociety-header.png" alt="logo">
 
       <div class="introgreentext">
         <h3 class="chelsea-market-regular">
@@ -30,7 +30,7 @@
         </h3>
       </div>
 
-      <img class="workshop" src="koifishworkshop.png" alt="koi fish workshop demo image">
+      <img class="workshop" src="images/koifishworkshop.png" alt="koi fish workshop demo image">
 
       <h2 class="josefin-sans-<uniquifier>">
         Featured Workshop: Koi Fish Trinket Tray Workshop
@@ -38,12 +38,28 @@
 
     </div>
 
-    <nav class="bottom-nav">
-      <a href="index.html">Home</a>
-      <a href="courses.html">My Courses</a>
-    </nav>
+  <nav class="bottom-nav">
 
-    <script src="./script.js" type="module"></script>
+    <a href="index.html">Home</a>
+
+    <div id="guestNav">
+
+        <a href="login.html">Login / Sign Up</a>
+
+    </div>
+
+    <div id="memberNav" style="display:none;">
+
+        <a href="courses.html">My Courses</a>
+
+        <a href="#" id="logoutBtn">Logout</a>
+
+    </div>
+
+  </nav>
+
+    <script src="js/script.js" type="module"></script>
+    <script type="module" src="js/index.js"></script>
 
   </body>
 </html>
