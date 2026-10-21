@@ -10,19 +10,21 @@ import { doc, getDoc }
 // Course catalog
 // These are course descriptions, NOT unlock codes.
 
+
 const courseCatalog = {
   "lotus-lippan-art": {
     title: "Lotus Lippan Art",
     page: "/lotus.html",
-    image: "/images/lotus-course.jpg"
+    image: "/lotus-course.jpg"
   },
 
   "diya-wall-hanging": {
     title: "Diya Wall Hanging Guide",
     page: "/diya.html",
-    image: "/images/diya-course.png"
+    image: "/diya-course.png"
   }
 };
+
 
 const container =
   document.getElementById("courses-container");
