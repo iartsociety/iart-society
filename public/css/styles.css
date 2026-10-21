@@ -61,14 +61,12 @@ h2 {
   color: #fe8faa;
   font-family: "Josefin Sans", sans-serif;
   margin: 10px 0 20px;
-  : 900px;
 }
 
 h3 {
   font-size: clamp(1.2rem, 3vw, 2.2rem);
   color: #a7cb69;
   margin: 10px 0 20px;
-  : 900px;
 }
 
 p {
@@ -83,7 +81,6 @@ p {
 
 body.home .workshop {
   width: 100%;
-  : 900px;
   height: 420px;
 
   object-fit: cover;
