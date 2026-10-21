@@ -18,10 +18,10 @@ const courseCatalog = {
     image: "/lla-gallery/lotus-course.jpg"
   },
 
-  "diya-wall-hanging": {
-    title: "Diya Wall Hanging Guide",
-    page: "/diya.html",
-    image: "/diya-course.png"
+  "tree-of-life": {
+    title: "Tree Of Life",
+    page: "/tree.html",
+    image: "tree/tree-course.png"
   }
 };
 
