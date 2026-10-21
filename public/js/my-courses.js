@@ -15,13 +15,13 @@ const courseCatalog = {
   "lotus-lippan-art": {
     title: "Lotus Lippan Art",
     page: "/lotus.html",
-    image: "/lla-gallery/lotus-course.jpg"
+    image: "images/lla-gallery/lotus-course.jpg"
   },
 
   "tree-of-life": {
     title: "Tree Of Life",
     page: "/tree.html",
-    image: "/tree-course.jpeg"
+    image: "images/tree-course.jpeg"
   }
 };
 
