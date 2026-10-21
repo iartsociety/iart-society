@@ -619,7 +619,7 @@ body.courses .add-course-btn:hover {
   margin: 24px auto 10px;
 }
 
-.pdf-download a {
+.pdf-download .link a {
   display: inline-block;
   padding: 14px 26px;
 
@@ -636,12 +636,12 @@ body.courses .add-course-btn:hover {
   transition: background 0.25s ease, color 0.25s ease;
 }
 
-.pdf-download a:hover {
+.pdf-download .link a:hover {
   background: #EFC36B;
   color: #1a252b;
 }
 
-.pdf-download a:focus-visible {
+.pdf-download .link a:focus-visible {
   outline: 3px solid white;
   outline-offset: 4px;
 }
