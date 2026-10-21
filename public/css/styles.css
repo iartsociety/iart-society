@@ -461,15 +461,6 @@ body.courses .add-course-btn:hover {
     height: 140px;
   }
 
-  .step-content .video-lesson iframe {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  height: auto;
-  border: none;
-  border-radius: 12px;
-}
-
   .bottom-nav {
     gap: 8px;
   }
@@ -489,7 +480,16 @@ body.courses .add-course-btn:hover {
     max-height: 72vh;
   }
 }
-  
+
+.step-content .video-lesson iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: none;
+  border-radius: 12px;
+}
+
 /* Tree of Life video lessons */
 
 .video-lesson {
