@@ -93,21 +93,7 @@ async function ensureStudentProfile(user, name = "") {
 // =========================
 
 async function redirectStudent(user) {
-  const userRef = doc(db, "users", user.uid);
-  const snapshot = await getDoc(userRef);
-
-  if (!snapshot.exists()) {
-    window.location.replace("/index.html");
-    return;
-  }
-
-  const courses = snapshot.data().purchasedCourses;
-
-  if (Array.isArray(courses) && courses.length > 0) {
-    window.location.replace("/courses.html");
-  } else {
-    window.location.replace("/index.html");
-  }
+  window.location.replace("/courses.html");
 }
 
 // =========================
