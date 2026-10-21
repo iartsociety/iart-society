@@ -21,7 +21,7 @@ const courseCatalog = {
   "tree-of-life": {
     title: "Tree Of Life",
     page: "/tree.html",
-    image: "images/tree-course.jpeg"
+    image: "images/tree-course.JPEG"
   }
 };
 
