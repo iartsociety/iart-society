@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const galleries = document.querySelectorAll("[data-gallery]");
 
   try {
-    const response = await fetch("/galleries.json");
+    const response = await fetch("/json/galleries.json");
 
     if (!response.ok) {
       throw new Error("Could not load gallery list");
