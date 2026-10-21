@@ -70,6 +70,38 @@
        <a href="courses.html">Log OUT</a>
     </nav>
 
+    
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const addButton = document.getElementById("add-course-btn");
+  const popup = document.getElementById("course-popup");
+  const closeButton = document.getElementById("close-popup-btn");
+  const codeInput = document.getElementById("course-code-input");
+
+  function openPopup() {
+    popup.classList.remove("hidden");
+    codeInput.focus();
+  }
+
+  function closePopup() {
+    popup.classList.add("hidden");
+    codeInput.value = "";
+  }
+
+  addButton.addEventListener("click", openPopup);
+  closeButton.addEventListener("click", closePopup);
+
+  popup.addEventListener("click", (event) => {
+    if (event.target === popup) closePopup();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closePopup();
+  });
+});
+</script>
+
+
     <script src="./script.js" type="module"></script>
     <script type="module" src="js/protect.js"></script>
 
