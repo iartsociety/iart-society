@@ -317,6 +317,36 @@ font-size:1.8rem;
 
 width:70px;
 
+   
+
 }
 
+}
+
+
+.google-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 15px;
+  margin-top: 18px;
+  border: 1px solid #57646b;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #222222;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.google-login-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.google-login-btn:hover {
+  background: #f1f1f1;
 }
