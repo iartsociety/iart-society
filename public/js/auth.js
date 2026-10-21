@@ -1,17 +1,24 @@
 import { auth, db } from "./firebase-config.js";
 
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
-  updateProfile
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
 
 import {
   doc,
+  getDoc,
   setDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
 
 console.log("AUTH.JS IS RUNNING");
 
@@ -158,4 +165,23 @@ forgotPassword.addEventListener("click", async (e) => {
     } catch (error) {
         alert(error.message);
     }
-});
+
+      // Existing student: check assigned courses
+      const studentData = userSnap.data();
+      const courses = studentData.purchasedCourses || [];
+
+      if (Array.isArray(courses) && courses.length > 0) {
+        window.location.replace("/courses.html");
+      } else {
+        window.location.replace("/index.html");
+      }
+
+    } catch (error) {
+      console.error("Google sign-in error:", error);
+      alert("Google sign-in failed: " + error.message);
+    } finally {
+      googleLoginBtn.disabled = false;
+    }
+
+  });
+}
