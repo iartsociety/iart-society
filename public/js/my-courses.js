@@ -127,3 +127,27 @@ if (unlockButton) {
     );
   });
 }
+
+ // =========================
+ // LOG OUT
+ // =========================
+
+const logoutButton = document.getElementById("logout-btn");
+
+if (logoutButton) {
+  logoutButton.addEventListener("click", async () => {
+    try {
+      logoutButton.disabled = true;
+
+      await signOut(auth);
+
+      // Return to login page
+      window.location.replace("/login.html");
+
+    } catch (error) {
+      console.error("Logout failed:", error);
+      alert("Unable to log out. Please try again.");
+      logoutButton.disabled = false;
+    }
+  });
+}
