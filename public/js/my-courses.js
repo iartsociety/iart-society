@@ -15,7 +15,7 @@ const courseCatalog = {
   "lotus-lippan-art": {
     title: "Lotus Lippan Art",
     page: "/lotus.html",
-    image: "/lotus-course.jpg"
+    image: "/lla-gallery/lotus-course.jpg"
   },
 
   "diya-wall-hanging": {
