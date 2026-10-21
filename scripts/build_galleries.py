@@ -7,7 +7,7 @@ from urllib.parse import quote
 IMAGE_ROOT = Path("public/images")
 
 # Output file for the website
-OUTPUT = Path("public/galleries.json")
+OUTPUT = Path("public/json/galleries.json")
 
 # Supported image formats
 EXTENSIONS = {
