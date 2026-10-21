@@ -538,4 +538,29 @@ body.courses .add-course-btn:hover {
     max-width: 92vw;
     max-height: 72vh;
   }
+
+  
+/* Tree of Life video lessons */
+
+.video-lesson {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto 35px;
+}
+
+.video-lesson h3 {
+  color: #f4c76a;
+  font-family: "Josefin Sans", sans-serif;
+  margin-bottom: 15px;
+}
+
+.video-lesson iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: none;
+  border-radius: 12px;
+}
+
 }
