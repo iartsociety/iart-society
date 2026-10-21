@@ -75,33 +75,6 @@ p {
   line-height: 1.6;
 }
 
-a {
-  display: inline-block;
-  padding: 14px 26px;
-
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px solid #EFC36B;
-  border-radius: 14px;
-
-  color: #EFC36B;
-  font-family: "Josefin Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-
-  text-decoration: none;
-  transition: background 0.25s ease, color 0.25s ease;
-}
-
- a:hover {
-  background: #EFC36B;
-  color: #1a252b;
-}
-
- a:focus-visible {
-  outline: 3px solid white;
-  outline-offset: 4px;
-}
-
 /* =========================
    HOME PAGE
    ========================= */
@@ -646,7 +619,7 @@ body.courses .add-course-btn:hover {
   margin: 24px auto 10px;
 }
 
-.pdf-download .link a {
+.pdf-download a {
   display: inline-block;
   padding: 14px 26px;
 
@@ -663,12 +636,12 @@ body.courses .add-course-btn:hover {
   transition: background 0.25s ease, color 0.25s ease;
 }
 
-.pdf-download .link a:hover {
+.pdf-download a:hover {
   background: #EFC36B;
   color: #1a252b;
 }
 
-.pdf-download .link a:focus-visible {
+.pdf-download a:focus-visible {
   outline: 3px solid white;
   outline-offset: 4px;
 }
