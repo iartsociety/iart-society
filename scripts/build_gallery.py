@@ -51,7 +51,7 @@ for course_folder in sorted(IMAGE_ROOT.iterdir()):
     ]
 
     if root_images:
-        categories["general"] = [
+        categories["thumbnail"] = [
             image_url(f)
             for f in sorted(
                 root_images,
