@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 IMAGE_ROOT = Path("public/images/courses")
-JSON_ROOT = Path("public/json")
+JSON_ROOT = Path("public/json/courses")
 
 EXTENSIONS = {
     ".jpg", ".jpeg", ".png",
@@ -70,7 +70,7 @@ for course_folder in sorted(IMAGE_ROOT.iterdir()):
         if images:
             categories[category_folder.name] = images
 
-    output = JSON_ROOT / f"{course_name}.json"
+    output = JSON_ROOT / f"{course_name}_gallery.json"
 
     output.write_text(
         json.dumps(categories, indent=2, ensure_ascii=False),
