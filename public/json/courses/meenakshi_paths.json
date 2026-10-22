@@ -1,1 +1,32 @@
---
+
+{
+  "title": "Meenakshi 2D Tanjore Painting",
+
+  "thumbnail": "/images/courses/meenakshi/thumbnail.png",
+
+  "documents": [
+    {
+      "title": "Tanjore Painting Materials",
+      "path": 
+    }
+  ],
+
+  "videos": [
+    {
+      "title": "Introduction to Materials",
+      "url": "https://www.youtube.com/embed/fMKUUmLBeKU?controls=0&rel=0"
+    },
+    {
+      "title": "Preping Your Canvas",
+      "url": "https://www.youtube.com/embed/ICizItbj_D8?controls=0&rel=0"
+    },
+    {
+      "title": "Painting Your Lotus",
+      "url": "https://www.youtube.com/embed/xG9COgZwYUo?controls=0&rel=0"
+    }
+  ],
+
+  "images": {
+    "manifest": "/json/courses/meenakshi_gallery.json"
+  }
+}
