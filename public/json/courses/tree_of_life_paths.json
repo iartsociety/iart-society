@@ -1,0 +1,28 @@
+
+{
+  "title": "Tree of Life - Kalamkari",
+
+  "thumbnail": "/images/courses/treeoflife/thumbnail.JPEG",
+
+  "documents": [
+    {
+      "title": "Tree of Life Materials",
+      "path": "/documents/tree/Materials%20Kalamkari%20Tree%20of%20Life.pdf"
+    }
+  ],
+
+  "videos": [
+    {
+      "title": "Part 1 — Tree of Life",
+      "url": "https://www.youtube.com/embed/1D-iQkKAZ4Y?controls=0&rel=0"
+    },
+    {
+      "title": "Part 2 — Tree of Life",
+      "url": "https://www.youtube.com/embed/cnThoomMzr4?controls=0&rel=0"
+    }
+  ],
+
+  "images": {
+    "manifest": "/json/treeoflife.json"
+  }
+}
