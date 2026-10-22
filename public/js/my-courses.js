@@ -7,23 +7,20 @@ import { onAuthStateChanged, signOut }
 import { doc, getDoc }
   from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-// Course catalog
-// These are course descriptions, NOT unlock codes.
 
+async function loadCourseCatalog() {
+  const response = await fetch("/json/course_catalog.json", {
+    cache: "no-cache"
+  });
 
-const courseCatalog = {
-  "lotus-lippan-art": {
-    title: "Lotus Lippan Art",
-    page: "/lotus.html",
-    image: "images/lla-gallery/lotus-course.jpg"
-  },
-
-  "tree-of-life": {
-    title: "Tree Of Life",
-    page: "/tree.html",
-    image: "images/tree-course.JPEG"
+  if (!response.ok) {
+    throw new Error(
+      `Unable to load course catalog: ${response.status}`
+    );
   }
-};
+
+  return await response.json();
+}
 
 
 const container =
@@ -39,7 +36,7 @@ function showMessage(message) {
 }
 
 // Display courses assigned to this student
-function displayCourses(courseIds) {
+function displayCourses(courseIds, courseCatalog) {
   container.textContent = "";
 
   if (!courseIds.length) {
@@ -102,11 +99,19 @@ onAuthStateChanged(auth, async (user) => {
 
     const student = snapshot.data();
 
-    const courseIds = Array.isArray(
-      student.purchasedCourses
-    ) ? student.purchasedCourses : [];
+   
+const courseIds = Array.isArray(
+  student.purchasedCourses
+) ? student.purchasedCourses : [];
 
-    displayCourses(courseIds);
+// Load course information from JSON
+const courseCatalog = courseIds.length
+  ? await loadCourseCatalog()
+  : {};
+
+// Display the student's assigned courses
+displayCourses(courseIds, courseCatalog);
+
 
   } catch (error) {
     console.error("Course loading error:", error);
