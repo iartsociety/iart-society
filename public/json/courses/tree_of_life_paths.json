@@ -23,6 +23,6 @@
   ],
 
   "images": {
-    "manifest": "/json/treeoflife.json"
+    "manifest": "/json/courses/treeoflife_gallery.json"
   }
 }
