@@ -1,0 +1,14 @@
+
+{
+  "lotus-lippan-art": {
+    "title": "Lotus Lippan Art",
+    "page": "/lotus.html",
+    "image": "/images/lla-gallery/lotus-course.jpg"
+  },
+
+  "tree-of-life": {
+    "title": "Tree Of Life",
+    "page": "/courses/tree_of_life.html",
+    "image": "/images/courses/treeoflife/thubnail.png"
+  }
+}
