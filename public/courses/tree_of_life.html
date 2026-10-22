@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <titleTree of Life</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- CORNER LOGO -->
+  <img
+    class="corner-logo"
+    src="./images/iArtSocietyLogo.png"
+    alt="logo"
+  >
+
+  <div class="container">
+
+    <!-- TITLE -->
+    <div class="introgreentext">
+
+      <h3 class="chelsea-market-regular">
+        Tree of Life - Kalamkari
+      </h3>
+<img src="./images/courses/treeoflife/thumbnail.JPEG" width="150px" height = "100px" >
+    </div>
+
+    <!-- DOCUMENTS -->
+    <div class="step-card">
+
+      <button class="step-toggle">
+        Documents
+      </button>
+
+      <div class="step-content hidden">
+
+        <iframe
+          src="./documents/tree/Materials%20Kalamkari%20Tree%20of%20Life.pdf"
+      title="Tree of Life PDF Guide"
+      class="pdf-viewer">
+    </iframe>
+
+    <p class="pdf-download">
+      <a
+        href="./documents/tree/Materials%20Kalamkari%20Tree%20of%20Life.pdf"
+        target="_blank"
+        rel="noopener noreferrer">
+        Open PDF in New Tab
+      </a>
+    </p>
+
+
+      </div>
+
+    </div>
+
+   
+<!-- VIDEOS -->
+<div class="step-card">
+
+  <button class="step-toggle">
+    Videos
+  </button>
+
+  <div class="step-content hidden">
+
+    <!-- VIDEO 1 -->
+    <div class="video-lesson">
+      <h3>Part 1 — Tree of Life</h3>
+
+      <iframe
+        src="https://www.youtube.com/embed/1D-iQkKAZ4Y?controls=0&rel=0"
+        title="Tree of Life - Part 1"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- VIDEO 2 -->
+    <div class="video-lesson">
+      <h3>Part 2 — Tree of Life</h3>
+
+      <iframe
+        src="https://www.youtube.com/embed/cnThoomMzr4?controls=0&rel=0"
+        title="Tree of Life - Part 2"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+</div>
+
+
+    
+<!-- IMAGES -->
+<div class="step-card">
+
+  <button class="step-toggle">
+    Images
+  </button>
+
+  <div class="step-content hidden">
+
+    <div
+      class="horizontal-gallery"
+      data-gallery="tree">
+    </div>
+
+  </div>
+
+</div>
+
+<!-- IMAGE LIGHTBOX -->
+<div id="lightbox" class="lightbox hidden"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Image gallery">
+
+  <!-- Close -->
+  <button id="close-lightbox"
+          class="lightbox-close"
+          type="button"
+          aria-label="Close image">
+    &times;
+  </button>
+
+  <!-- Previous image -->
+  <button id="prev-image"
+          class="gallery-arrow gallery-prev"
+          type="button"
+          aria-label="Previous image">
+    &#10094;
+  </button>
+
+  <!-- Display image -->
+  <img id="lightbox-img" src="" alt="">
+
+  <!-- Next image -->
+  <button id="next-image"
+          class="gallery-arrow gallery-next"
+          type="button"
+          aria-label="Next image">
+    &#10095;
+  </button>
+
+  <!-- Image counter -->
+  <div id="image-counter" class="image-counter"></div>
+
+</div>
+
+
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="bottom-nav">
+
+    <a href="./index.html">
+      Home
+    </a>
+
+    <a href="./courses.html">
+      My Courses
+    </a>
+
+  </nav>
+
+  <!-- MAIN SCRIPT -->
+  <script src="./js/script.js"></script>
+
+  <!-- STEP TOGGLES -->
+  <script>
+
+    const toggleButtons =
+      document.querySelectorAll(".step-toggle");
+
+    toggleButtons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const content =
+          button.nextElementSibling;
+
+        content.classList.toggle("hidden");
+
+      });
+
+    });
+
+  </script>
+<script type="module" src="/js/gallery.js"></script>
+</body>
+</html>
