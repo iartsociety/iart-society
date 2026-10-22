@@ -10,5 +10,11 @@
     "title": "Tree Of Life",
     "page": "/courses/tree_of_life.html",
     "image": "/images/courses/treeoflife/thumbnail.png"
+  },
+
+  "meenakshi": {
+    "title": "Meenakshi 2D Tanjore Painting",
+    "page": "/courses/meenakshi.html",
+    "image": "/images/courses/meenakshi/thumbnail.png"
   }
 }
