@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from urllib.parse import quote
 
-IMAGE_ROOT = Path("public/images")
+IMAGE_ROOT = Path("public/images/courses")
 JSON_ROOT = Path("public/json")
 
 EXTENSIONS = {
