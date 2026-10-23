@@ -17,20 +17,9 @@
 
   </head>
 
-  <img class="corner-logo" src="images/iArtSocietyLogo.png" alt="logo">
-
-  <body class="courses">
-
+   <body class="courses">
+<div id="site-header"></div>
     <div class="container">
-
-      <!-- HEADER -->
-      <img class="logo" src="images/iartsociety-header.png" alt="logo">
-
-      <div class="introgreentext">
-        <h3 class="chelsea-market-regular">
-          Indian Traditional Artists & Amateurs Community
-        </h3>
-      </div>
 
       <!-- COURSES SECTION -->
       <div id="courses-container"></div>
@@ -62,15 +51,8 @@
 
   </div>
 </div>
+<div id="site-footer"></div>
 
-    <!-- NAV -->
-    <nav class="bottom-nav">
-      <a href="index.html">Home</a>
-      <a href="courses.html">My Courses</a>
-       <a id="logout-btn" href="">Log OUT</a>
-    </nav>
-
-    
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const addButton = document.getElementById("add-course-btn");
@@ -100,10 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-
-
-   <script type="module" src="/js/my-courses.js"></script>
+     <script type="module" src="/js/header_footer.js"></script>
+  <script type="module" src="/js/my-courses.js"></script>
     <script type="module" src="js/protect.js"></script>
-
   </body>
 </html>
