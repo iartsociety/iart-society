@@ -439,6 +439,12 @@ body.courses .add-course-btn:hover {
   color: #1a252b;
 }
 
+/* Hide login/logout buttons according to Firebase status */
+.bottom-nav [hidden],
+.header-account[hidden] {
+  display: none !important;
+}
+
 /* =========================
    MOBILE
    ========================= */
