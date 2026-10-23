@@ -129,13 +129,89 @@ displayCourses(courseIds, courseCatalog);
 // Manual enrollment is currently enabled.
 // Disable the old browser-based course code system.
 
+
 const unlockButton =
   document.getElementById("submit-code-btn");
 
-if (unlockButton) {
-  unlockButton.addEventListener("click", () => {
-    alert(
-      "Course activation is currently handled by iArt Society. Please contact us to activate your course."
-    );
+const codeInput =
+  document.getElementById("course-code-input");
+
+if (unlockButton && codeInput) {
+
+  unlockButton.addEventListener("click", async () => {
+    const user = auth.currentUser;
+    const code = codeInput.value.trim().toUpperCase();
+
+    if (!user) {
+      alert("Please log in before activating a course.");
+      return;
+    }
+
+    if (!code) {
+      alert("Please enter your activation code.");
+      return;
+    }
+
+    unlockButton.disabled = true;
+
+    try {
+      const userRef = doc(db, "users", user.uid);
+      const codeRef = doc(db, "activationCodes", code);
+
+      await runTransaction(db, async transaction => {
+        const codeSnap = await transaction.get(codeRef);
+        const userSnap = await transaction.get(userRef);
+
+        if (!codeSnap.exists()) {
+          throw new Error("Invalid activation code.");
+        }
+
+        if (!userSnap.exists()) {
+          throw new Error("Student profile not found.");
+        }
+
+        const activation = codeSnap.data();
+        const student = userSnap.data();
+
+        if (activation.redeemedBy !== null) {
+          throw new Error("This code has already been used.");
+        }
+
+        const courseId = activation.courseId;
+
+        const currentCourses = Array.isArray(
+          student.purchasedCourses
+        ) ? student.purchasedCourses : [];
+
+        if (currentCourses.includes(courseId)) {
+          throw new Error("You already have this course.");
+        }
+
+        transaction.update(userRef, {
+          purchasedCourses: [...currentCourses, courseId],
+          lastRedeemedCode: code
+        });
+
+        transaction.update(codeRef, {
+          redeemedBy: user.uid
+        });
+      });
+
+      alert("Course activated successfully!");
+      window.location.reload();
+
+    } catch (error) {
+      console.error("Activation failed:", error);
+
+      alert(
+        error.code === "permission-denied"
+          ? "Activation was denied. Please contact iArtSociety."
+          : error.message || "Unable to activate course."
+      );
+
+    } finally {
+      unlockButton.disabled = false;
+    }
   });
 }
+
