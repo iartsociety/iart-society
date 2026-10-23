@@ -643,3 +643,116 @@ body.courses .add-course-btn:hover {
   outline-offset: 4px;
 }
 
+
+/* =========================
+   SHARED IARTSOCIETY HEADER
+   ========================= */
+
+.site-header {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px 20px 15px;
+  text-align: center;
+}
+
+/* Corner logo */
+
+.header-corner-logo {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 10;
+}
+
+.header-corner-logo .corner-logo {
+  position: static;
+  width: 50px;
+  height: auto;
+}
+
+/* Main header */
+
+.header-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-content .logo {
+  width: min(90%, 520px);
+  height: auto;
+  margin: 10px 0 20px;
+}
+
+.header-content h3 {
+  color: #a7cb69;
+  font-family: "Chelsea Market", cursive;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  margin: 0;
+}
+
+/* Account holder */
+
+.header-account {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.header-account[hidden] {
+  display: none;
+}
+
+.account-label {
+  color: #a7b3b9;
+  font-size: 12px;
+}
+
+.account-name {
+  color: #EFC36B;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .site-header {
+    padding: 85px 15px 15px;
+  }
+
+  .header-corner-logo {
+    top: 15px;
+    left: 15px;
+  }
+
+  .header-corner-logo .corner-logo {
+    width: 42px;
+  }
+
+  .header-account {
+    top: 18px;
+    right: 15px;
+    max-width: 65%;
+  }
+
+  .account-name {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  .header-content .logo {
+    width: min(95%, 420px);
+  }
+}
+
