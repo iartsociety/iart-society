@@ -791,3 +791,81 @@ body.courses .add-course-btn:hover {
   flex: 1;
   min-width: 0;
 }
+
+
+/* =========================
+   SHARED BOTTOM NAVIGATION
+   ========================= */
+
+/* Solid background across bottom of screen */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: none !important;
+  margin: 0;
+  padding: 12px 20px;
+
+  box-sizing: border-box;
+  background-color: #101719;
+  z-index: 9999;
+}
+
+/* Center navigation buttons */
+.site-footer .bottom-nav {
+  position: static;
+  transform: none;
+
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  display: flex;
+  gap: 12px;
+}
+
+/* Keep all buttons consistent */
+.site-footer .bottom-nav a,
+.site-footer .bottom-nav button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 0;
+  padding: 14px 18px;
+
+  box-sizing: border-box;
+  border: 2px solid #EFC36B;
+  border-radius: 18px;
+
+  background: #101719;
+  color: #EFC36B;
+
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+
+  cursor: pointer;
+  appearance: none;
+}
+
+/* Hover effect */
+.site-footer .bottom-nav a:hover,
+.site-footer .bottom-nav button:hover {
+  background: #EFC36B;
+  color: #101719;
+}
+
+/* Hide buttons according to Firebase status */
+.site-footer .bottom-nav [hidden] {
+  display: none !important;
+}
+
+/* Prevent footer from covering page content */
+body {
+  padding-bottom: 100px;
+}
+
