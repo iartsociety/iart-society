@@ -20,6 +20,22 @@ async function loadCourseCatalog() {
   return await response.json();
 }
 
+// Convert a short course code into its Firestore course ID
+async function getCourseId(shortCode) {
+  const catalog = await loadCourseCatalog();
+
+  const match = Object.entries(catalog).find(
+    ([courseId, course]) =>
+      course.courseCode?.toUpperCase() === shortCode.toUpperCase()
+  );
+
+  if (!match) {
+    throw new Error("Invalid course code.");
+  }
+
+  return match[0];
+}
+
 
 const container =
   document.getElementById("courses-container");
@@ -148,6 +164,15 @@ if (unlockButton && codeInput) {
     unlockButton.disabled = true;
 
     try {
+      const shortCode = document
+        .getElementById("course-short-code")
+        .value.trim().toUpperCase();
+      
+      if (!shortCode) {
+        throw new Error("Please enter your course code.");
+      }
+      
+      const courseId = await getCourseId(shortCode);
       const userRef = doc(db, "users", user.uid);
       const codeRef = doc(
                           db,
