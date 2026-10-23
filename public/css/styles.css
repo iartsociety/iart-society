@@ -138,6 +138,14 @@ body.courses .add-course-btn:hover {
   transform: translateX(-50%) translateY(-2px);
 }
 
+#add-course-btn {
+  display: block;
+  width: calc(100% - 40px);
+  max-width: 420px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
 /* COURSE CARD */
 
 .course-card {
@@ -763,3 +771,23 @@ body.courses .add-course-btn:hover {
   }
 }
 
+/* Shared footer navigation */
+
+.site-footer .bottom-nav {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: calc(100% - 40px);
+  max-width: 900px;
+
+  display: flex;
+  gap: 12px;
+}
+
+.site-footer .bottom-nav a,
+.site-footer .bottom-nav button {
+  flex: 1;
+  min-width: 0;
+}
