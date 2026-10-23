@@ -1,17 +1,10 @@
-import {
-  doc,
-  getDoc,
-  runTransaction
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
 import { auth, db } from "./firebase-config.js";
 
-import { onAuthStateChanged, signOut }
+import { onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-import { doc, getDoc }
+import { doc, getDoc, runTransaction }
   from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
 
 async function loadCourseCatalog() {
   const response = await fetch("/json/course_catalog.json", {
