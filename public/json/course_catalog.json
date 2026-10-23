@@ -16,5 +16,11 @@
     "title": "Meenakshi 2D Tanjore Painting",
     "page": "/courses/meenakshi.html",
     "image": "/images/courses/meenakshi/thumbnail.png"
+  },
+  
+  "meenakshi-2d-tanjore": {
+  "title": "Meenakshi 2D Tanjore Painting",
+  "page": "/courses/meenakshi.html",
+  "image": "/images/courses/meenakshi/thumbnail.jpg"
   }
 }
