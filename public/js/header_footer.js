@@ -23,6 +23,33 @@ async function loadComponent(elementId, filePath) {
   container.innerHTML = await response.text();
 }
 
+
+// Display signed-in account holder
+const accountContainer =
+  document.getElementById("header-account");
+
+const accountName =
+  document.getElementById("account-name");
+
+if (accountContainer && accountName) {
+
+  if (user) {
+    // Firebase Authentication display name
+    const displayName =
+      user.displayName ||
+      user.email ||
+      "Member";
+
+    accountName.textContent = displayName;
+    accountContainer.hidden = false;
+
+  } else {
+    accountName.textContent = "";
+    accountContainer.hidden = true;
+  }
+}
+
+
 // Load header and footer
 async function initializeComponents() {
   try {
