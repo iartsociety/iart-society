@@ -869,3 +869,67 @@ body {
   padding-bottom: 100px;
 }
 
+
+/* HEADER - ACCOUNT AND REFRESH */
+
+.header-right {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Override previous absolute positioning */
+.header-right .header-account {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.header-right .header-account[hidden] {
+  display: none !important;
+}
+
+/* Refresh icon */
+.header-refresh {
+  background: transparent;
+  border: 1px solid #EFC36B;
+  border-radius: 50%;
+
+  color: #EFC36B;
+  font-size: 25px;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.header-refresh:hover {
+  background: #EFC36B;
+  color: #1a252b;
+}
+
+@media (max-width: 600px) {
+  .header-right {
+    top: 15px;
+    right: 12px;
+    gap: 8px;
+  }
+
+  .header-refresh {
+    width: 34px;
+    height: 34px;
+    font-size: 22px;
+  }
+}
+
