@@ -149,7 +149,13 @@ if (unlockButton && codeInput) {
 
     try {
       const userRef = doc(db, "users", user.uid);
-      const codeRef = doc(db, "activationCodes", code);
+      const codeRef = doc(
+                          db,
+                          "activationCodes",
+                          courseId,
+                          "codes",
+                          code
+                        );
 
       await runTransaction(db, async transaction => {
         const codeSnap = await transaction.get(codeRef);
@@ -169,8 +175,6 @@ if (unlockButton && codeInput) {
         if (activation.redeemedBy !== null) {
           throw new Error("This code has already been used.");
         }
-
-        const courseId = activation.courseId;
 
         const currentCourses = Array.isArray(
           student.purchasedCourses
