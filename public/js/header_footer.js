@@ -6,24 +6,6 @@ import {
   signOut
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-// Load a shared HTML component
-async function loadComponent(elementId, filePath) {
-  const container = document.getElementById(elementId);
-
-  if (!container) return;
-
-  const response = await fetch(filePath);
-
-  if (!response.ok) {
-    throw new Error(
-      `Unable to load component: ${filePath}`
-    );
-  }
-
-  container.innerHTML = await response.text();
-}
-
-
 // Display signed-in account holder
 const accountContainer =
   document.getElementById("header-account");
@@ -51,17 +33,25 @@ if (accountContainer && accountName) {
 
 
 // Load header and footer
+async function loadComponent(elementId, filePath) {
+  const container = document.getElementById(elementId);
+
+  if (!container) return;
+
+  const response = await fetch(filePath);
+
+  if (!response.ok) {
+    throw new Error(`Unable to load ${filePath}`);
+  }
+
+  container.innerHTML = await response.text();
+}
+
 async function initializeComponents() {
   try {
     await Promise.all([
-      loadComponent(
-        "site-header",
-        "/components/header.html"
-      ),
-      loadComponent(
-        "site-footer",
-        "/components/footer.html"
-      )
+      loadComponent("site-header", "/header.html"),
+      loadComponent("site-footer", "/footer.html")
     ]);
 
     // Footer is available after loading
