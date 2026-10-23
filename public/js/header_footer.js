@@ -29,6 +29,14 @@ async function initializeComponents() {
       loadComponent("site-footer", "/footer.html")
     ]);
 
+    const refreshButton = document.getElementById("refresh-btn");
+
+    if (refreshButton) {
+      refreshButton.addEventListener("click", () => {
+        window.location.reload();
+      });
+    }
+
     const loginButton = document.getElementById("login-btn");
     const myCoursesButton = document.getElementById("my-courses-btn");
     const logoutButton = document.getElementById("logout-btn");
