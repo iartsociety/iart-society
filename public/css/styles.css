@@ -410,38 +410,39 @@ body.courses .add-course-btn:hover {
   z-index: 9999;
 }
 
-.bottom-nav a {
+.bottom-nav a,
+.bottom-nav button {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   padding: 14px 18px;
+  box-sizing: border-box;
 
-  border-radius: 16px;
   border: 2px solid #EFC36B;
+  border-radius: 20px;
 
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(10px);
-
+  background: rgba(0, 0, 0, 0.35);
   color: #EFC36B;
 
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
   text-decoration: none;
 
-  font-family: "Josefin Sans", sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-
-  text-align: center;
-
-  transition: 0.25s ease;
+  cursor: pointer;
+  appearance: none;
 }
 
-.bottom-nav a:hover {
+.bottom-nav a:hover,
+.bottom-nav button:hover {
   background: #EFC36B;
   color: #1a252b;
 }
 
-/* Hide login/logout buttons according to Firebase status */
-.bottom-nav [hidden],
-.header-account[hidden] {
+/* Keep hidden navigation buttons hidden */
+.bottom-nav [hidden] {
   display: none !important;
 }
 
