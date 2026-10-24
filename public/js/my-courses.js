@@ -183,14 +183,33 @@ try {
   // Find the student account
   const userRef = doc(db, "users", user.uid);
 
-  // Find the activation code under the correct course
-  const codeRef = doc(
-    db,
-    "activationCodes",
-    courseId,
-    "codes",
-    code
-  );
+  
+const lookupRef = doc(db, "activationCodeLookup", code);
+
+const lookupSnap = await transaction.get(lookupRef);
+
+if (!lookupSnap.exists()) {
+  throw new Error("Invalid activation code.");
+}
+
+const lookup = lookupSnap.data();
+
+if (lookup.courseId !== courseId) {
+  throw new Error("Activation code does not match this course.");
+}
+
+const groupId = lookup.groupId;
+
+const codeRef = doc(
+  db,
+  "activationCodes",
+  courseId,
+  "groups",
+  groupId,
+  "codes",
+  code
+);
+
 
       await runTransaction(db, async transaction => {
         const codeSnap = await transaction.get(codeRef);
