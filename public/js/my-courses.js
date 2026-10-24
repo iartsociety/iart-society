@@ -161,26 +161,36 @@ if (unlockButton && codeInput) {
       return;
     }
 
-    unlockButton.disabled = true;
+    
+unlockButton.disabled = true;
 
-    try {
-      const shortCode = document
-        .getElementById("course-short-code")
-        .value.trim().toUpperCase();
-      
-      if (!shortCode) {
-        throw new Error("Please enter your course code.");
-      }
-      
-      const courseId = await getCourseId(shortCode);
-      const userRef = doc(db, "users", user.uid);
-      const codeRef = doc(
-                          db,
-                          "activationCodes",
-                          courseId,
-                          "codes",
-                          code
-                        );
+try {
+  // Read the short course code from the popup
+  const shortCodeInput =
+    document.getElementById("course-short-code");
+
+  const shortCode = shortCodeInput
+    ? shortCodeInput.value.trim().toUpperCase()
+    : "";
+
+  if (!shortCode) {
+    throw new Error("Please enter your course code.");
+  }
+
+  // Resolve MEEN2D into meenakshi-2d-tanjore
+  const courseId = await getCourseId(shortCode);
+
+  // Find the student account
+  const userRef = doc(db, "users", user.uid);
+
+  // Find the activation code under the correct course
+  const codeRef = doc(
+    db,
+    "activationCodes",
+    courseId,
+    "codes",
+    code
+  );
 
       await runTransaction(db, async transaction => {
         const codeSnap = await transaction.get(codeRef);
