@@ -8,6 +8,7 @@
 
   "tree-of-life": {
     "title": "Tree Of Life",
+    "courseCode": "TREE",
     "page": "/courses/tree_of_life.html",
     "image": "/images/courses/treeoflife/thumbnail.png"
   },
