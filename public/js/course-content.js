@@ -76,9 +76,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       iframe.title = video.title;
       iframe.loading = "lazy";
       iframe.allow =
-        "autoplay; encrypted-media; picture-in-picture";
+        "autoplay; fullscreen; picture-in-picture; encrypted-media";
+
       iframe.allowFullscreen = true;
       iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.setAttribute("frameborder", "0");
 
       wrapper.append(heading, iframe);
       videosContainer.appendChild(wrapper);

@@ -18,31 +18,31 @@
   "videos": [
     {
       "title": "Introduction to Materials",
-      "url": "https://www.youtube.com/embed/fMKUUmLBeKU?controls=0&rel=0"
+      "url": "https://vimeo.com/1240059110?badge=0&autopause=1"
     },
     {
       "title": "Preping Your Canvas",
-      "url": "https://www.youtube.com/embed/ICizItbj_D8?controls=0&rel=0"
+      "url": "https://vimeo.com/1240053252?badge=0&autopause=1"
     },
     {
       "title": "Brush Cleaning and Maintenance",
-      "url": "https://www.youtube.com/embed/V1jZ61KaNu8?controls=0&rel=0"
+      "url": "https://vimeo.com/1240053547?badge=0&autopause=1"
     },
     {
       "title": "Painting Lotus",
-      "url": "https://www.youtube.com/embed/xG9COgZwYUo?controls=0&rel=0"
+      "url": "https://vimeo.com/1240053349?badge=0&autopause=1"
     },
     {
       "title": "Parrot Green",
-      "url": "https://www.youtube.com/embed/VEYsco1d1_Q?controls=0&rel=0"
+      "url": "https://vimeo.com/1240053504?badge=0&autopause=1"
     },
     {
       "title": "Gold Jewelry",
-      "url": "https://www.youtube.com/embed/GFka2xxoRt8?controls=0&rel=0"
+      "url": "https://vimeo.com/1240053563?badge=0&autopause=1"
     },
     {
       "title": "Saree Green",
-      "url": "https://www.youtube.com/embed/APMVBzIwDTI?controls=0&rel=0"
+      "url": "https://vimeo.com/1240053602?badge=0&autopause=1"
     }
   ],
 
@@ -50,3 +50,4 @@
     "manifest": "/json/courses/meenakshi_gallery.json"
   }
 }
+
