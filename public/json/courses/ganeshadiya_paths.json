@@ -9,11 +9,11 @@
   "videos": [
     {
       "title": "Day 1",
-      "url": "https://player.vimeo.com/1240052816?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "url": "https://player.vimeo.com/video/1240052816?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
     },
     {
       "title": "Day 2",
-      "url": "https://player.vimeo.com/1240052814?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "url": "https://player.vimeo.com/video/1240052814?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
     }
   ],
 
