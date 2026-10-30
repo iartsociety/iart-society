@@ -3,21 +3,21 @@
   "lotus-lippan-art": {
     "title": "Lotus Lippan Art",
     "courseCode": "LIPP",
-    "page": "/lotuslippan.html",
+    "page": "/courses/lotuslippan.html",
     "image": "/images/courses/lotuslippan/thumbnail.png"
   },
 
   "ganesha-diya": {
     "title": "Ganesha Diya Wall Hanging",
     "courseCode": "DIYA",
-    "page": "/ganeshadiya.html",
+    "page": "/courses/ganeshadiya.html",
     "image": "/images/courses/ganeshadiya/thumbnail.png"
   },
 
   "gajalakshmi": {
     "title": "Gajalakshmi",
     "courseCode": "GAJA",
-    "page": "/gajalakshmi.html",
+    "page": "/courses/gajalakshmi.html",
     "image": "/images/courses/gajalakshmi/thumbnail.png"
   },
 
