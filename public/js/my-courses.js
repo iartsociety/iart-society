@@ -12,63 +12,45 @@ import {
 import {
   doc,
   getDoc,
-  collection,
-  query,
-  where,
-  getDocs,
   runTransaction,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
 // ========================================
-// COURSE METADATA FROM FIRESTORE
+// COURSE METADATA 
 // ========================================
 
-// Convert M2D into meenakshi-2d-tanjore
-async function getCourseId(shortCode) {
-  const coursesRef = collection(db, "courses");
-
-  const q = query(
-    coursesRef,
-    where("courseCode", "==", shortCode.trim().toUpperCase())
+async function loadCourseCatalog() {
+  const response = await fetch(
+    "/json/course_catalog.json",
+    { cache: "no-store" }
   );
 
-  const snapshot = await getDocs(q);
+  if (!response.ok) {
+    throw new Error("Unable to load course catalog.");
+  }
 
-  if (snapshot.empty) {
+  return await response.json();
+}
+
+async function getCourseId(shortCode) {
+  const catalog = await loadCourseCatalog();
+
+  const normalizedCode = shortCode.trim().toUpperCase();
+
+  const match = Object.entries(catalog).find(
+    ([courseId, course]) =>
+      typeof course.courseCode === "string" &&
+      course.courseCode.toUpperCase() === normalizedCode
+  );
+
+  if (!match) {
     throw new Error("Invalid course code.");
   }
 
-  if (snapshot.size !== 1) {
-    throw new Error("Duplicate course code configuration.");
-  }
-
-  return snapshot.docs[0].id;
+  return match[0];
 }
-
-
-// Read course title, image and page from Firestore.
-async function loadCourseCatalog(courseIds) {
-  const entries = await Promise.all(
-    courseIds.map(async courseId => {
-      const courseRef = doc(db, "courses", courseId);
-      const snapshot = await getDoc(courseRef);
-
-      if (!snapshot.exists()) {
-        console.warn("Course metadata missing:", courseId);
-        return null;
-      }
-
-      return [courseId, snapshot.data()];
-    })
-  );
-
-  return Object.fromEntries(
-    entries.filter(entry => entry !== null)
-  );
-}
-
 
 // ========================================
 // DISPLAY STUDENT COURSES
@@ -155,8 +137,8 @@ async function loadStudentCourses(user) {
   ) ? student.purchasedCourses : [];
 
   const catalog = courseIds.length
-    ? await loadCourseCatalog(courseIds)
-    : {};
+  ? await loadCourseCatalog()
+  : {};
 
   displayCourses(courseIds, catalog);
 }
