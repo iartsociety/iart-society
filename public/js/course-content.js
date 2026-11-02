@@ -247,14 +247,36 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error("Course configuration could not be loaded");
     }
 
-    const user = auth.currentUser;
+    
+    try {
+      // Wait until Firebase finishes restoring the login session.
+      await auth.authStateReady();
 
-    if (!user) {
-      window.location.replace("/login.html");
+      const user = auth.currentUser;
+
+      if (!user) {
+        // Only redirect if the student really is signed out.
+        window.location.replace("/login.html");
+        return;
+      }
+
+      // Confirm this browser is one of the two registered devices.
+      await requireRegisteredDevice(user);
+
+    } catch (error) {
+      console.error("Device verification failed:", error);
+
+      const message =
+        error.message === "DEVICE_LIMIT_REACHED"
+          ? "This account already has two registered devices. Please contact iArtSociety to reset a device."
+          : "Unable to verify this device. Please try again.";
+
+      alert(message);
+
+      // Do not redirect to login for device verification errors.
       return;
     }
 
-    await requireRegisteredDevice(user);
 
     const course = await response.json();
 
