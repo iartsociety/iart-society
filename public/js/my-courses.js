@@ -18,7 +18,7 @@ import {
 
 
 // ========================================
-// COURSE METADATA 
+// COURSE CATALOG — JSON
 // ========================================
 
 async function loadCourseCatalog() {
@@ -31,7 +31,17 @@ async function loadCourseCatalog() {
     throw new Error("Unable to load course catalog.");
   }
 
-  return await response.json();
+  const catalog = await response.json();
+
+  if (
+    !catalog ||
+    typeof catalog !== "object" ||
+    Array.isArray(catalog)
+  ) {
+    throw new Error("Invalid course catalog format.");
+  }
+
+  return catalog;
 }
 
 async function getCourseId(shortCode) {
@@ -39,21 +49,29 @@ async function getCourseId(shortCode) {
 
   const normalizedCode = shortCode.trim().toUpperCase();
 
-  const match = Object.entries(catalog).find(
+  const matches = Object.entries(catalog).filter(
     ([courseId, course]) =>
+      course &&
       typeof course.courseCode === "string" &&
-      course.courseCode.toUpperCase() === normalizedCode
+      course.courseCode.trim().toUpperCase() === normalizedCode
   );
 
-  if (!match) {
+  if (matches.length === 0) {
     throw new Error("Invalid course code.");
   }
 
-  return match[0];
+  if (matches.length > 1) {
+    throw new Error(
+      "Multiple courses use this course code. Contact iArtSociety."
+    );
+  }
+
+  return matches[0][0];
 }
 
+
 // ========================================
-// DISPLAY STUDENT COURSES
+// DISPLAY COURSES
 // ========================================
 
 const container =
@@ -70,20 +88,27 @@ function showMessage(message) {
   container.appendChild(paragraph);
 }
 
-function displayCourses(courseIds, catalog) {
+function displayCourses(courseIds, catalog, isAdmin = false) {
   if (!container) return;
 
   container.textContent = "";
 
   if (!courseIds.length) {
-    showMessage("You don't have any courses assigned yet.");
+    showMessage(
+      isAdmin
+        ? "No courses are available in the catalog."
+        : "You don't have any courses assigned yet."
+    );
     return;
   }
 
   courseIds.forEach(courseId => {
     const course = catalog[courseId];
 
-    if (!course) return;
+    if (!course) {
+      console.warn("Course missing from catalog:", courseId);
+      return;
+    }
 
     if (
       typeof course.page !== "string" ||
@@ -98,9 +123,14 @@ function displayCourses(courseIds, catalog) {
     link.href = course.page;
 
     const image = document.createElement("img");
-    image.src = course.image || "";
+    image.src =
+      typeof course.image === "string"
+        ? course.image
+        : "";
+
     image.alt = course.title || "Course thumbnail";
     image.className = "course-image";
+    image.loading = "lazy";
 
     const info = document.createElement("div");
     info.className = "course-info";
@@ -109,17 +139,32 @@ function displayCourses(courseIds, catalog) {
     title.textContent = course.title || courseId;
 
     info.appendChild(title);
+
+    // Visual label for administrator course cards.
+    if (isAdmin) {
+      const label = document.createElement("small");
+      label.textContent = "Admin preview";
+      label.className = "admin-course-label";
+      info.appendChild(label);
+    }
+
     link.appendChild(image);
     link.appendChild(info);
+
     container.appendChild(link);
   });
 
   if (!container.children.length) {
     showMessage(
-      "Your assigned courses aren't available in Firestore yet."
+      "Your courses aren't available in the course catalog."
     );
   }
 }
+
+
+// ========================================
+// LOAD STUDENT / ADMIN COURSES
+// ========================================
 
 async function loadStudentCourses(user) {
   const userRef = doc(db, "users", user.uid);
@@ -132,15 +177,23 @@ async function loadStudentCourses(user) {
 
   const student = snapshot.data();
 
-  const courseIds = Array.isArray(
+  const isAdmin = student.role === "admin";
+
+  const purchasedCourses = Array.isArray(
     student.purchasedCourses
-  ) ? student.purchasedCourses : [];
+  )
+    ? student.purchasedCourses
+    : [];
 
-  const catalog = courseIds.length
-  ? await loadCourseCatalog()
-  : {};
+  const catalog = await loadCourseCatalog();
 
-  displayCourses(courseIds, catalog);
+  // Administrators see every catalog entry.
+  // Students see only their purchased courses.
+  const courseIds = isAdmin
+    ? Object.keys(catalog)
+    : purchasedCourses;
+
+  displayCourses(courseIds, catalog, isAdmin);
 }
 
 
@@ -174,6 +227,7 @@ onAuthStateChanged(auth, async user => {
       );
     }
 
+    // Do not display courses on an unverified device.
     window.location.replace("/index.html");
     return;
   }
@@ -227,7 +281,6 @@ enableUppercaseCodeInput(codeInput);
 
 
 if (unlockButton && codeInput && shortCodeInput) {
-
   unlockButton.addEventListener("click", async () => {
 
     const user = auth.currentUser;
@@ -258,8 +311,7 @@ if (unlockButton && codeInput && shortCodeInput) {
     unlockButton.disabled = true;
 
     try {
-
-      // Resolve short course code using Firestore.
+      // Resolve course ID from JSON catalog.
       const courseId = await getCourseId(shortCode);
 
       const userRef = doc(
@@ -274,10 +326,9 @@ if (unlockButton && codeInput && shortCodeInput) {
         code
       );
 
-      // Redeem atomically.
       await runTransaction(db, async transaction => {
 
-        // All reads must happen before any writes.
+        // All transaction reads happen before writes.
         const lookupSnap =
           await transaction.get(lookupRef);
 
@@ -293,19 +344,12 @@ if (unlockButton && codeInput && shortCodeInput) {
           );
         }
 
-        const groupId = lookup.groupId;
-
-        console.log("Activation lookup:", {
-        code,
-        courseId: lookup.courseId,
-        groupId: lookup.groupId,
-        groupIdType: typeof lookup.groupId,
-        groupIdValid: /^[a-z0-9-]+$/.test(lookup.groupId)
-        });
+        // Support both groupId and older groupID records.
+        const groupId = lookup.groupId ?? lookup.groupID;
 
         if (
           typeof groupId !== "string" ||
-          !/^[a-z0-9-]+$/.test(groupId)
+          !/^[A-Za-z0-9_-]+$/.test(groupId)
         ) {
           throw new Error("Invalid learning group.");
         }
@@ -345,11 +389,15 @@ if (unlockButton && codeInput && shortCodeInput) {
 
         const currentCourses = Array.isArray(
           student.purchasedCourses
-        ) ? student.purchasedCourses : [];
+        )
+          ? student.purchasedCourses
+          : [];
 
         const currentCodes = Array.isArray(
           student.redeemedCodes
-        ) ? student.redeemedCodes : [];
+        )
+          ? student.redeemedCodes
+          : [];
 
         const currentGroups =
           student.courseGroups &&
@@ -358,6 +406,8 @@ if (unlockButton && codeInput && shortCodeInput) {
             ? student.courseGroups
             : {};
 
+        // One course enrollment per student.
+        // Admin preview does not require redemption.
         if (currentCourses.includes(courseId)) {
           throw new Error(
             "You already have access to this course."
@@ -367,6 +417,7 @@ if (unlockButton && codeInput && shortCodeInput) {
         const redemptionRecord =
           `${courseId}:${groupId}:${code}`;
 
+        // Preserve other courses and learning groups.
         transaction.update(userRef, {
           purchasedCourses: [
             ...currentCourses,
@@ -388,11 +439,11 @@ if (unlockButton && codeInput && shortCodeInput) {
           lastRedeemedCode: code
         });
 
+        // Mark activation code as used.
         transaction.update(codeRef, {
           redeemedBy: user.uid,
           redeemedAt: serverTimestamp()
         });
-
       });
 
       alert("Course activated successfully!");
@@ -411,6 +462,5 @@ if (unlockButton && codeInput && shortCodeInput) {
     } finally {
       unlockButton.disabled = false;
     }
-
   });
 }
