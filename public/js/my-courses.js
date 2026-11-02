@@ -12,44 +12,61 @@ import {
 import {
   doc,
   getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
   runTransaction,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
 // ========================================
-// COURSE CATALOG
+// COURSE METADATA FROM FIRESTORE
 // ========================================
-
-async function loadCourseCatalog() {
-  const response = await fetch(
-    "/json/course_catalog.json",
-    { cache: "no-cache" }
-  );
-
-  if (!response.ok) {
-    throw new Error("Unable to load course catalog.");
-  }
-
-  return await response.json();
-}
-
 
 // Convert M2D into meenakshi-2d-tanjore
 async function getCourseId(shortCode) {
-  const catalog = await loadCourseCatalog();
+  const coursesRef = collection(db, "courses");
 
-  const match = Object.entries(catalog).find(
-    ([id, course]) =>
-      typeof course.courseCode === "string" &&
-      course.courseCode.toUpperCase() === shortCode
+  const q = query(
+    coursesRef,
+    where("courseCode", "==", shortCode.trim().toUpperCase())
   );
 
-  if (!match) {
+  const snapshot = await getDocs(q);
+
+  if (snapshot.empty) {
     throw new Error("Invalid course code.");
   }
 
-  return match[0];
+  if (snapshot.size !== 1) {
+    throw new Error("Duplicate course code configuration.");
+  }
+
+  return snapshot.docs[0].id;
+}
+
+
+// Read course title, image and page from Firestore.
+async function loadCourseCatalog(courseIds) {
+  const entries = await Promise.all(
+    courseIds.map(async courseId => {
+      const courseRef = doc(db, "courses", courseId);
+      const snapshot = await getDoc(courseRef);
+
+      if (!snapshot.exists()) {
+        console.warn("Course metadata missing:", courseId);
+        return null;
+      }
+
+      return [courseId, snapshot.data()];
+    })
+  );
+
+  return Object.fromEntries(
+    entries.filter(entry => entry !== null)
+  );
 }
 
 
@@ -86,20 +103,28 @@ function displayCourses(courseIds, catalog) {
 
     if (!course) return;
 
+    if (
+      typeof course.page !== "string" ||
+      !course.page.startsWith("/courses/")
+    ) {
+      console.warn("Invalid course page:", courseId);
+      return;
+    }
+
     const link = document.createElement("a");
     link.className = "course-card";
     link.href = course.page;
 
     const image = document.createElement("img");
-    image.src = course.image;
-    image.alt = course.title;
+    image.src = course.image || "";
+    image.alt = course.title || "Course thumbnail";
     image.className = "course-image";
 
     const info = document.createElement("div");
     info.className = "course-info";
 
     const title = document.createElement("p");
-    title.textContent = course.title;
+    title.textContent = course.title || courseId;
 
     info.appendChild(title);
     link.appendChild(image);
@@ -109,7 +134,7 @@ function displayCourses(courseIds, catalog) {
 
   if (!container.children.length) {
     showMessage(
-      "Your assigned courses aren't available in the catalog yet."
+      "Your assigned courses aren't available in Firestore yet."
     );
   }
 }
@@ -130,7 +155,7 @@ async function loadStudentCourses(user) {
   ) ? student.purchasedCourses : [];
 
   const catalog = courseIds.length
-    ? await loadCourseCatalog()
+    ? await loadCourseCatalog(courseIds)
     : {};
 
   displayCourses(courseIds, catalog);
@@ -138,7 +163,7 @@ async function loadStudentCourses(user) {
 
 
 // ========================================
-// AUTHENTICATION
+// AUTHENTICATION AND DEVICE CHECK
 // ========================================
 
 showMessage("Loading your courses...");
@@ -149,7 +174,6 @@ onAuthStateChanged(auth, async user => {
     return;
   }
 
-  
   try {
     await requireRegisteredDevice(user);
   } catch (error) {
@@ -194,6 +218,32 @@ const codeInput =
 const shortCodeInput =
   document.getElementById("course-short-code");
 
+
+// Automatically uppercase both activation inputs.
+function enableUppercaseCodeInput(input) {
+  if (!input) return;
+
+  input.autocapitalize = "characters";
+  input.autocomplete = "off";
+  input.spellcheck = false;
+  input.style.textTransform = "uppercase";
+
+  input.addEventListener("input", () => {
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+
+    input.value = input.value.toUpperCase();
+
+    if (start !== null && end !== null) {
+      input.setSelectionRange(start, end);
+    }
+  });
+}
+
+enableUppercaseCodeInput(shortCodeInput);
+enableUppercaseCodeInput(codeInput);
+
+
 if (unlockButton && codeInput && shortCodeInput) {
 
   unlockButton.addEventListener("click", async () => {
@@ -227,7 +277,7 @@ if (unlockButton && codeInput && shortCodeInput) {
 
     try {
 
-      // 1. Resolve the short course code
+      // Resolve short course code using Firestore.
       const courseId = await getCourseId(shortCode);
 
       const userRef = doc(
@@ -236,17 +286,16 @@ if (unlockButton && codeInput && shortCodeInput) {
         user.uid
       );
 
-      // 2. Locate the activation-code lookup
       const lookupRef = doc(
         db,
         "activationCodeLookup",
         code
       );
 
-      // 3. Redeem atomically
+      // Redeem atomically.
       await runTransaction(db, async transaction => {
 
-        // READ 1: Find the learning group
+        // All reads must happen before any writes.
         const lookupSnap =
           await transaction.get(lookupRef);
 
@@ -271,7 +320,6 @@ if (unlockButton && codeInput && shortCodeInput) {
           throw new Error("Invalid learning group.");
         }
 
-        // 4. Locate the code within its learning group
         const codeRef = doc(
           db,
           "activationCodes",
@@ -282,8 +330,6 @@ if (unlockButton && codeInput && shortCodeInput) {
           code
         );
 
-        // READ 2 and READ 3
-        // All transaction reads happen before writes.
         const codeSnap =
           await transaction.get(codeRef);
 
@@ -331,8 +377,6 @@ if (unlockButton && codeInput && shortCodeInput) {
         const redemptionRecord =
           `${courseId}:${groupId}:${code}`;
 
-        // WRITE 1: Update student account
-        // Preserve all existing courses and redemption records.
         transaction.update(userRef, {
           purchasedCourses: [
             ...currentCourses,
@@ -354,7 +398,6 @@ if (unlockButton && codeInput && shortCodeInput) {
           lastRedeemedCode: code
         });
 
-        // WRITE 2: Mark the code as redeemed
         transaction.update(codeRef, {
           redeemedBy: user.uid,
           redeemedAt: serverTimestamp()
