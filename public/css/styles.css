@@ -933,3 +933,60 @@ body {
   }
 }
 
+
+/* Admin course cards */
+
+.course-card.admin-preview-card {
+  background: #F0E7FA;
+  border: 1px solid #DCC9ED;
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.course-card.admin-preview-card:nth-child(even) {
+  background: #E8F4EE;
+  border-color: #C7E5D7;
+}
+
+.course-card.admin-preview-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.admin-preview-card .course-info,
+.admin-preview-card .course-info p {
+  color: #28313A;
+}
+
+.admin-preview-label {
+  display: inline-block;
+  margin: 8px 0;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #FFFFFF;
+  color: #655278;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.admin-course-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 8px;
+  color: #60546D;
+  font-size: 12px;
+}
+
+.admin-group-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(80,65,100,0.15);
+  color: #4B435A;
+  border-radius: 18px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+

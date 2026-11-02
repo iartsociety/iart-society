@@ -12,6 +12,8 @@ import {
 import {
   doc,
   getDoc,
+  getDocs,
+  collection,
   runTransaction,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
@@ -88,6 +90,35 @@ function showMessage(message) {
   container.appendChild(paragraph);
 }
 
+async function getAdminCourseGroups(courseId) {
+  try {
+    const groupsRef = collection(
+      db,
+      "activationCodes",
+      courseId,
+      "groups"
+    );
+
+    const snapshot = await getDocs(groupsRef);
+
+    return snapshot.docs.map(groupDoc => ({
+      id: groupDoc.id,
+      name: groupDoc.data().name ||
+        groupDoc.id
+          .replace(/[-_]/g, " ")
+          .replace(/\b\w/g, letter => letter.toUpperCase())
+    }));
+  } catch (error) {
+    console.warn(
+      "Unable to load admin groups:",
+      courseId,
+      error
+    );
+    return [];
+  }
+}
+
+
 function displayCourses(courseIds, catalog, isAdmin = false) {
   if (!container) return;
 
@@ -141,12 +172,37 @@ function displayCourses(courseIds, catalog, isAdmin = false) {
     info.appendChild(title);
 
     // Visual label for administrator course cards.
-    if (isAdmin) {
-      const label = document.createElement("small");
-      label.textContent = "Admin preview";
-      label.className = "admin-course-label";
-      info.appendChild(label);
-    }
+    
+  if (isAdmin) {
+    link.classList.add("admin-preview-card");
+
+    const label = document.createElement("span");
+    label.className = "admin-preview-label";
+    label.textContent = "ADMIN PREVIEW";
+    info.appendChild(label);
+
+    const groupsContainer = document.createElement("div");
+    groupsContainer.className = "admin-course-groups";
+
+    getAdminCourseGroups(courseId).then(groups => {
+      groupsContainer.replaceChildren();
+
+      groups.forEach(group => {
+        const badge = document.createElement("span");
+        badge.className = "admin-group-badge";
+        badge.textContent = group.name;
+        groupsContainer.appendChild(badge);
+      });
+
+      if (!groups.length) {
+        groupsContainer.textContent =
+          "No groups available or group access restricted";
+      }
+  });
+
+  info.appendChild(groupsContainer);
+}
+
 
     link.appendChild(image);
     link.appendChild(info);
