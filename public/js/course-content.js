@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const videosContainer =
     document.getElementById("course-videos");
 
+  const zoomVideosContainer =
+  document.getElementById("course-zoom-videos");
+
   const imagesContainer =
     document.getElementById("course-images");
 
@@ -331,6 +334,84 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  
+// ========================================
+// ZOOM VIDEO RECORDINGS
+// ========================================
+
+function loadZoomVideos(zoomVideos = []) {
+  if (!zoomVideosContainer) return;
+
+  zoomVideosContainer.replaceChildren();
+
+  const zoomCard =
+    document.getElementById("zoom-videos-card");
+
+  // Hide the entire section if no Zoom videos exist.
+  if (!Array.isArray(zoomVideos) || !zoomVideos.length) {
+    if (zoomCard) zoomCard.hidden = true;
+    return;
+  }
+
+  if (zoomCard) zoomCard.hidden = false;
+
+  for (const video of zoomVideos) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "video-lesson zoom-video-lesson";
+
+    const header = document.createElement("div");
+    header.className = "zoom-video-header";
+
+    const heading = document.createElement("h3");
+    heading.textContent = video.title || "Zoom Recording";
+
+    const date = document.createElement("span");
+    date.className = "zoom-video-date";
+
+    // Store dates as YYYY-MM-DD to avoid ambiguity.
+    if (typeof video.date === "string" &&
+        /^\d{4}-\d{2}-\d{2}$/.test(video.date)) {
+      const parsedDate = new Date(video.date + "T12:00:00Z");
+
+      if (!Number.isNaN(parsedDate.getTime())) {
+        date.textContent = parsedDate.toLocaleDateString(
+          "en-US",
+          {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            timeZone: "UTC"
+          }
+        );
+      }
+    }
+
+    header.appendChild(heading);
+
+    if (date.textContent) {
+      header.appendChild(date);
+    }
+
+    const iframe = document.createElement("iframe");
+    iframe.src = video.url;
+    iframe.title = video.title || "Zoom Recording";
+    iframe.loading = "lazy";
+
+    iframe.allow =
+      "autoplay; fullscreen; picture-in-picture; encrypted-media";
+
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.setAttribute("frameborder", "0");
+
+    if (video.aspectRatio === "9/16") {
+      iframe.classList.add("video-portrait");
+    }
+
+    wrapper.append(header, iframe);
+    zoomVideosContainer.appendChild(wrapper);
+  }
+}
 
   // ========================================
   // IMAGE GALLERY
@@ -685,11 +766,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
     }
 
-
     loadDocuments(course.documents || []);
 
     loadVideos(course.videos || []);
 
+    loadZoomVideos(course.zoomVideos || []);
 
     try {
       await loadImages(
