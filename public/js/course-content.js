@@ -2,6 +2,8 @@ import {
   requireRegisteredDevice
 } from "/js/device-guard.js";
 
+import { auth } from "/js/firebase-config.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
 
   const configPath = document.body.dataset.courseConfig;
@@ -245,7 +247,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error("Course configuration could not be loaded");
     }
 
+    const user = auth.currentUser;
+
+    if (!user) {
+      window.location.replace("/login.html");
+      return;
+    }
+
     await requireRegisteredDevice(user);
+
     const course = await response.json();
 
     titleElement.textContent = course.title;
