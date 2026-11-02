@@ -934,59 +934,71 @@ body {
 }
 
 
-/* Admin course cards */
+/* ===================================
+   ADMIN COURSE CARDS
+   Keep original student card styling
+   =================================== */
 
+/* Preserve the existing card appearance */
 .course-card.admin-preview-card {
-  background: #F0E7FA;
-  border: 1px solid #DCC9ED;
-  transition: transform 0.2s ease,
-              box-shadow 0.2s ease;
+  background: inherit;
+  border-color: inherit;
 }
 
+/* Remove admin-only background changes */
 .course-card.admin-preview-card:nth-child(even) {
-  background: #E8F4EE;
-  border-color: #C7E5D7;
+  background: inherit;
+  border-color: inherit;
 }
 
-.course-card.admin-preview-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-}
-
-.admin-preview-card .course-info,
+/* Keep the normal course title */
 .admin-preview-card .course-info p {
-  color: #28313A;
+  color: inherit;
 }
 
+/* Subtle admin label */
 .admin-preview-label {
   display: inline-block;
-  margin: 8px 0;
-  padding: 5px 10px;
+  margin-top: 10px;
+  padding: 5px 11px;
   border-radius: 20px;
-  background: #FFFFFF;
-  color: #655278;
+
+  background: rgba(218, 196, 235, 0.12);
+  border: 1px solid #CBB0E4;
+
+  color: #E8CFFF;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
+/* Group information */
 .admin-course-groups {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 8px;
-  color: #60546D;
+  gap: 8px;
+  margin-top: 12px;
+
+  color: #D7D9DE;
   font-size: 12px;
 }
 
+/* Individual group labels */
 .admin-group-badge {
   display: inline-block;
-  background: rgba(255,255,255,0.85);
-  border: 1px solid rgba(80,65,100,0.15);
-  color: #4B435A;
+  padding: 6px 12px;
+
+  border: 1px solid #A9D6C3;
   border-radius: 18px;
-  padding: 5px 10px;
+  background: rgba(169, 214, 195, 0.08);
+
+  color: #C2F0DC;
   font-size: 12px;
+  font-weight: 600;
 }
 
-
+/* Group unavailable message */
+.admin-course-groups:empty {
+  display: none;
+}
