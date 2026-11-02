@@ -295,6 +295,14 @@ if (unlockButton && codeInput && shortCodeInput) {
 
         const groupId = lookup.groupId;
 
+        console.log("Activation lookup:", {
+        code,
+        courseId: lookup.courseId,
+        groupId: lookup.groupId,
+        groupIdType: typeof lookup.groupId,
+        groupIdValid: /^[a-z0-9-]+$/.test(lookup.groupId)
+        });
+
         if (
           typeof groupId !== "string" ||
           !/^[a-z0-9-]+$/.test(groupId)
