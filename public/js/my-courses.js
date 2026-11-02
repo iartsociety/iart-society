@@ -2,6 +2,10 @@
 import { auth, db } from "/js/firebase-config.js";
 
 import {
+  requireRegisteredDevice
+} from "/js/device-guard.js";
+
+import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
@@ -142,6 +146,29 @@ showMessage("Loading your courses...");
 onAuthStateChanged(auth, async user => {
   if (!user) {
     window.location.replace("/login.html");
+    return;
+  }
+
+  
+  try {
+    await requireRegisteredDevice(user);
+  } catch (error) {
+    console.error("Device verification failed:", error);
+
+    if (error.message === "DEVICE_LIMIT_REACHED") {
+      alert(
+        "This iArtSociety account already has " +
+        "two registered devices.\n\n" +
+        "Please contact iArtSociety to reset a device."
+      );
+    } else {
+      alert(
+        "Unable to verify this device. " +
+        "Please check your internet connection."
+      );
+    }
+
+    window.location.replace("/index.html");
     return;
   }
 

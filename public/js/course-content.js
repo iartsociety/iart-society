@@ -1,3 +1,6 @@
+import {
+  requireRegisteredDevice
+} from "/js/device-guard.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -242,6 +245,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error("Course configuration could not be loaded");
     }
 
+    await requireRegisteredDevice(user);
     const course = await response.json();
 
     titleElement.textContent = course.title;
