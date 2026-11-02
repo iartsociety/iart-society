@@ -12,8 +12,8 @@ import {
 import {
   doc,
   getDoc,
-  getDocs,
   collection,
+  getDocs,
   runTransaction,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
@@ -46,6 +46,8 @@ async function loadCourseCatalog() {
   return catalog;
 }
 
+
+// Convert short code (M2D) into course ID.
 async function getCourseId(shortCode) {
   const catalog = await loadCourseCatalog();
 
@@ -58,14 +60,12 @@ async function getCourseId(shortCode) {
       course.courseCode.trim().toUpperCase() === normalizedCode
   );
 
-  if (matches.length === 0) {
+  if (!matches.length) {
     throw new Error("Invalid course code.");
   }
 
   if (matches.length > 1) {
-    throw new Error(
-      "Multiple courses use this course code. Contact iArtSociety."
-    );
+    throw new Error("Duplicate course code in catalog.");
   }
 
   return matches[0][0];
@@ -73,7 +73,7 @@ async function getCourseId(shortCode) {
 
 
 // ========================================
-// DISPLAY COURSES
+// COURSE CARDS
 // ========================================
 
 const container =
@@ -82,7 +82,7 @@ const container =
 function showMessage(message) {
   if (!container) return;
 
-  container.textContent = "";
+  container.replaceChildren();
 
   const paragraph = document.createElement("p");
   paragraph.textContent = message;
@@ -90,131 +90,114 @@ function showMessage(message) {
   container.appendChild(paragraph);
 }
 
-async function getAdminCourseGroups(courseId) {
-  try {
-    const groupsRef = collection(
-      db,
-      "activationCodes",
-      courseId,
-      "groups"
-    );
 
-    const snapshot = await getDocs(groupsRef);
-
-    return snapshot.docs.map(groupDoc => ({
-      id: groupDoc.id,
-      name: groupDoc.data().name ||
-        groupDoc.id
-          .replace(/[-_]/g, " ")
-          .replace(/\b\w/g, letter => letter.toUpperCase())
-    }));
-  } catch (error) {
-    console.warn(
-      "Unable to load admin groups:",
-      courseId,
-      error
-    );
-    return [];
-  }
+// Make Firestore group IDs readable.
+function readableGroupName(groupId) {
+  return groupId
+    .replace(/[-_]/g, " ")
+    .replace(/\b\w/g, letter => letter.toUpperCase());
 }
 
 
-function displayCourses(courseIds, catalog, isAdmin = false) {
+// Get groups from Firestore.
+// Called for administrator accounts only.
+async function loadGroups(courseId) {
+  const groupsRef = collection(
+    db,
+    "activationCodes",
+    courseId,
+    "groups"
+  );
+
+  const snapshot = await getDocs(groupsRef);
+
+  return snapshot.docs.map(groupDoc => {
+    const data = groupDoc.data();
+
+    return {
+      id: groupDoc.id,
+      name:
+        typeof data.name === "string" &&
+        data.name.trim()
+          ? data.name
+          : readableGroupName(groupDoc.id)
+    };
+  });
+}
+
+
+// Build a course card.
+// Admin cards include a specific group in the URL.
+function appendCourseCard(courseId, course, group = null) {
   if (!container) return;
 
-  container.textContent = "";
-
-  if (!courseIds.length) {
-    showMessage(
-      isAdmin
-        ? "No courses are available in the catalog."
-        : "You don't have any courses assigned yet."
-    );
+  if (
+    !course ||
+    typeof course.page !== "string" ||
+    !course.page.startsWith("/courses/")
+  ) {
+    console.warn("Invalid course page:", courseId);
     return;
   }
 
-  courseIds.forEach(courseId => {
-    const course = catalog[courseId];
+  const link = document.createElement("a");
+  link.className = "course-card";
 
-    if (!course) {
-      console.warn("Course missing from catalog:", courseId);
-      return;
-    }
+  const url = new URL(
+    course.page,
+    window.location.origin
+  );
 
-    if (
-      typeof course.page !== "string" ||
-      !course.page.startsWith("/courses/")
-    ) {
-      console.warn("Invalid course page:", courseId);
-      return;
-    }
+  if (group) {
+    url.searchParams.set("previewGroup", group.id);
+    url.searchParams.set("previewCourse", courseId);
 
-    const link = document.createElement("a");
-    link.className = "course-card";
-    link.href = course.page;
-
-    const image = document.createElement("img");
-    image.src =
-      typeof course.image === "string"
-        ? course.image
-        : "";
-
-    image.alt = course.title || "Course thumbnail";
-    image.className = "course-image";
-    image.loading = "lazy";
-
-    const info = document.createElement("div");
-    info.className = "course-info";
-
-    const title = document.createElement("p");
-    title.textContent = course.title || courseId;
-
-    info.appendChild(title);
-
-    // Visual label for administrator course cards.
-    
-  if (isAdmin) {
     link.classList.add("admin-preview-card");
-
-    const label = document.createElement("span");
-    label.className = "admin-preview-label";
-    label.textContent = "ADMIN PREVIEW";
-    info.appendChild(label);
-
-    const groupsContainer = document.createElement("div");
-    groupsContainer.className = "admin-course-groups";
-
-    getAdminCourseGroups(courseId).then(groups => {
-      groupsContainer.replaceChildren();
-
-      groups.forEach(group => {
-        const badge = document.createElement("span");
-        badge.className = "admin-group-badge";
-        badge.textContent = group.name;
-        groupsContainer.appendChild(badge);
-      });
-
-      if (!groups.length) {
-        groupsContainer.textContent =
-          "No groups available or group access restricted";
-      }
-  });
-
-  info.appendChild(groupsContainer);
-}
-
-
-    link.appendChild(image);
-    link.appendChild(info);
-
-    container.appendChild(link);
-  });
-
-  if (!container.children.length) {
-    showMessage(
-      "Your courses aren't available in the course catalog."
-    );
   }
+
+  link.href = url.pathname + url.search;
+
+  // Course image
+  const image = document.createElement("img");
+
+  image.className = "course-image";
+  image.src =
+    typeof course.image === "string"
+      ? course.image
+      : "";
+
+  image.alt = course.title || "Course thumbnail";
+  image.loading = "lazy";
+
+  // Course information
+  const info = document.createElement("div");
+  info.className = "course-info";
+
+  const title = document.createElement("p");
+  title.textContent = course.title || courseId;
+
+  info.appendChild(title);
+
+  // Extra information for admin preview cards.
+  if (group) {
+    const groupName = document.createElement("span");
+
+    groupName.className = "admin-group-badge";
+    groupName.textContent = group.name;
+
+    const adminLabel = document.createElement("span");
+
+    adminLabel.className = "admin-preview-label";
+    adminLabel.textContent = "ADMIN PREVIEW";
+
+    info.appendChild(groupName);
+    info.appendChild(adminLabel);
+  }
+
+  link.appendChild(image);
+  link.appendChild(info);
+
+  container.appendChild(link);
 }
 
 
@@ -233,23 +216,66 @@ async function loadStudentCourses(user) {
 
   const student = snapshot.data();
 
-  const isAdmin = student.role === "admin";
-
-  const purchasedCourses = Array.isArray(
-    student.purchasedCourses
-  )
-    ? student.purchasedCourses
-    : [];
-
   const catalog = await loadCourseCatalog();
 
-  // Administrators see every catalog entry.
-  // Students see only their purchased courses.
-  const courseIds = isAdmin
-    ? Object.keys(catalog)
-    : purchasedCourses;
+  if (!container) return;
 
-  displayCourses(courseIds, catalog, isAdmin);
+  container.replaceChildren();
+
+  if (student.role === "admin") {
+
+    // Administrators see one course card per group.
+    for (const [courseId, course] of Object.entries(catalog)) {
+
+      if (!course || typeof course.page !== "string") {
+        continue;
+      }
+
+      try {
+        const groups = await loadGroups(courseId);
+
+        for (const group of groups) {
+          appendCourseCard(courseId, course, group);
+        }
+
+      } catch (error) {
+        console.warn(
+          "Unable to list groups for:",
+          courseId,
+          error
+        );
+      }
+    }
+
+    if (!container.children.length) {
+      showMessage(
+        "No course groups available for admin preview. " +
+        "Check your Firestore groups and admin permissions."
+      );
+    }
+
+  } else {
+
+    // Students see only their purchased courses.
+    const purchasedCourses = Array.isArray(
+      student.purchasedCourses
+    )
+      ? student.purchasedCourses
+      : [];
+
+    purchasedCourses.forEach(courseId => {
+      appendCourseCard(
+        courseId,
+        catalog[courseId]
+      );
+    });
+
+    if (!container.children.length) {
+      showMessage(
+        "You don't have any courses assigned yet."
+      );
+    }
+  }
 }
 
 
@@ -260,6 +286,7 @@ async function loadStudentCourses(user) {
 showMessage("Loading your courses...");
 
 onAuthStateChanged(auth, async user => {
+
   if (!user) {
     window.location.replace("/login.html");
     return;
@@ -267,31 +294,32 @@ onAuthStateChanged(auth, async user => {
 
   try {
     await requireRegisteredDevice(user);
+
   } catch (error) {
-    console.error("Device verification failed:", error);
+    console.error(
+      "Device verification failed:",
+      error
+    );
 
-    if (error.message === "DEVICE_LIMIT_REACHED") {
-      alert(
-        "This iArtSociety account already has " +
-        "two registered devices.\n\n" +
-        "Please contact iArtSociety to reset a device."
-      );
-    } else {
-      alert(
-        "Unable to verify this device. " +
-        "Please check your internet connection."
-      );
-    }
+    showMessage(
+      error.message === "DEVICE_LIMIT_REACHED"
+        ? "This account already has two registered browsers. " +
+          "Contact iArtSociety to reset a device."
+        : "Unable to verify this browser. Please try again."
+    );
 
-    // Do not display courses on an unverified device.
-    window.location.replace("/index.html");
     return;
   }
 
   try {
     await loadStudentCourses(user);
+
   } catch (error) {
-    console.error("Course loading error:", error);
+    console.error(
+      "Course loading error:",
+      error
+    );
+
     showMessage("Unable to load your courses.");
   }
 });
@@ -311,16 +339,18 @@ const shortCodeInput =
   document.getElementById("course-short-code");
 
 
-// Automatically uppercase both activation inputs.
+// Automatically uppercase both input fields.
 function enableUppercaseCodeInput(input) {
   if (!input) return;
 
   input.autocapitalize = "characters";
   input.autocomplete = "off";
   input.spellcheck = false;
+
   input.style.textTransform = "uppercase";
 
   input.addEventListener("input", () => {
+
     const start = input.selectionStart;
     const end = input.selectionEnd;
 
@@ -337,6 +367,7 @@ enableUppercaseCodeInput(codeInput);
 
 
 if (unlockButton && codeInput && shortCodeInput) {
+
   unlockButton.addEventListener("click", async () => {
 
     const user = auth.currentUser;
@@ -367,7 +398,8 @@ if (unlockButton && codeInput && shortCodeInput) {
     unlockButton.disabled = true;
 
     try {
-      // Resolve course ID from JSON catalog.
+
+      // Resolve course ID from the JSON catalog.
       const courseId = await getCourseId(shortCode);
 
       const userRef = doc(
@@ -382,9 +414,10 @@ if (unlockButton && codeInput && shortCodeInput) {
         code
       );
 
+      // Firestore transaction ensures atomic redemption.
       await runTransaction(db, async transaction => {
 
-        // All transaction reads happen before writes.
+        // All reads must occur before writes.
         const lookupSnap =
           await transaction.get(lookupRef);
 
@@ -400,8 +433,9 @@ if (unlockButton && codeInput && shortCodeInput) {
           );
         }
 
-        // Support both groupId and older groupID records.
-        const groupId = lookup.groupId ?? lookup.groupID;
+        // Support old groupID and correct groupId fields.
+        const groupId =
+          lookup.groupId ?? lookup.groupID;
 
         if (
           typeof groupId !== "string" ||
@@ -462,8 +496,8 @@ if (unlockButton && codeInput && shortCodeInput) {
             ? student.courseGroups
             : {};
 
-        // One course enrollment per student.
-        // Admin preview does not require redemption.
+        // Only one enrollment per course for students.
+        // Admin previews do not consume activation codes.
         if (currentCourses.includes(courseId)) {
           throw new Error(
             "You already have access to this course."
@@ -473,8 +507,9 @@ if (unlockButton && codeInput && shortCodeInput) {
         const redemptionRecord =
           `${courseId}:${groupId}:${code}`;
 
-        // Preserve other courses and learning groups.
+        // Update student account.
         transaction.update(userRef, {
+
           purchasedCourses: [
             ...currentCourses,
             courseId
@@ -495,7 +530,7 @@ if (unlockButton && codeInput && shortCodeInput) {
           lastRedeemedCode: code
         });
 
-        // Mark activation code as used.
+        // Mark activation code as redeemed.
         transaction.update(codeRef, {
           redeemedBy: user.uid,
           redeemedAt: serverTimestamp()

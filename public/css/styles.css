@@ -942,13 +942,11 @@ body {
 /* Preserve the existing card appearance */
 .course-card.admin-preview-card {
   background: inherit;
-  border-color: inherit;
 }
 
 /* Remove admin-only background changes */
 .course-card.admin-preview-card:nth-child(even) {
   background: inherit;
-  border-color: inherit;
 }
 
 /* Keep the normal course title */
@@ -1002,3 +1000,66 @@ body {
 .admin-course-groups:empty {
   display: none;
 }
+
+
+/* ========================================
+   ADMIN PREVIEW COURSE CARDS
+   ======================================== */
+
+/* Keep the existing student card appearance */
+.course-card.admin-preview-card .course-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Pastel mint learning-group label */
+.admin-group-badge {
+  display: inline-block;
+  padding: 5px 11px;
+
+  border: 1px solid #A9D6C3;
+  border-radius: 16px;
+
+  color: #C2F0DC;
+  background: transparent;
+
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Pastel lavender administrator label */
+.admin-preview-label {
+  display: inline-block;
+  padding: 4px 10px;
+
+  border: 1px solid #CBB0E4;
+  border-radius: 16px;
+
+  color: #E8CFFF;
+  background: transparent;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.course-admin-preview-label {
+  display: table;
+  margin: 12px auto 20px;
+  padding: 8px 16px;
+
+  color: #E8CFFF;
+  border: 1px solid #CBB0E4;
+  border-radius: 20px;
+
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
