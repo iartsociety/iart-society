@@ -325,6 +325,74 @@ function addFullscreenButton(wrapper, iframe) {
 }
 
 
+// ========================================
+// VIDEO LABELS AND DESCRIPTIONS
+// ========================================
+
+function addVideoDetails(wrapper, heading, video) {
+
+  // Gold Must Watch label beside the title.
+  if (video.mustWatch === true) {
+    const label = document.createElement("span");
+
+    label.className = "video-must-watch";
+    label.textContent = "★ MUST WATCH";
+
+    heading.appendChild(document.createTextNode(" "));
+    heading.appendChild(label);
+  }
+
+  // Optional description below the video player.
+  if (
+    typeof video.description === "string" &&
+    video.description.trim()
+  ) {
+    const description = document.createElement("p");
+
+    description.className = "video-description";
+    description.textContent = video.description.trim();
+
+    wrapper.appendChild(description);
+  }
+
+  
+  // ========================================
+  // CHAPTER TIMESTAMPS — TEXT ONLY
+  // ========================================
+
+  if (
+    Array.isArray(video.chapters) &&
+    video.chapters.length > 0
+  ) {
+    const chapterContainer = document.createElement("div");
+    chapterContainer.className = "video-chapters";
+
+    const chapterHeading = document.createElement("h4");
+    chapterHeading.textContent = "Chapter Timestamps";
+
+    chapterContainer.appendChild(chapterHeading);
+
+    for (const chapter of video.chapters) {
+      const item = document.createElement("div");
+      item.className = "video-chapter-item";
+
+      const time = document.createElement("span");
+      time.className = "video-chapter-time";
+      time.textContent = chapter.time;
+
+      const title = document.createElement("span");
+      title.className = "video-chapter-title";
+      title.textContent = chapter.title;
+
+      item.append(time, title);
+      chapterContainer.appendChild(item);
+    }
+
+    wrapper.appendChild(chapterContainer);
+  }
+
+}
+
 
   // ========================================
   // VIMEO / VIDEO LESSONS
@@ -370,6 +438,7 @@ function addFullscreenButton(wrapper, iframe) {
       }
 
       wrapper.append(heading, iframe);
+      addVideoDetails(wrapper, heading, video);
 
       // Add fullscreen button below the Vimeo player.
       addFullscreenButton(wrapper, iframe);
@@ -466,7 +535,7 @@ function addFullscreenButton(wrapper, iframe) {
       }
 
       wrapper.append(header, iframe);
-
+      addVideoDetails(wrapper, heading, video);
       // Add the same fullscreen button to Zoom recordings.
       addFullscreenButton(wrapper, iframe);
 

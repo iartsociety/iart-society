@@ -1160,3 +1160,76 @@ body {
     font-size: 14px;
   }
 }
+
+
+/* Must Watch video label */
+
+.video-must-watch {
+  display: inline-block;
+  color: #EFC36B;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+/* Video description */
+
+.video-description {
+  color: #D3E7DD;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: left;
+  margin: 14px 0;
+  padding: 0 8px;
+}
+
+@media (max-width: 600px) {
+  .video-must-watch {
+    font-size: 11px;
+  }
+
+  .video-description {
+    font-size: 14px;
+  }
+}
+
+
+/* Chapter timestamps beneath videos */
+
+.video-chapters {
+  margin: 16px 8px;
+  padding: 14px 18px;
+  border-left: 3px solid #EFC36B;
+  background: rgba(239, 195, 107, 0.04);
+  text-align: left;
+}
+
+.video-chapters h4 {
+  color: #EFC36B;
+  font-size: 15px;
+  margin: 0 0 12px;
+}
+
+.video-chapter-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 8px 0;
+}
+
+.video-chapter-time {
+  color: #C2F0DC;
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 48px;
+  font-variant-numeric: tabular-nums;
+}
+
+.video-chapter-title {
+  color: #E5E8E9;
+  font-size: 14px;
+  line-height: 1.5;
+}

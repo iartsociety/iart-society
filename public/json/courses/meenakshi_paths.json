@@ -18,15 +18,21 @@
   "videos": [
     {
       "title": "Introduction to Materials",
-      "url": "https://player.vimeo.com/video/1240059110?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "url": "https://player.vimeo.com/video/1240059110?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true,
+      "description": "All th ematerial you will need for painting your base coats in shown here."
     },
     {
       "title": "Preping Your Canvas",
-      "url": "https://player.vimeo.com/video/1240053252?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "url": "https://player.vimeo.com/video/1240053252?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true,
+      "description": "Learn to prep your canvas befrore you start painting. This is a very important step, do not skip. The Canvas should be FLAT before you start, so make sure you have weighted in on a flat surface for TWO(2) days."
     },
     {
       "title": "Brush Cleaning and Maintenance",
-      "url": "https://player.vimeo.com/video/1240053547?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "url": "https://player.vimeo.com/video/1240053547?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true,
+      "description": "Learn the foundation colors, facial shading, and fine details before proceeding to the jewelry."
     },
     {
       "title": "Painting Lotus",
@@ -38,7 +44,9 @@
     },
     {
       "title": "Gold Jewelry",
-      "url": "https://player.vimeo.com/video/1240053563?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "url": "https://player.vimeo.com/video/1240053563?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true,
+      "description": "Gold covers a lot of the painting. It will cover some of the details in the line art. THIS IS OK, proceed. We will fill the details later."
     },
     {
       "title": "Saree Green",
