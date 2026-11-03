@@ -335,84 +335,92 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   
-// ========================================
-// ZOOM VIDEO RECORDINGS
-// ========================================
 
+  // ========================================
+  // ZOOM VIDEO RECORDINGS
+  // Same player and layout as Videos,
+  // with an additional recording date.
+  // ========================================
 
-function loadZoomVideos(zoomVideos = []) {
-  if (!zoomVideosContainer) return;
+  function loadZoomVideos(zoomVideos = []) {
+    if (!zoomVideosContainer) return;
 
-  zoomVideosContainer.replaceChildren();
+    zoomVideosContainer.replaceChildren();
 
-  if (!videosContainer) return;
+    if (!Array.isArray(zoomVideos) || !zoomVideos.length) {
+      zoomVideosContainer.textContent =
+        "Zoom videos coming soon.";
+      return;
+    }
 
-    videosContainer.replaceChildren();
+    for (const video of zoomVideos) {
 
-    for (const video of videos) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "video-lesson zoom-video-lesson";
 
-      const wrapper =
-        document.createElement("div");
+      // Title and date together
+      const header = document.createElement("div");
+      header.className = "zoom-video-header";
 
-      wrapper.className = "video-lesson";
+      const heading = document.createElement("h3");
+      heading.textContent = video.title || "Zoom Recording";
 
-      const heading =
-        document.createElement("h3");
+      header.appendChild(heading);
 
-      heading.textContent = video.title;
-
-    const date = document.createElement("span");
-    date.className = "zoom-video-date";
-
-    // Store dates as YYYY-MM-DD to avoid ambiguity.
-    if (typeof video.date === "string" &&
-        /^\d{4}-\d{2}-\d{2}$/.test(video.date)) {
-      const parsedDate = new Date(video.date + "T12:00:00Z");
-
-      if (!Number.isNaN(parsedDate.getTime())) {
-        date.textContent = parsedDate.toLocaleDateString(
-          "en-US",
-          {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-            timeZone: "UTC"
-          }
+      // Recording date
+      if (
+        typeof video.date === "string" &&
+        /^\d{4}-\d{2}-\d{2}$/.test(video.date)
+      ) {
+        const parsedDate = new Date(
+          video.date + "T12:00:00Z"
         );
+
+        if (!Number.isNaN(parsedDate.getTime())) {
+          const date = document.createElement("span");
+          date.className = "zoom-video-date";
+
+          date.textContent = parsedDate.toLocaleDateString(
+            "en-US",
+            {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+              timeZone: "UTC"
+            }
+          );
+
+          header.appendChild(date);
+        }
       }
+
+      // Vimeo player — same as regular videos
+      const iframe = document.createElement("iframe");
+
+      iframe.src = video.url;
+      iframe.title = video.title || "Zoom Recording";
+      iframe.loading = "lazy";
+
+      iframe.allow =
+        "autoplay; fullscreen; picture-in-picture; encrypted-media";
+
+      iframe.allowFullscreen = true;
+
+      iframe.referrerPolicy =
+        "strict-origin-when-cross-origin";
+
+      iframe.setAttribute("frameborder", "0");
+
+      // Portrait video support
+      if (video.aspectRatio === "9/16") {
+        iframe.classList.add("video-portrait");
+      }
+
+      wrapper.append(header, iframe);
+      zoomVideosContainer.appendChild(wrapper);
     }
-
-    header.appendChild(heading);
-
-    if (date.textContent) {
-      header.appendChild(date);
-    }
-
-    const iframe = document.createElement("iframe");
-    iframe.src = video.url;
-    iframe.title = video.title || "Zoom Recording";
-    iframe.loading = "lazy";
-
-    iframe.allow =
-      "autoplay; fullscreen; picture-in-picture; encrypted-media";
-
-    iframe.allowFullscreen = true;
-    iframe.referrerPolicy = "strict-origin-when-cross-origin";
-    iframe.setAttribute("frameborder", "0");
-
-    if (video.aspectRatio === "9/16") {
-      iframe.classList.add("video-portrait");
-    }
-
-    wrapper.append(header, iframe);
-    zoomVideosContainer.appendChild(wrapper);
   }
-  
-  if (!videos.length) {
-      videosContainer.textContent =
-        "Videos coming soon.";
-    }
-}
+
 
   // ========================================
   // IMAGE GALLERY

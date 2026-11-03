@@ -1062,3 +1062,35 @@ body {
   letter-spacing: 0.04em;
   text-align: center;
 }
+
+
+/* Zoom recording information */
+
+.zoom-video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.zoom-video-header h3 {
+  margin: 0;
+}
+
+.zoom-video-date {
+  color: #C2F0DC;
+  border: 1px solid #A9D6C3;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .zoom-video-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
