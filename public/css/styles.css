@@ -164,8 +164,27 @@ body.courses .add-course-btn:hover {
   transition: 0.25s ease;
 }
 
+a.course-card:link,
+a.course-card:visited,
+a.course-card:hover,
+a.course-card:active {
+  color: #EFC36B;
+  text-decoration: none;
+}
+
+/* Course titles — always match the gold border */
+
+a.course-card .course-info p,
+a.course-card:link .course-info p,
+a.course-card:visited .course-info p,
+a.course-card:hover .course-info p,
+a.course-card:active .course-info p {
+  color: #EFC36B;
+}
+
 .course-card:hover {
   transform: translateY(-4px);
+  color: #f2c35b; /* same gold as border */
   box-shadow: 0 12px 24px rgba(0,0,0,0.3);
 }
 
@@ -183,7 +202,6 @@ body.courses .add-course-btn:hover {
 
 .course-info p {
   margin: 0;
-
   color: #EFC36B;
 
   font-family: "Josefin Sans", sans-serif;
