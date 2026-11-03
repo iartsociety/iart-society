@@ -284,43 +284,46 @@ document.addEventListener("DOMContentLoaded", async () => {
 // EXTERNAL FULLSCREEN BUTTON
 // ========================================
 
+
 function addFullscreenButton(wrapper, iframe) {
   const button = document.createElement("button");
 
   button.type = "button";
   button.className = "video-fullscreen-btn";
   button.textContent = "⛶ Fullscreen";
-  button.setAttribute(
-    "aria-label",
-    "View video in fullscreen"
-  );
 
   button.addEventListener("click", async () => {
     try {
-      if (document.fullscreenElement) {
-        await document.exitFullscreen();
+      // Use Vimeo's fullscreen API on supported devices.
+      if (
+        iframe.src.startsWith("https://player.vimeo.com/") &&
+        window.Vimeo?.Player
+      ) {
+        const player = new window.Vimeo.Player(iframe);
+        await player.requestFullscreen();
         return;
       }
 
-      if (iframe.requestFullscreen) {
+      // Browser fallback for non-Vimeo videos.
+      if (typeof iframe.requestFullscreen === "function") {
         await iframe.requestFullscreen();
-      } else {
-        // Fallback for browsers that do not support
-        // fullscreen on an iframe.
-        throw new Error("Fullscreen is not supported");
+        return;
       }
+
+      throw new Error("Fullscreen unavailable");
+
     } catch (error) {
       console.warn("Fullscreen unavailable:", error);
 
       alert(
-        "Fullscreen is not supported by this browser. " +
-        "Please use the fullscreen icon inside the Vimeo player."
+        "Please tap the fullscreen icon inside the Vimeo video player."
       );
     }
   });
 
   wrapper.appendChild(button);
 }
+
 
 
   // ========================================
