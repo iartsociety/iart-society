@@ -336,6 +336,45 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   
 // ========================================
+// ZOOM VIDEO ACCORDION
+// ========================================
+
+const zoomCard = document.getElementById("zoom-videos-card");
+const zoomHeading = zoomCard?.querySelector("h2");
+const zoomContent = document.getElementById("course-zoom-videos");
+
+if (zoomCard && zoomHeading && zoomContent) {
+  zoomHeading.classList.add("zoom-accordion-heading");
+  zoomHeading.setAttribute("role", "button");
+  zoomHeading.setAttribute("tabindex", "0");
+  zoomHeading.setAttribute("aria-expanded", "false");
+
+  zoomContent.hidden = true;
+
+  function toggleZoomVideos() {
+    const expanded =
+      zoomHeading.getAttribute("aria-expanded") === "true";
+
+    zoomHeading.setAttribute(
+      "aria-expanded",
+      String(!expanded)
+    );
+
+    zoomContent.hidden = expanded;
+  }
+
+  zoomHeading.addEventListener("click", toggleZoomVideos);
+
+  zoomHeading.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleZoomVideos();
+    }
+  });
+}
+
+  
+// ========================================
 // ZOOM VIDEO RECORDINGS
 // ========================================
 

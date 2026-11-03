@@ -1085,12 +1085,6 @@ body {
   margin-bottom: 14px;
 }
 
-.zoom-video-header h3 {
-  margin: 0;
-  color: inherit;
-  font-size: 18px;
-}
-
 .zoom-video-date {
   display: inline-block;
   color: #C2F0DC;
@@ -1122,4 +1116,37 @@ body {
     flex-direction: column;
   }
 }
+
+
+/* Zoom Videos - match existing course accordion cards */
+
+#zoom-videos-card > h2 {
+  color: #EFC36B;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  padding: 20px 26px;
+  cursor: pointer;
+}
+
+#zoom-videos-card > h2:hover {
+  color: #FFE0A0;
+}
+
+#course-zoom-videos[hidden] {
+  display: none !important;
+}
+
+#course-zoom-videos {
+  padding: 20px 0;
+}
+
+#zoom-videos-card .zoom-video-header {
+  padding: 0 24px;
+}
+
+#zoom-videos-card .zoom-video-lesson {
+  margin: 0 0 24px;
+}
+
 
