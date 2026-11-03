@@ -336,73 +336,30 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   
 // ========================================
-// ZOOM VIDEO ACCORDION
-// ========================================
-
-const zoomCard = document.getElementById("zoom-videos-card");
-const zoomHeading = zoomCard?.querySelector("h2");
-const zoomContent = document.getElementById("course-zoom-videos");
-
-if (zoomCard && zoomHeading && zoomContent) {
-  zoomHeading.classList.add("zoom-accordion-heading");
-  zoomHeading.setAttribute("role", "button");
-  zoomHeading.setAttribute("tabindex", "0");
-  zoomHeading.setAttribute("aria-expanded", "false");
-
-  zoomContent.hidden = true;
-
-  function toggleZoomVideos() {
-    const expanded =
-      zoomHeading.getAttribute("aria-expanded") === "true";
-
-    zoomHeading.setAttribute(
-      "aria-expanded",
-      String(!expanded)
-    );
-
-    zoomContent.hidden = expanded;
-  }
-
-  zoomHeading.addEventListener("click", toggleZoomVideos);
-
-  zoomHeading.addEventListener("keydown", event => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      toggleZoomVideos();
-    }
-  });
-}
-
-  
-// ========================================
 // ZOOM VIDEO RECORDINGS
 // ========================================
+
 
 function loadZoomVideos(zoomVideos = []) {
   if (!zoomVideosContainer) return;
 
   zoomVideosContainer.replaceChildren();
 
-  const zoomCard =
-    document.getElementById("zoom-videos-card");
+  if (!videosContainer) return;
 
-  // Hide the entire section if no Zoom videos exist.
-  if (!Array.isArray(zoomVideos) || !zoomVideos.length) {
-    if (zoomCard) zoomCard.hidden = true;
-    return;
-  }
+    videosContainer.replaceChildren();
 
-  if (zoomCard) zoomCard.hidden = false;
+    for (const video of videos) {
 
-  for (const video of zoomVideos) {
-    const wrapper = document.createElement("div");
-    wrapper.className = "video-lesson zoom-video-lesson";
+      const wrapper =
+        document.createElement("div");
 
-    const header = document.createElement("div");
-    header.className = "zoom-video-header";
+      wrapper.className = "video-lesson";
 
-    const heading = document.createElement("h3");
-    heading.textContent = video.title || "Zoom Recording";
+      const heading =
+        document.createElement("h3");
+
+      heading.textContent = video.title;
 
     const date = document.createElement("span");
     date.className = "zoom-video-date";
@@ -450,6 +407,11 @@ function loadZoomVideos(zoomVideos = []) {
     wrapper.append(header, iframe);
     zoomVideosContainer.appendChild(wrapper);
   }
+  
+  if (!videos.length) {
+      videosContainer.textContent =
+        "Videos coming soon.";
+    }
 }
 
   // ========================================
