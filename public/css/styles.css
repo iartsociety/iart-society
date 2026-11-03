@@ -151,6 +151,7 @@ body.courses .add-course-btn:hover {
 .course-card {
   display: block;
   width: 90%;
+  color: #f2c35b; /* same gold as border */
   max-width: 420px;
   margin: 18px auto;
   text-decoration: none;
