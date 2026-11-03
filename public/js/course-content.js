@@ -279,6 +279,49 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  
+// ========================================
+// EXTERNAL FULLSCREEN BUTTON
+// ========================================
+
+function addFullscreenButton(wrapper, iframe) {
+  const button = document.createElement("button");
+
+  button.type = "button";
+  button.className = "video-fullscreen-btn";
+  button.textContent = "⛶ Fullscreen";
+  button.setAttribute(
+    "aria-label",
+    "View video in fullscreen"
+  );
+
+  button.addEventListener("click", async () => {
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+        return;
+      }
+
+      if (iframe.requestFullscreen) {
+        await iframe.requestFullscreen();
+      } else {
+        // Fallback for browsers that do not support
+        // fullscreen on an iframe.
+        throw new Error("Fullscreen is not supported");
+      }
+    } catch (error) {
+      console.warn("Fullscreen unavailable:", error);
+
+      alert(
+        "Fullscreen is not supported by this browser. " +
+        "Please use the fullscreen icon inside the Vimeo player."
+      );
+    }
+  });
+
+  wrapper.appendChild(button);
+}
+
 
   // ========================================
   // VIMEO / VIDEO LESSONS
@@ -324,6 +367,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       wrapper.append(heading, iframe);
+
+      // Add fullscreen button below the Vimeo player.
+      addFullscreenButton(wrapper, iframe);
 
       videosContainer.appendChild(wrapper);
     }
@@ -417,6 +463,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       wrapper.append(header, iframe);
+
+      // Add the same fullscreen button to Zoom recordings.
+      addFullscreenButton(wrapper, iframe);
+
       zoomVideosContainer.appendChild(wrapper);
     }
   }

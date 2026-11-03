@@ -1094,3 +1094,50 @@ body {
     align-items: flex-start;
   }
 }
+
+
+/* ========================================
+   EXTERNAL VIDEO FULLSCREEN BUTTON
+   ======================================== */
+
+.video-fullscreen-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  margin: 14px auto 26px;
+  padding: 11px 22px;
+
+  background: transparent;
+  color: #EFC36B;
+
+  border: 1.5px solid #EFC36B;
+  border-radius: 24px;
+
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.video-fullscreen-btn:hover {
+  background: #EFC36B;
+  color: #18252B;
+}
+
+.video-fullscreen-btn:focus-visible {
+  outline: 3px solid #CBB0E4;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .video-fullscreen-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
