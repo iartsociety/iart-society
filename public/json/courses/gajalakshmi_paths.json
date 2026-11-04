@@ -8,13 +8,78 @@
 
   "videos": [
     {
-      "title": "Intro and Clear coat",
-      "url": "https://player.vimeo.com/video/1240053123?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "title": "Introduction to Materials",
+      "url": "https://player.vimeo.com/video/1243108844?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true,
+      "description": "All the material you have received with your kit is explained here."
     },
     {
-      "title": "Gajalakshmi Painting - Recap",
-      "url": "https://player.vimeo.com/video/1240335588?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "title": "What to Expect?",
+      "url": "https://player.vimeo.com/video/1243108495?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true,
+      "description": "What to expect in the following videos and how things are organized and recordings created."
+    },
+    {
+      "title": "Red Color Gajalakshmi",
+      "url": "https://player.vimeo.com/video/1243107794?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": false,
+      "description": "Red-Color Gajalakshmi is introduced here. "
+    },
+    {
+      "title": "Blue Color Gajalakshmi",
+      "url": "https://player.vimeo.com/video/1243107798?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": false,
+      "description": "Blue-Color Gajalakshmi is introduced here. "
+    },
+    {
+      "title": "Painting Clear Coat",
+      "url": "https://player.vimeo.com/video/1243115181?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true,
+      "description": "Learn to prep the canvas for painting. Applying a Clear Coat of Gesso is a very important step, do not skip. The Canvas should be FLAT before you start, so make sure you have weighted in on a flat surface for TWO(2) days."
+    },
+    {
+      "title": "Painting Step1: First Coat",
+      "url": "https://player.vimeo.com/video/1243107793?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true,
+      "description": "Learn how to apply the first coat of paint."
+    },
+    {
+      "title": "Mixing Without a Dropper",
+      "url": "https://player.vimeo.com/video/1243107795?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": false,
+      "description": "Alternate paint mixing method without a dropper is shown here."
+    },
+    {
+      "title": "End First Coat and Brush Cleaning",
+      "url": "https://player.vimeo.com/video/1243109509?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": false,
+      "description": "See what my first coat looks like finished and clean your brushes the right way for proper maintenance."
+    },
+    {
+      "title": "Detailing Brush and Painting Edges",
+      "url": "https://player.vimeo.com/video/1243110220?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": false,
+      "description": "Use your detailing brush to paint the endges and details."
+    },
+    {
+      "title": "Finished Look of the First Coat",
+      "url": "https://player.vimeo.com/video/1243110219?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": false
+    },
+    {
+      "title": "Painting Step2:Painting the Border",
+      "url": "https://player.vimeo.com/video/1243110111?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+    },
+    {
+      "title": "Painting Step3: Painting Second Coat",
+      "url": "https://player.vimeo.com/video/1243111413?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true
+    },
+    {
+      "title": "Finished Look of the RED Gajalakshmi",
+      "url": "https://player.vimeo.com/video/1243110571?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
     }
+    
   ],
 
   "images": {"manifest": "/json/courses/gajalakshmi_gallery.json"}

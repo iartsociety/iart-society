@@ -465,11 +465,15 @@ function addVideoDetails(wrapper, heading, video) {
 
     zoomVideosContainer.replaceChildren();
 
-    if (!Array.isArray(zoomVideos) || !zoomVideos.length) {
-      zoomVideosContainer.textContent =
-        "Zoom videos coming soon.";
+    const zoomCard = zoomVideosContainer.closest(".step-card");
+
+    if (!Array.isArray(zoomVideos) || zoomVideos.length === 0) {
+      if (zoomCard) zoomCard.style.display = "none";
       return;
     }
+
+    // Show the card when Zoom videos are available
+    if (zoomCard) zoomCard.style.display = "";
 
     for (const video of zoomVideos) {
 
