@@ -437,7 +437,12 @@ alert(
   JSON.stringify(lookup, null, 2)
 );
 
-
+alert(
+  "Course field exists: " +
+  Object.hasOwn(lookup, "courseId") +
+  "\nGroup field exists: " +
+  Object.hasOwn(lookup, "groupId")
+);
         if (lookup.courseId !== courseId) {
           throw new Error(
             "This activation code belongs to another course."
