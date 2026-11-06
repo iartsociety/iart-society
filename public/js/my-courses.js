@@ -426,11 +426,16 @@ if (unlockButton && codeInput && shortCodeInput) {
         }
 
         const lookup = lookupSnap.data();
-console.log("Activation check:", {
-  enteredCourseCode: shortCode,
-  resolvedCourseId: courseId,
-  lookupCourseId: lookup.courseId
-});
+
+alert(
+  "Activation Debug\n\n" +
+  "Entered Course Code: " + shortCode + "\n" +
+  "Resolved Course ID: " + courseId + "\n" +
+  "Firestore Course ID: " + lookup.courseId + "\n" +
+  "Learning Group: " +
+    (lookup.groupId ?? lookup.groupID)
+);
+
         if (lookup.courseId !== courseId) {
           throw new Error(
             "This activation code belongs to another course."
