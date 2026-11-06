@@ -24,6 +24,13 @@ import {
   createExpirationLabel
 } from "/js/course-expiration.js";
 
+import {
+  doc,
+  getDoc,
+  runTransaction,
+  serverTimestamp,
+  Timestamp
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 // ========================================
 // COURSE CATALOG — JSON
@@ -503,6 +510,29 @@ if (unlockButton && codeInput && shortCodeInput) {
         const activation = codeSnap.data();
         const student = userSnap.data();
 
+        
+        // ========================================
+        // DEFAULT COURSE ACCESS: 1 YEAR
+        // ========================================
+
+        // Set expiration to one calendar year after redemption.
+        const expirationDate = new Date();
+        expirationDate.setUTCFullYear(
+          expirationDate.getUTCFullYear() + 1
+        );
+
+        const expirationTimestamp =
+          Timestamp.fromDate(expirationDate);
+
+        // Preserve expiration dates for other courses.
+        const currentExpirations =
+          student.courseExpirations &&
+          typeof student.courseExpirations === "object" &&
+          !Array.isArray(student.courseExpirations)
+            ? student.courseExpirations
+            : {};
+
+
         if (activation.redeemedBy !== null) {
           throw new Error(
             "This activation code has already been used."
@@ -556,6 +586,12 @@ if (unlockButton && codeInput && shortCodeInput) {
             ...currentCodes,
             redemptionRecord
           ],
+
+          // Automatically assign one year of access.
+          courseExpirations: {
+            ...currentExpirations,
+            [courseId]: expirationTimestamp
+          },
 
           lastRedeemedCourseId: courseId,
           lastRedeemedGroupId: groupId,
