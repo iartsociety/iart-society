@@ -426,7 +426,11 @@ if (unlockButton && codeInput && shortCodeInput) {
         }
 
         const lookup = lookupSnap.data();
-
+console.log("Activation check:", {
+  enteredCourseCode: shortCode,
+  resolvedCourseId: courseId,
+  lookupCourseId: lookup.courseId
+});
         if (lookup.courseId !== courseId) {
           throw new Error(
             "This activation code belongs to another course."
