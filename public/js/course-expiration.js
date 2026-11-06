@@ -60,14 +60,21 @@ export function createExpirationLabel(expiresAt) {
   const label = document.createElement("div");
   label.className = "course-expiration";
 
-  if (isCourseExpired(expiresAt)) {
+  
+    if (isCourseExpired(expiresAt)) {
     label.classList.add("course-expired");
     label.textContent = "Access Expired";
-  } else {
-    label.textContent =
-      "Access until " +
-      formatCourseExpiration(expiresAt);
-  }
+    } else {
+    const formatted = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Chicago",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    }).format(expiresAt);
+
+    label.textContent = "Expires on " + formatted;
+    }
+
 
   return label;
 }
