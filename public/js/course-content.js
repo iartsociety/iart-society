@@ -10,6 +10,11 @@ import {
   resolveCourseResource
 } from "/js/admin-preview-helper.js";
 
+import {
+  getCourseExpiration,
+  isCourseExpired,
+  createExpirationLabel
+} from "/js/course-expiration.js";
 
 // ========================================
 // COURSE CONTENT
@@ -838,6 +843,42 @@ function addVideoDetails(wrapper, heading, video) {
       isAdmin
     } = await resolveCourseResource(courseId);
 
+    
+// Read the current student's expiration information.
+const profileSnap = await getDoc(
+  doc(db, "users", user.uid)
+);
+
+if (!profileSnap.exists()) {
+  throw new Error("Student profile not found.");
+}
+
+const student = profileSnap.data();
+
+  // Admin previews are not subject to the admin's
+  // personal course expiration dates.
+  if (!isAdmin) {
+    const expiresAt = getCourseExpiration(
+      student,
+      courseId
+    );
+
+    if (expiresAt) {
+      const expirationLabel =
+        createExpirationLabel(expiresAt);
+
+      titleElement.insertAdjacentElement(
+        "afterend",
+        expirationLabel
+      );
+
+      // Do not load lesson resources after expiry.
+      if (isCourseExpired(expiresAt)) {
+        throw new Error("COURSE_EXPIRED");
+      }
+    }
+  }
+
 
     console.log("iArtSociety course:", {
       courseId,
@@ -935,6 +976,11 @@ function addVideoDetails(wrapper, heading, video) {
 
     if (error.message === "SIGN_IN_REQUIRED") {
       window.location.replace("/login.html");
+      return;
+    }
+
+    if (error.message === "COURSE_EXPIRED") {
+      showError("Your course access has expired.");
       return;
     }
 

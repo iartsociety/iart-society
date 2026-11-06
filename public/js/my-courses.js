@@ -18,6 +18,12 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+import {
+  getCourseExpiration,
+  isCourseExpired,
+  createExpirationLabel
+} from "/js/course-expiration.js";
+
 
 // ========================================
 // COURSE CATALOG — JSON
@@ -128,7 +134,8 @@ async function loadGroups(courseId) {
 
 // Build a course card.
 // Admin cards include a specific group in the URL.
-function appendCourseCard(courseId, course, group = null) {
+function appendCourseCard(courseId, course, group = null, expiresAt = null
+) {
   if (!container) return;
 
   if (
@@ -177,6 +184,22 @@ function appendCourseCard(courseId, course, group = null) {
   title.textContent = course.title || courseId;
 
   info.appendChild(title);
+
+  // Student's individual expiration date.
+  if (!group && expiresAt) {
+    info.appendChild(
+      createExpirationLabel(expiresAt)
+    );
+
+    // Expired courses remain visible but cannot
+    // be opened from My Courses.
+    if (isCourseExpired(expiresAt)) {
+      link.removeAttribute("href");
+      link.classList.add("expired-course-card");
+      link.setAttribute("aria-disabled", "true");
+    }
+  }
+
 
   // Extra information for admin preview cards.
   if (group) {
@@ -263,12 +286,21 @@ async function loadStudentCourses(user) {
       ? student.purchasedCourses
       : [];
 
-    purchasedCourses.forEach(courseId => {
-      appendCourseCard(
-        courseId,
-        catalog[courseId]
-      );
-    });
+    
+  purchasedCourses.forEach(courseId => {
+    const expiresAt = getCourseExpiration(
+      student,
+      courseId
+    );
+
+    appendCourseCard(
+      courseId,
+      catalog[courseId],
+      null,
+      expiresAt
+    );
+  });
+
 
     if (!container.children.length) {
       showMessage(
@@ -427,22 +459,6 @@ if (unlockButton && codeInput && shortCodeInput) {
 
         const lookup = lookupSnap.data();
 
-
-alert(
-  "Activation Debug\n\n" +
-  "Entered Course Code: " + shortCode + "\n" +
-  "Activation Code: " + code + "\n" +
-  "Resolved Course ID: " + courseId + "\n" +
-  "Firestore Data: " +
-  JSON.stringify(lookup, null, 2)
-);
-
-alert(
-  "Course field exists: " +
-  Object.hasOwn(lookup, "courseId") +
-  "\nGroup field exists: " +
-  Object.hasOwn(lookup, "groupId")
-);
         if (lookup.courseId !== courseId) {
           throw new Error(
             "This activation code belongs to another course."
