@@ -9,28 +9,23 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
+
 import {
   doc,
   getDoc,
   collection,
   getDocs,
   runTransaction,
-  serverTimestamp
+  serverTimestamp,
+  Timestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
 
 import {
   getCourseExpiration,
   isCourseExpired,
   createExpirationLabel
 } from "/js/course-expiration.js";
-
-import {
-  doc,
-  getDoc,
-  runTransaction,
-  serverTimestamp,
-  Timestamp
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 // ========================================
 // COURSE CATALOG — JSON
