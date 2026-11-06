@@ -427,14 +427,16 @@ if (unlockButton && codeInput && shortCodeInput) {
 
         const lookup = lookupSnap.data();
 
+
 alert(
   "Activation Debug\n\n" +
   "Entered Course Code: " + shortCode + "\n" +
+  "Activation Code: " + code + "\n" +
   "Resolved Course ID: " + courseId + "\n" +
-  "Firestore Course ID: " + lookup.courseId + "\n" +
-  "Learning Group: " +
-    (lookup.groupId ?? lookup.groupID)
+  "Firestore Data: " +
+  JSON.stringify(lookup, null, 2)
 );
+
 
         if (lookup.courseId !== courseId) {
           throw new Error(
