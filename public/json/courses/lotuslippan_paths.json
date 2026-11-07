@@ -17,5 +17,7 @@
     }
   ],
 
-  "images": {}
+  "images": {
+    "manifest": "/json/courses/lotuslippan_gallery.json"
+  }
 }
