@@ -1267,3 +1267,31 @@ body {
 .expired-course-card:hover {
   transform: none;
 }
+
+
+/* Homepage featured workshop image */
+
+img.workshop {
+  display: block;
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  margin: 20px auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  img.workshop {
+    max-width: 380px;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  img.workshop {
+    width: 90%;
+    max-width: 320px;
+  }
+}
