@@ -9,11 +9,107 @@
   "videos": [
     {
       "title": "Day 1",
-      "url": "https://player.vimeo.com/video/1240052816?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "url": "https://player.vimeo.com/video/1240052816?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "description":"This video covers the materials, the weeding of your stencil, and the first 2 coats of your wood.The wood is painting with twe colors and the demo only covers the first color. following the same steps with extra drying time as the number of coats increase.The second color is left as home work.",
+      "mustWatch": true,
+      
+"chapters": [
+  {
+    "time": "00:08:00",
+    "title": "Start Here - Intro"
+  },
+  {
+    "time": "00:11:38",
+    "title": "Materials in your Kit"
+  },
+  {
+    "time": "00:24:52",
+    "title": "Weeding you Stencil"
+  },
+  {
+    "time": "00:39:22",
+    "title": "Step 1: Clear Coat - MUS..."
+  },
+  {
+    "time": "00:55:03",
+    "title": "Painting the RED - After ..."
+  },
+  {
+    "time": "01:00:44",
+    "title": "Painting Blue - After Cl..."
+  },
+  {
+    "time": "01:13:16",
+    "title": "Touch DRY for second c..."
+  },
+  {
+    "time": "01:14:07",
+    "title": "RED Second Coat"
+  },
+  {
+    "time": "01:16:58",
+    "title": "Brush Wash - MUST W..."
+  },
+  {
+    "time": "01:17:39",
+    "title": "BLUE Second Coat"
+  },
+  {
+    "time": "01:20:11",
+    "title": "Third Coat - Do I need?"
+  }
+]
+
     },
     {
       "title": "Day 2",
-      "url": "https://player.vimeo.com/video/1240052814?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "url": "https://player.vimeo.com/video/1240052814?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "description":"This video covers the Stencil application steps and the white paint. Stick the wood pieces, Varnish then add hardware.",
+      "mustWatch": true,
+      
+"chapters": [
+  {
+    "time": "00:03:45",
+    "title": "Start Here"
+  },
+  {
+    "time": "00:04:46",
+    "title": "Transfer Tape"
+  },
+  {
+    "time": "00:11:43",
+    "title": "Burnishing"
+  },
+  {
+    "time": "00:13:46",
+    "title": "Stencil Application"
+  },
+  {
+    "time": "00:20:21",
+    "title": "Stencil Application - Second Part"
+  },
+  {
+    "time": "00:28:07",
+    "title": "Kolam Painting"
+  },
+  {
+    "time": "00:31:42",
+    "title": "Painting your GOLD"
+  },
+  {
+    "time": "00:41:11",
+    "title": "Stencil Peeling"
+  },
+  {
+    "time": "00:52:15",
+    "title": "Sticking the wood pieces"
+  },
+  {
+    "time": "00:53:59",
+    "title": "Varnish and Hardware"
+  }
+]
+
     }
   ],
 
