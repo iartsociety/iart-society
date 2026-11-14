@@ -55,22 +55,26 @@
     {
       "title": "Thombai base coat p1",
       "url": "https://player.vimeo.com/video/1246728367?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": false
+      "mustWatch": false,
+      "description": "The thombai colors and base coat for the skirt are explained in this video"
     },
     {
       "title": "Thombai base coat p2",
       "url": "https://player.vimeo.com/video/1246734026?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": false
+      "mustWatch": false,
+      "description": "The remaining thombai colors are explained in this video"
     },
     {
       "title": "Thombai - Shading p1",
       "url": "https://player.vimeo.com/video/1246739746?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": true
+      "mustWatch": true,
+      "description": "Watch both Shading videos before starting. The skirt alone is painted differently, while the rest of the thombai shading will be familiar"
     },
     {
       "title": "Thombai - Shading p2",
       "url": "https://player.vimeo.com/video/1246768373?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": true
+      "mustWatch": true,
+      "description": "Red, green and blue parts of the thombai are shaded here."
     }
   ],
 
