@@ -51,6 +51,26 @@
     {
       "title": "Saree Green",
       "url": "https://player.vimeo.com/video/1240053602?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+    },
+    {
+      "title": "Thombai base coat p1",
+      "url": "https://player.vimeo.com/video/1246728367?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": false
+    },
+    {
+      "title": "Thombai base coat p2",
+      "url": "https://player.vimeo.com/video/1246734026?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": false
+    },
+    {
+      "title": "Thombai - Shading p1",
+      "url": "https://player.vimeo.com/video/1246739746?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true
+    },
+    {
+      "title": "Thombai - Shading p2",
+      "url": "https://player.vimeo.com/video/1246768373?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "mustWatch": true
     }
   ],
 
