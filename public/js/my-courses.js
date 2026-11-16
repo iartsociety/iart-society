@@ -518,14 +518,40 @@ if (unlockButton && codeInput && shortCodeInput) {
         // DEFAULT COURSE ACCESS: 1 YEAR
         // ========================================
 
-        // Set expiration to one calendar year after redemption.
-        const expirationDate = new Date();
-        expirationDate.setUTCFullYear(
-          expirationDate.getUTCFullYear() + 1
-        );
+        
+        const codeData = codeSnap.data();
+        
+        let expirationTimestamp;
+        
+        if (codeData.courseExpiresAt != null) {
+          // Use the expiration date assigned to this code.
+          if (
+            typeof codeData.courseExpiresAt.toMillis !== "function"
+          ) {
+            throw new Error(
+              "Invalid course expiration date."
+            );
+          }
+        
+          expirationTimestamp = codeData.courseExpiresAt;
+        
+          if (expirationTimestamp.toMillis() <= Date.now()) {
+            throw new Error(
+              "This course access date has already expired."
+            );
+          }
+        
+        } else {
+          // Default: 90 days after redemption.
+          const expirationDate = new Date(
+            Date.now() + 90 * 24 * 60 * 60 * 1000
+          );
+        
+          expirationTimestamp = Timestamp.fromDate(
+            expirationDate
+          );
+        }
 
-        const expirationTimestamp =
-          Timestamp.fromDate(expirationDate);
 
         // Preserve expiration dates for other courses.
         const currentExpirations =
