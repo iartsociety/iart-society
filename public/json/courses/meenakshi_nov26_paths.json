@@ -104,11 +104,54 @@
       "date": "2026-11-15",
       "url": "https://player.vimeo.com/video/1247155888?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;playsinline=0",
       "description": "Lotus Shading, Chapter Links can be found within the Player Controls of the Video",
-      "chapters": [
-    {
-      "time": "05:15",
-      "title": "Start"
-    }]
+      
+"chapters": [
+  {
+    "time": "00:05:15",
+    "title": "Start"
+  },
+  {
+    "time": "00:09:38",
+    "title": "Lotus Shading Color"
+  },
+  {
+    "time": "00:16:10",
+    "title": "Brush Technique for Shading"
+  },
+  {
+    "time": "00:23:37",
+    "title": "Feedback p1"
+  },
+  {
+    "time": "00:31:29",
+    "title": "Brush Technique 2"
+  },
+  {
+    "time": "00:42:14",
+    "title": "Lotus Shading Theory"
+  },
+  {
+    "time": "00:47:05",
+    "title": "Lotus Shading"
+  },
+  {
+    "time": "00:55:31",
+    "title": "Feedback p2"
+  },
+  {
+    "time": "01:04:40",
+    "title": "Lotus Shading - Yellow"
+  },
+  {
+    "time": "01:13:56",
+    "title": "Left Over Paint"
+  },
+  {
+    "time": "01:20:15",
+    "title": "Next Week Face Prep"
+  }
+]
+
   }
   ],
 
