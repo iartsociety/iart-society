@@ -249,37 +249,45 @@ async function loadStudentCourses(user) {
 
   if (student.role === "admin") {
 
-    // Administrators see one course card per group.
-    for (const [courseId, course] of Object.entries(catalog)) {
+  showMessage("Loading admin course previews...");
 
-      if (!course || typeof course.page !== "string") {
-        continue;
-      }
-
-      try {
+  const results = await Promise.allSettled(
+    Object.entries(catalog).map(
+      async ([courseId, course]) => {
         const groups = await loadGroups(courseId);
 
-        for (const group of groups) {
-          appendCourseCard(courseId, course, group);
-        }
-
-      } catch (error) {
-        console.warn(
-          "Unable to list groups for:",
-          courseId,
-          error
-        );
+        return { courseId, course, groups };
       }
-    }
+    )
+  );
 
-    if (!container.children.length) {
-      showMessage(
-        "No course groups available for admin preview. " +
-        "Check your Firestore groups and admin permissions."
+  container.replaceChildren();
+
+  for (const result of results) {
+
+    if (result.status === "rejected") {
+      console.warn(
+        "Admin course group loading failed:",
+        result.reason
       );
+      continue;
     }
 
-  } else {
+    const { courseId, course, groups } = result.value;
+
+    for (const group of groups) {
+      appendCourseCard(courseId, course, group);
+    }
+  }
+
+  if (!container.children.length) {
+    showMessage(
+      "No admin course groups could be loaded. " +
+      "Check Firestore permissions."
+    );
+  }
+
+} else {
 
     // Students see only their purchased courses.
     const purchasedCourses = Array.isArray(
@@ -510,14 +518,40 @@ if (unlockButton && codeInput && shortCodeInput) {
         // DEFAULT COURSE ACCESS: 1 YEAR
         // ========================================
 
-        // Set expiration to one calendar year after redemption.
-        const expirationDate = new Date();
-        expirationDate.setUTCFullYear(
-          expirationDate.getUTCFullYear() + 1
-        );
+        
+        const codeData = codeSnap.data();
+        
+        let expirationTimestamp;
+        
+        if (codeData.courseExpiresAt != null) {
+          // Use the expiration date assigned to this code.
+          if (
+            typeof codeData.courseExpiresAt.toMillis !== "function"
+          ) {
+            throw new Error(
+              "Invalid course expiration date."
+            );
+          }
+        
+          expirationTimestamp = codeData.courseExpiresAt;
+        
+          if (expirationTimestamp.toMillis() <= Date.now()) {
+            throw new Error(
+              "This course access date has already expired."
+            );
+          }
+        
+        } else {
+          // Default: 90 days after redemption.
+          const expirationDate = new Date(
+            Date.now() + 90 * 24 * 60 * 60 * 1000
+          );
+        
+          expirationTimestamp = Timestamp.fromDate(
+            expirationDate
+          );
+        }
 
-        const expirationTimestamp =
-          Timestamp.fromDate(expirationDate);
 
         // Preserve expiration dates for other courses.
         const currentExpirations =
