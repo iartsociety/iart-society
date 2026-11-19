@@ -6,8 +6,8 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#19262C",
-  "theme_color": "#19262C",
+    "background_color": "#1a252b",
+    "theme_color": "#1a252b",
   "icons": [
     {
       "src": "/images/iart-512.png",
