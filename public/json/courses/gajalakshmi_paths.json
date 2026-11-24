@@ -1,131 +1,134 @@
 
 {
   "title": "Gajalakshmi Painting Guide",
-
   "thumbnail": "/images/courses/gajalakshmi/thumbnail.png",
-
   "documents": [],
-
   "videos": [
     {
+      "title": "Introduction",
+      "url": "https://player.vimeo.com/video/1249798785?badge=0&autopause=0&player_id=0&app_id=58479",
+      "mustWatch": true,
+      "description": "What to expect in the following videos and how things are organized and recordings created. Red-Color & Blue Color Gajalakshmi is introduced here. If you are creating the Plum color, start from Painting Clear Coat and continue.",
+      "chapters": [
+        {
+          "time": "00:00:00",
+          "title": "What to Expect"
+        },
+        {
+          "time": "00:02:02",
+          "title": "Red - Intro"
+        },
+        {
+          "time": "00:02:41",
+          "title": "Blue - Intro"
+        }
+      ]
+    },
+    {
       "title": "Introduction to Materials",
-      "url": "https://player.vimeo.com/video/1243108844?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "url": "https://player.vimeo.com/video/1249798786?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": true,
-      "description": "All the material you have received with your kit is explained here."
-    },
-    {
-      "title": "What to Expect?",
-      "url": "https://player.vimeo.com/video/1243108495?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": true,
-      "description": "What to expect in the following videos and how things are organized and recordings created."
-    },
-    {
-      "title": "Red Color Gajalakshmi",
-      "url": "https://player.vimeo.com/video/1243107794?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": false,
-      "description": "Red-Color Gajalakshmi is introduced here. if you are createing the Plum color start from Painting Clear Coat and continue. Plum is the color used in the video demos."
-    },
-    {
-      "title": "Blue Color Gajalakshmi",
-      "url": "https://player.vimeo.com/video/1243107798?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": false,
-      "description": "Blue-Color Gajalakshmi is introduced here. if you are createing the Plum color start from Painting Clear Coat and continue. Plum is the color used in the video demos."
-    },
-    {
-      "title": "Painting Clear Coat",
-      "url": "https://player.vimeo.com/video/1243115181?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": true,
-      "description": "Learn to prep the canvas for painting. Applying a Clear Coat of Gesso is a very important step, do not skip. The Canvas should be FLAT before you start, so make sure you have weighted in on a flat surface for TWO(2) days."
+      "description": "All the materials in your kit are explained, and you will learn to prep the canvas for painting. Applying a clear coat of gesso is a very important step; do not skip. The canvas should be FLAT before you start, so make sure you have weighted it on a flat surface for TWO (2) days.",
+      "chapters": [
+        {
+          "time": "00:00:00",
+          "title": "Intro To Materials"
+        },
+        {
+          "time": "00:01:43",
+          "title": "Clear Coat"
+        }
+      ]
     },
     {
       "title": "Painting Step1: First Coat",
-      "url": "https://player.vimeo.com/video/1243107793?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "url": "https://player.vimeo.com/video/1249798784?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": true,
-      "description": "Learn how to apply the first coat of paint."
+      "description": "Painting the Background - First Coat",
+      "chapters": [
+        {
+          "time": "00:00:00",
+          "title": "First Coat - BG"
+        },
+        {
+          "time": "00:04:55",
+          "title": "End First Coat & Brush Cleaning"
+        },
+        {
+          "time": "00:05:48",
+          "title": "Painting Edges"
+        },
+        {
+          "time": "00:11:17",
+          "title": "First Coat Done"
+        }
+      ]
     },
     {
-      "title": "Mixing Without a Dropper",
-      "url": "https://player.vimeo.com/video/1243107795?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "title": "Painting Step 2: Second Coat",
+      "url": "https://player.vimeo.com/video/1249801394?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": false,
-      "description": "Alternate paint mixing method without a dropper is shown here."
-    },
-    {
-      "title": "End First Coat and Brush Cleaning",
-      "url": "https://player.vimeo.com/video/1243109509?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": false,
-      "description": "See what my first coat looks like finished and clean your brushes the right way for proper maintenance."
-    },
-    {
-      "title": "Detailing Brush and Painting Edges",
-      "url": "https://player.vimeo.com/video/1243110220?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": false,
-      "description": "Use your detailing brush to paint the endges and details."
-    },
-    {
-      "title": "Finished Look of the First Coat",
-      "url": "https://player.vimeo.com/video/1243110219?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": false
-    },
-    {
-      "title": "Painting Step2:Painting the Border",
-      "url": "https://player.vimeo.com/video/1243110111?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-    },
-    {
-      "title": "Painting Step3: Painting Second Coat",
-      "url": "https://player.vimeo.com/video/1243111413?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": true
-    },
-    {
-      "title": "Second Coat - Overnight Drying",
-      "url": "https://player.vimeo.com/video/1246991115?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-      "mustWatch": true,
-      "description": "After the second coat is applied, let it dry overnight. Do not touch or move the canvas for at least 12 hours. The Video Captures the Velvet Smooth look after the drying time."
+      "description": "Painting the second coat to get a beautiful velvet smooth finish.",
+      "chapters": [
+        {
+          "time": "00:00:00",
+          "title": "Border Painting"
+        },
+        {
+          "time": "00:02:07",
+          "title": "Painting Second Coat"
+        },
+        {
+          "time": "00:10:22",
+          "title": "Overnight Drying"
+        }
+      ]
     },
     {
       "title": "Creamy GOLD",
-      "url": "https://player.vimeo.com/video/1246991114?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "url": "https://player.vimeo.com/video/1246991114?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": false,
-      "description": "This GOLD was packed after thanskgiving DEC2026, IF your gold looks creamy, pls watch this video or elese skip to the next one. The gold packaging has changed, how its painting is still the same."
+      "description": "This GOLD was packed after Thanksgiving DEC2026. IF your gold looks creamy, please watch this video or else skip to the next one. The gold packaging has changed; how it is painted is still the same."
     },
     {
       "title": "Adding Gold -Part 1",
-      "url": "https://player.vimeo.com/video/1246991113?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "url": "https://player.vimeo.com/video/1246991113?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": true,
-      "description": "Learn to apply the gold paint to the Gajalakshmi painting. Key part are demonstrated, Continue as indicated."
+      "description": "Learn to apply the gold paint to the Gajalakshmi painting. Key parts are demonstrated. Continue as indicated."
     },
     {
       "title": "Adding Gold -Part 2",
-      "url": "https://player.vimeo.com/video/1243159623?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "url": "https://player.vimeo.com/video/1243159623?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": true
     },
     {
       "title": "Adding Gold -Part 3",
-      "url": "https://player.vimeo.com/video/1246991116?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "url": "https://player.vimeo.com/video/1246991116?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": true,
       "description": "The GOLD Pot at the bottom with the gold coins is demonstrated here."
     },
     {
       "title": "Pen work 1",
-      "url": "https://player.vimeo.com/video/1243159635?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "url": "https://player.vimeo.com/video/1243159635?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": true
     },
     {
       "title": "Pen Work 2",
-      "url": "https://player.vimeo.com/video/1243159634?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "url": "https://player.vimeo.com/video/1243159634?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": true
     },
     {
       "title": "W (White) and M (Magic) Pots",
-      "url": "https://player.vimeo.com/video/1246991106?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      "url": "https://player.vimeo.com/video/1246991106?badge=0&autopause=0&player_id=0&app_id=58479",
       "mustWatch": true,
-       "description": "This was packed with newer kits post NOV 2026, pls watch the video for its usage. We will honor older customers and send this out to you at no addional cost. so pls reach out if you wish to receive this item"
+      "description": "This was packed with newer kits post NOV 2026. Please watch the video for its usage. We will honor older customers and send this out to you at no additional cost, so please reach out if you wish to receive this item."
     },
     {
       "title": "Finished Look of the RED Gajalakshmi",
-      "url": "https://player.vimeo.com/video/1243110571?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      "url": "https://player.vimeo.com/video/1243110571?badge=0&autopause=0&player_id=0&app_id=58479"
     }
-    
   ],
-
-  "images": {"manifest": "/json/courses/gajalakshmi_gallery.json"}
+  "images": {
+    "manifest": "/json/courses/gajalakshmi_gallery.json"
+  }
 }
