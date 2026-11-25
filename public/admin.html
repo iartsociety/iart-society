@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>iArtSociety | Admin Dashboard</title>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <style>
+    body {
+      background: #1a252b;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .admin-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 24px 16px 100px;
+    }
+
+    .admin-title {
+      color: #efc36b;
+      margin-bottom: 8px;
+    }
+
+    .admin-subtitle {
+      color: #c2f0dc;
+      margin-bottom: 28px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .admin-card {
+      padding: 20px;
+      border: 1px solid #efc36b;
+      border-radius: 12px;
+      background: #202e34;
+    }
+
+    .admin-card h3 {
+      color: #efc36b;
+      margin-top: 0;
+    }
+
+    .admin-card p {
+      color: #c2f0dc;
+      font-size: 14px;
+    }
+
+    .admin-panel {
+      border: 1px solid #53646a;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .admin-panel h2 {
+      color: #efc36b;
+      font-size: 21px;
+    }
+
+    .admin-input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #78868b;
+      border-radius: 8px;
+      background: #fff;
+      color: #111;
+      font-size: 16px;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+    }
+
+    .admin-button {
+      padding: 12px 20px;
+      border: 1px solid #efc36b;
+      border-radius: 8px;
+      background: #efc36b;
+      color: #1a252b;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .admin-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .student-result {
+      border: 1px solid #526269;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 14px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .student-result h3 {
+      color: #efc36b;
+      margin-top: 0;
+    }
+
+    .student-result p {
+      line-height: 1.5;
+    }
+
+    .admin-status {
+      color: #c2f0dc;
+      margin: 16px 0;
+    }
+
+    .admin-link {
+      color: #efc36b;
+    }
+
+    #admin-app {
+      display: none;
+    }
+
+    #access-denied {
+      display: none;
+      color: #ffaaaa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="admin-container">
+
+    <h1 class="admin-title">
+      iArtSociety Admin
+    </h1>
+
+    <p id="loading-status" class="admin-status">
+      Verifying administrator access...
+    </p>
+
+    <p id="access-denied">
+      Administrator access required.
+      <a class="admin-link" href="/courses.html">
+        Return to My Courses
+      </a>
+    </p>
+
+    <div id="admin-app">
+
+      <p class="admin-subtitle" id="admin-welcome">
+        Course and student management
+      </p>
+
+      <div class="admin-grid">
+
+        <div class="admin-card">
+          <h3>Student Lookup</h3>
+          <p>
+            Search student profiles and view
+            enrollment and expiration dates.
+          </p>
+        </div>
+
+        <div class="admin-card">
+          <h3>Activation Codes</h3>
+          <p>
+            Retrieve and assign unused codes.
+            Coming next.
+          </p>
+        </div>
+
+        <div class="admin-card">
+          <h3>Course Expiration</h3>
+          <p>
+            Manage student access dates.
+            Coming next.
+          </p>
+        </div>
+
+      </div>
+
+      <section class="admin-panel">
+
+        <h2>Find Student</h2>
+
+        <form id="student-search-form">
+
+          <input
+            class="admin-input"
+            type="search"
+            id="student-search"
+            placeholder="Enter student email or name"
+            autocomplete="off"
+            required
+          >
+
+          <button
+            class="admin-button"
+            type="submit"
+            id="search-button"
+          >
+            Search Students
+          </button>
+
+        </form>
+
+        <p id="search-status" class="admin-status"></p>
+
+        <div id="student-results"></div>
+
+      </section>
+
+      <p style="margin-top:30px">
+        <a class="admin-link" href="/courses.html">
+          Back to My Courses
+        </a>
+      </p>
+
+    </div>
+
+  </main>
+
+  <script type="module" src="/js/admin-dashboard.js"></script>
+
+</body>
+</html>
